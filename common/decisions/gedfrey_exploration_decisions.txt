@@ -1,0 +1,7 @@
+# ============================================================
+# Gedfrey Mod — Exploration Decisions (Phase 4)
+# ============================================================
+# Placeholder — implemented in Phase 4.
+
+gedfrey_exploration_decisions = {
+}

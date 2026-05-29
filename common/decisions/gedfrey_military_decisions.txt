@@ -1,0 +1,283 @@
+# ============================================================
+# Gedfrey Mod — Military Decisions (Phase 1: decisions 1–4)
+# All decisions are INSTANT (no days_remove).
+# ============================================================
+
+gedfrey_military_decisions = {
+
+	# ============================================================
+	# DECISIÓN 1: Instrucción Individual / Individual Training
+	# Gives one random Corps Commander +1 in a random skill.
+	# Available after 30 days from game start (1936.1.31).
+	# Cooldown: minor/medium=30d, major=45d
+	# ============================================================
+
+	gedfrey_individual_training = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			date >= 1936.1.31
+		}
+
+		available = {
+			date >= 1936.1.31
+			any_unit_leader = { is_corps_commander = yes }
+		}
+
+		cost = gedfrey_training_cost
+		days_re_enable = gedfrey_cd_training
+
+		complete_effect = {
+			random_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_maneuvering = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# DECISIÓN 2: Reforma Militar General / General Military Reform
+	# All Corps Commanders each get +1 in their own random skill.
+	# Available after 300 days from game start (1936.10.28).
+	# Cooldown: minor/medium=300d, major=450d
+	# ============================================================
+
+	gedfrey_military_reform = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			date >= 1936.10.28
+		}
+
+		available = {
+			date >= 1936.10.28
+			any_unit_leader = { is_corps_commander = yes }
+		}
+
+		cost = gedfrey_reform_cost
+		days_re_enable = gedfrey_cd_reform
+
+		complete_effect = {
+			every_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_maneuvering = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# DECISIÓN 3: Talento Especial / Special Talent
+	# One random Corps Commander gains a random trait they don't have.
+	# Pool of 16 traits. Weight=0 if already owned, skip silently.
+	# Available after 30 days. Cooldown: minor/medium=365d, major=548d
+	# ============================================================
+
+	gedfrey_special_talent = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			date >= 1936.1.31
+		}
+
+		available = {
+			date >= 1936.1.31
+			any_unit_leader = { is_corps_commander = yes }
+		}
+
+		cost = gedfrey_talent_cost
+		days_re_enable = gedfrey_cd_talent
+
+		complete_effect = {
+			random_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					1 = {
+						modifier = { factor = 0  has_trait = infantry_officer }
+						add_trait = { trait = infantry_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = armor_officer }
+						add_trait = { trait = armor_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = cavalry_officer }
+						add_trait = { trait = cavalry_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = artillery_officer }
+						add_trait = { trait = artillery_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = defensive_doctrine }
+						add_trait = { trait = defensive_doctrine }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = offensive_doctrine }
+						add_trait = { trait = offensive_doctrine }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = logistics_wizard }
+						add_trait = { trait = logistics_wizard }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = engineer }
+						add_trait = { trait = engineer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = winter_specialist }
+						add_trait = { trait = winter_specialist }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = commando }
+						add_trait = { trait = commando }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = camouflage_expert }
+						add_trait = { trait = camouflage_expert }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = hill_fighter }
+						add_trait = { trait = hill_fighter }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = jungle_rat }
+						add_trait = { trait = jungle_rat }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = desert_fox }
+						add_trait = { trait = desert_fox }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = inflexible_strategist }
+						add_trait = { trait = inflexible_strategist }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = brilliant_strategist }
+						add_trait = { trait = brilliant_strategist }
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# DECISIÓN 4: Mando Supremo / Supreme Command
+	# One random Field Marshal gains a random trait they don't have.
+	# Same trait pool as Decision 3.
+	# Available after 30 days. Cooldown: minor/medium=365d, major=548d
+	# ============================================================
+
+	gedfrey_supreme_command = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			date >= 1936.1.31
+		}
+
+		available = {
+			date >= 1936.1.31
+			any_unit_leader = { is_field_marshal = yes }
+		}
+
+		cost = gedfrey_supreme_cost
+		days_re_enable = gedfrey_cd_talent   # same cooldown as talent (365/548)
+
+		complete_effect = {
+			random_unit_leader = {
+				limit = { is_field_marshal = yes }
+				random_list = {
+					1 = {
+						modifier = { factor = 0  has_trait = infantry_officer }
+						add_trait = { trait = infantry_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = armor_officer }
+						add_trait = { trait = armor_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = cavalry_officer }
+						add_trait = { trait = cavalry_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = artillery_officer }
+						add_trait = { trait = artillery_officer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = defensive_doctrine }
+						add_trait = { trait = defensive_doctrine }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = offensive_doctrine }
+						add_trait = { trait = offensive_doctrine }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = logistics_wizard }
+						add_trait = { trait = logistics_wizard }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = engineer }
+						add_trait = { trait = engineer }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = winter_specialist }
+						add_trait = { trait = winter_specialist }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = commando }
+						add_trait = { trait = commando }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = camouflage_expert }
+						add_trait = { trait = camouflage_expert }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = hill_fighter }
+						add_trait = { trait = hill_fighter }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = jungle_rat }
+						add_trait = { trait = jungle_rat }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = desert_fox }
+						add_trait = { trait = desert_fox }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = inflexible_strategist }
+						add_trait = { trait = inflexible_strategist }
+					}
+					1 = {
+						modifier = { factor = 0  has_trait = brilliant_strategist }
+						add_trait = { trait = brilliant_strategist }
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

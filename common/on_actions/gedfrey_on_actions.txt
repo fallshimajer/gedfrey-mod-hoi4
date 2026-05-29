@@ -1,0 +1,13 @@
+# ============================================================
+# Gedfrey Mod — On Actions
+# ============================================================
+
+on_actions = {
+	# Initialize per-country variables at game start.
+	# on_startup fires for each country, so set_variable works in country scope.
+	on_startup = {
+		effect = {
+			set_variable = { var = gedfrey_settlement_count value = 0 }
+		}
+	}
+}

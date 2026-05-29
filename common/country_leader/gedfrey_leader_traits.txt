@@ -1,0 +1,118 @@
+# ============================================================
+# Gedfrey Mod — Country Leader Traits
+# Added via add_country_leader_trait; removed via remove_country_leader_trait
+# Levels replace each other (N2 removes N1, N3 removes N2, etc.)
+# ============================================================
+
+leader_traits = {
+
+	# --------------------------------------------------------
+	# Potencia Industrial / Industrial Power  (3 levels)
+	# --------------------------------------------------------
+
+	gedfrey_industry_1 = {
+		industrial_capacity_factory = 0.05
+		weekly_manpower = 100
+		manpower_recovery_speed = 0.05
+		construction_speed = 0.05
+		global_building_slots_factor = 0.05
+		mining_resources_factor = 0.05
+	}
+
+	gedfrey_industry_2 = {
+		industrial_capacity_factory = 0.10
+		weekly_manpower = 300
+		manpower_recovery_speed = 0.10
+		construction_speed = 0.10
+		global_building_slots_factor = 0.10
+		mining_resources_factor = 0.08
+	}
+
+	gedfrey_industry_3 = {
+		industrial_capacity_factory = 0.15
+		weekly_manpower = 750
+		manpower_recovery_speed = 0.15
+		construction_speed = 0.15
+		global_building_slots_factor = 0.15
+		mining_resources_factor = 0.12
+	}
+
+	# --------------------------------------------------------
+	# Consolidación Política / Political Consolidation  (3 levels)
+	# --------------------------------------------------------
+
+	gedfrey_politics_1 = {
+		political_power_gain = 0.05
+	}
+
+	gedfrey_politics_2 = {
+		political_power_gain = 0.10
+	}
+
+	gedfrey_politics_3 = {
+		political_power_gain = 0.15
+	}
+
+	# --------------------------------------------------------
+	# Gracia Real / Royal Grace  (4 levels — monarchies only)
+	# Level 4 is exclusive to POL_anastasia_romanova
+	# FUTURE_LEADERS: add special leaders to level 4 available block
+	# --------------------------------------------------------
+
+	gedfrey_royal_1 = {
+		weekly_war_support = 0.03
+		stability_weekly = 0.03
+		resistance_target = -0.05
+		industrial_capacity_factory = 0.03
+	}
+
+	gedfrey_royal_2 = {
+		weekly_war_support = 0.06
+		stability_weekly = 0.06
+		resistance_target = -0.10
+		industrial_capacity_factory = 0.06
+	}
+
+	gedfrey_royal_3 = {
+		weekly_war_support = 0.09
+		stability_weekly = 0.09
+		resistance_target = -0.15
+		industrial_capacity_factory = 0.09
+		army_attack_factor = 0.03
+		army_defence_factor = 0.03
+	}
+
+	gedfrey_royal_4 = {
+		# FUTURE_LEADERS: agregar traits adicionales para futuros líderes especiales
+		weekly_war_support = 0.12
+		stability_weekly = 0.12
+		resistance_target = -0.20
+		industrial_capacity_factory = 0.12
+		army_attack_factor = 0.05
+		army_defence_factor = 0.05
+		political_power_gain = 1.0
+		conscription_factor = 0.05
+	}
+
+	# --------------------------------------------------------
+	# Doctrina de Guerra / Doctrine of War  (3 levels)
+	# --------------------------------------------------------
+
+	gedfrey_warfare_1 = {
+		army_attack_factor = 0.02
+		army_defence_factor = 0.02
+	}
+
+	gedfrey_warfare_2 = {
+		army_attack_factor = 0.035
+		army_defence_factor = 0.035
+		army_org_regain = 0.05
+	}
+
+	gedfrey_warfare_3 = {
+		army_attack_factor = 0.05
+		army_defence_factor = 0.05
+		army_org_regain = 0.10
+		max_dig_in = 1
+	}
+}

@@ -1,0 +1,118 @@
+﻿l_english:
+
+ # ============================================================
+ # Gedfrey Mod — Localisation (English)
+ # ============================================================
+
+ # --- Decision Categories ---
+ gedfrey_leader_decisions:0 "Leader Directives"
+ gedfrey_leader_decisions_desc:0 "Decisions that enhance and develop the country's leader. Benefits are personal to the current leader — if they are replaced, all bonuses are lost."
+ gedfrey_military_decisions:0 "Military Development"
+ gedfrey_military_decisions_desc:0 "Options to train officers, conduct military reforms, and improve the command structure."
+ gedfrey_economic_decisions:0 "Economic Development"
+ gedfrey_economic_decisions_desc:0 "Invest political capital to expand industrial and naval capacity."
+ gedfrey_exploration_decisions:0 "Resource Exploration"
+ gedfrey_exploration_decisions_desc:0 "Launch geological surveys across your territory to discover new resource deposits."
+
+ # ============================================================
+ # LEADER TRAITS
+ # ============================================================
+
+ # --- Industrial Power ---
+ gedfrey_industry_1:0 "Industrial Power I"
+ gedfrey_industry_1_desc:0 "The leader has begun optimising the nation's production capacity, improving factories, manpower allocation, and resource extraction."
+ gedfrey_industry_2:0 "Industrial Power II"
+ gedfrey_industry_2_desc:0 "Industrial reforms have taken root. Factories work more efficiently, manpower flows freely, and construction proceeds at a faster pace."
+ gedfrey_industry_3:0 "Industrial Power III"
+ gedfrey_industry_3_desc:0 "The leader's industrial vision has fully reshaped the economy. The nation stands as a production powerhouse."
+
+ # --- Political Consolidation ---
+ gedfrey_politics_1:0 "Political Consolidation I"
+ gedfrey_politics_1_desc:0 "The leader has strengthened political ties, generating a steady increase in political influence."
+ gedfrey_politics_2:0 "Political Consolidation II"
+ gedfrey_politics_2_desc:0 "Broad political support gives the leader greater authority to enact policy."
+ gedfrey_politics_3:0 "Political Consolidation III"
+ gedfrey_politics_3_desc:0 "The leader commands near-total political legitimacy, generating exceptional political power each day."
+
+ # --- Royal Grace ---
+ gedfrey_royal_1:0 "Royal Grace I"
+ gedfrey_royal_1_desc:0 "The crown's authority bolsters public morale and reduces unrest in occupied regions."
+ gedfrey_royal_2:0 "Royal Grace II"
+ gedfrey_royal_2_desc:0 "The monarch's prestige is felt throughout the realm — stability and war support rise noticeably."
+ gedfrey_royal_3:0 "Royal Grace III"
+ gedfrey_royal_3_desc:0 "The sovereign inspires both soldier and subject. The armies fight with renewed purpose."
+ gedfrey_royal_4:0 "Imperial Mandate"
+ gedfrey_royal_4_desc:0 "A ruler of exceptional destiny leads the nation. Political power flows abundantly and the armies march under an almost divine mandate."
+
+ # --- Doctrine of War ---
+ gedfrey_warfare_1:0 "Doctrine of War I"
+ gedfrey_warfare_1_desc:0 "Military doctrine has been refined, giving all branches a modest edge in attack and defence."
+ gedfrey_warfare_2:0 "Doctrine of War II"
+ gedfrey_warfare_2_desc:0 "Advanced tactical training accelerates unit recovery and improves combined-arms performance."
+ gedfrey_warfare_3:0 "Doctrine of War III"
+ gedfrey_warfare_3_desc:0 "The nation's armed forces operate at peak doctrinal efficiency. Troops dig in deeper and recover faster than any foe."
+
+ # ============================================================
+ # LEADER DECISIONS
+ # ============================================================
+
+ # --- Industrial Power ---
+ gedfrey_industry_decision_1:0 "Industrial Power I"
+ gedfrey_industry_decision_1_tooltip:0 "Direct political investment into the nation's industrial base. The leader will focus on improving factory output, manpower recovery, and resource extraction.\n\nRequires sufficient combined civilian and military industrial capacity."
+ gedfrey_industry_decision_2:0 "Industrial Power II"
+ gedfrey_industry_decision_2_tooltip:0 "Deepen industrial reforms, replacing the initial improvements with more comprehensive programmes.\n\nRequires [gedfrey_industry_1] and a larger combined factory base."
+ gedfrey_industry_decision_3:0 "Industrial Power III"
+ gedfrey_industry_decision_3_tooltip:0 "The leader commits fully to transforming the nation into an industrial juggernaut.\n\nRequires [gedfrey_industry_2] and a vast combined factory base."
+
+ # --- Political Consolidation ---
+ gedfrey_politics_decision_1:0 "Political Consolidation I"
+ gedfrey_politics_decision_1_tooltip:0 "The leader consolidates political alliances, generating additional political power daily.\n\nRequires stability ≥ 25%."
+ gedfrey_politics_decision_2:0 "Political Consolidation II"
+ gedfrey_politics_decision_2_tooltip:0 "Broader political control replaces earlier consolidation efforts.\n\nRequires [gedfrey_politics_1] and stability ≥ 50%."
+ gedfrey_politics_decision_3:0 "Political Consolidation III"
+ gedfrey_politics_decision_3_tooltip:0 "The leader achieves near-absolute political dominance.\n\nRequires [gedfrey_politics_2] and stability ≥ 75%."
+
+ # --- Royal Grace ---
+ gedfrey_royal_decision_1:0 "Royal Grace I"
+ gedfrey_royal_decision_1_tooltip:0 "The crown channels its legitimacy to inspire morale and reduce resistance across the realm.\n\nAvailable only to monarchies. Requires stability ≥ 25% and war support ≥ 25%."
+ gedfrey_royal_decision_2:0 "Royal Grace II"
+ gedfrey_royal_decision_2_tooltip:0 "The monarch's influence deepens across the nation and its occupied territories.\n\nRequires [gedfrey_royal_1], stability ≥ 40% and war support ≥ 40%."
+ gedfrey_royal_decision_3:0 "Royal Grace III"
+ gedfrey_royal_decision_3_tooltip:0 "The sovereign's authority inspires the armies in the field.\n\nRequires [gedfrey_royal_2], stability ≥ 55% and war support ≥ 55%."
+ gedfrey_royal_decision_4:0 "Imperial Mandate"
+ gedfrey_royal_decision_4_tooltip:0 "A ruler of singular destiny claims an imperial mandate, unlocking extraordinary political and military power.\n\nExclusive to rulers of exceptional pedigree. Requires [gedfrey_royal_3], stability ≥ 70% and war support ≥ 70%."
+
+ # --- Doctrine of War ---
+ gedfrey_warfare_decision_1:0 "Doctrine of War I"
+ gedfrey_warfare_decision_1_tooltip:0 "The leader invests in standardised military doctrine, giving armies a tactical edge.\n\nRequires sufficient deployed forces."
+ gedfrey_warfare_decision_2:0 "Doctrine of War II"
+ gedfrey_warfare_decision_2_tooltip:0 "Advanced tactical doctrine replaces earlier manuals, improving recovery and flexibility.\n\nRequires [gedfrey_warfare_1] and a larger deployed army."
+ gedfrey_warfare_decision_3:0 "Doctrine of War III"
+ gedfrey_warfare_decision_3_tooltip:0 "The nation's military has fully internalised elite doctrinal practice.\n\nRequires [gedfrey_warfare_2] and a large deployed army."
+
+ # ============================================================
+ # MILITARY DECISIONS
+ # ============================================================
+
+ gedfrey_individual_training:0 "Individual Training"
+ gedfrey_individual_training_tooltip:0 "Select a Corps Commander for intensive personal training. They will gain +1 in a randomly chosen skill (Attack, Defence, Maneuvering, or Logistics).\n\nA random commander is chosen."
+ gedfrey_military_reform:0 "General Military Reform"
+ gedfrey_military_reform_tooltip:0 "Issue a sweeping military reform order. Every Corps Commander in the army gains +1 in their own randomly chosen skill.\n\nAffects all commanders simultaneously."
+ gedfrey_special_talent:0 "Special Talent"
+ gedfrey_special_talent_tooltip:0 "Identify exceptional talent among the officer corps. A random Corps Commander gains a new specialist trait they do not yet possess."
+ gedfrey_supreme_command:0 "Supreme Command"
+ gedfrey_supreme_command_tooltip:0 "The highest levels of command are reviewed and reinforced. A random Field Marshal gains a new specialist trait they do not yet possess."
+
+ # ============================================================
+ # ECONOMIC DECISIONS
+ # ============================================================
+
+ gedfrey_build_military_factory:0 "Construct Military Factory"
+ gedfrey_build_military_factory_tooltip:0 "Invest in a new military factory. Construction will complete in 30 days in the state with the most available building slots.\n\nCooldown applies after construction completes."
+ gedfrey_build_military_factory_complete:0 "Military factory construction underway."
+ gedfrey_build_civilian_factory:0 "Construct Civilian Factory"
+ gedfrey_build_civilian_factory_tooltip:0 "Invest in a new civilian factory. Construction will complete in 30 days in the state with the most available building slots."
+ gedfrey_build_civilian_factory_complete:0 "Civilian factory construction underway."
+ gedfrey_build_shipyard:0 "Construct Naval Shipyard"
+ gedfrey_build_shipyard_tooltip:0 "Fund a new naval shipyard in a coastal state. Construction will complete in 30 days.\n\nRequires a coastal state with free building slots."
+ gedfrey_build_shipyard_complete:0 "Naval shipyard construction underway."

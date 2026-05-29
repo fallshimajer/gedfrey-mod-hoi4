@@ -1,0 +1,167 @@
+# ============================================================
+# Gedfrey Mod — Scripted Triggers
+# ============================================================
+
+# --- Country Classification ---
+
+gedfrey_is_major = {
+	OR = {
+		tag = USA
+		tag = SOV
+		tag = GER
+		tag = ENG
+		tag = JAP
+	}
+}
+
+gedfrey_is_medium = {
+	OR = {
+		tag = FRA
+		tag = ITA
+		tag = ROC
+		tag = CHI
+		tag = BRA
+		tag = RAJ
+		tag = POL
+		tag = TUR
+		tag = SPR
+	}
+}
+
+gedfrey_is_minor = {
+	NOT = { gedfrey_is_major = yes }
+	NOT = { gedfrey_is_medium = yes }
+}
+
+gedfrey_is_naval_power = {
+	OR = {
+		tag = USA
+		tag = ENG
+	}
+}
+
+# ============================================================
+# Factory Count Triggers (civilian + military combined)
+#
+# HOI4 cannot add two variables in a trigger, so each threshold
+# is expressed as an OR of enumerated (civ, mil) pairs at step 5/10/20.
+# Maximum imprecision: ~step size factories.
+#
+# Naming convention: gedfrey_factories_[tier]_[level]
+#   tier  = minor | medium | major
+#   level = n1 | n2 | n3
+#
+# Industry thresholds:
+#   N1: minor>=30, medium>=50, major>=70
+#   N2: minor>=60, medium>=100, major>=140
+#   N3: minor>=90, medium>=150, major>=210
+# ============================================================
+
+gedfrey_factories_minor_n1 = {       # civ + mil >= 30  (step 5)
+	OR = {
+		num_of_civilian_factories >= 30
+		AND = { num_of_civilian_factories >= 25  num_of_military_factories >= 5  }
+		AND = { num_of_civilian_factories >= 20  num_of_military_factories >= 10 }
+		AND = { num_of_civilian_factories >= 15  num_of_military_factories >= 15 }
+		AND = { num_of_civilian_factories >= 10  num_of_military_factories >= 20 }
+		AND = { num_of_civilian_factories >= 5   num_of_military_factories >= 25 }
+		num_of_military_factories >= 30
+	}
+}
+
+gedfrey_factories_medium_n1 = {      # civ + mil >= 50  (step 10)
+	OR = {
+		num_of_civilian_factories >= 50
+		AND = { num_of_civilian_factories >= 40  num_of_military_factories >= 10 }
+		AND = { num_of_civilian_factories >= 30  num_of_military_factories >= 20 }
+		AND = { num_of_civilian_factories >= 20  num_of_military_factories >= 30 }
+		AND = { num_of_civilian_factories >= 10  num_of_military_factories >= 40 }
+		num_of_military_factories >= 50
+	}
+}
+
+gedfrey_factories_major_n1 = {       # civ + mil >= 70  (step 10)
+	OR = {
+		num_of_civilian_factories >= 70
+		AND = { num_of_civilian_factories >= 60  num_of_military_factories >= 10 }
+		AND = { num_of_civilian_factories >= 50  num_of_military_factories >= 20 }
+		AND = { num_of_civilian_factories >= 40  num_of_military_factories >= 30 }
+		AND = { num_of_civilian_factories >= 30  num_of_military_factories >= 40 }
+		AND = { num_of_civilian_factories >= 20  num_of_military_factories >= 50 }
+		AND = { num_of_civilian_factories >= 10  num_of_military_factories >= 60 }
+		num_of_military_factories >= 70
+	}
+}
+
+gedfrey_factories_minor_n2 = {       # civ + mil >= 60  (step 10)
+	OR = {
+		num_of_civilian_factories >= 60
+		AND = { num_of_civilian_factories >= 50  num_of_military_factories >= 10 }
+		AND = { num_of_civilian_factories >= 40  num_of_military_factories >= 20 }
+		AND = { num_of_civilian_factories >= 30  num_of_military_factories >= 30 }
+		AND = { num_of_civilian_factories >= 20  num_of_military_factories >= 40 }
+		AND = { num_of_civilian_factories >= 10  num_of_military_factories >= 50 }
+		num_of_military_factories >= 60
+	}
+}
+
+gedfrey_factories_medium_n2 = {      # civ + mil >= 100  (step 20)
+	OR = {
+		num_of_civilian_factories >= 100
+		AND = { num_of_civilian_factories >= 80  num_of_military_factories >= 20 }
+		AND = { num_of_civilian_factories >= 60  num_of_military_factories >= 40 }
+		AND = { num_of_civilian_factories >= 40  num_of_military_factories >= 60 }
+		AND = { num_of_civilian_factories >= 20  num_of_military_factories >= 80 }
+		num_of_military_factories >= 100
+	}
+}
+
+gedfrey_factories_major_n2 = {       # civ + mil >= 140  (step 20)
+	OR = {
+		num_of_civilian_factories >= 140
+		AND = { num_of_civilian_factories >= 120  num_of_military_factories >= 20 }
+		AND = { num_of_civilian_factories >= 100  num_of_military_factories >= 40 }
+		AND = { num_of_civilian_factories >= 80   num_of_military_factories >= 60 }
+		AND = { num_of_civilian_factories >= 60   num_of_military_factories >= 80 }
+		AND = { num_of_civilian_factories >= 40   num_of_military_factories >= 100 }
+		AND = { num_of_civilian_factories >= 20   num_of_military_factories >= 120 }
+		num_of_military_factories >= 140
+	}
+}
+
+gedfrey_factories_minor_n3 = {       # civ + mil >= 90  (step 15)
+	OR = {
+		num_of_civilian_factories >= 90
+		AND = { num_of_civilian_factories >= 75  num_of_military_factories >= 15 }
+		AND = { num_of_civilian_factories >= 60  num_of_military_factories >= 30 }
+		AND = { num_of_civilian_factories >= 45  num_of_military_factories >= 45 }
+		AND = { num_of_civilian_factories >= 30  num_of_military_factories >= 60 }
+		AND = { num_of_civilian_factories >= 15  num_of_military_factories >= 75 }
+		num_of_military_factories >= 90
+	}
+}
+
+gedfrey_factories_medium_n3 = {      # civ + mil >= 150  (step 25)
+	OR = {
+		num_of_civilian_factories >= 150
+		AND = { num_of_civilian_factories >= 125  num_of_military_factories >= 25 }
+		AND = { num_of_civilian_factories >= 100  num_of_military_factories >= 50 }
+		AND = { num_of_civilian_factories >= 75   num_of_military_factories >= 75 }
+		AND = { num_of_civilian_factories >= 50   num_of_military_factories >= 100 }
+		AND = { num_of_civilian_factories >= 25   num_of_military_factories >= 125 }
+		num_of_military_factories >= 150
+	}
+}
+
+gedfrey_factories_major_n3 = {       # civ + mil >= 210  (step 30)
+	OR = {
+		num_of_civilian_factories >= 210
+		AND = { num_of_civilian_factories >= 180  num_of_military_factories >= 30 }
+		AND = { num_of_civilian_factories >= 150  num_of_military_factories >= 60 }
+		AND = { num_of_civilian_factories >= 120  num_of_military_factories >= 90 }
+		AND = { num_of_civilian_factories >= 90   num_of_military_factories >= 120 }
+		AND = { num_of_civilian_factories >= 60   num_of_military_factories >= 150 }
+		AND = { num_of_civilian_factories >= 30   num_of_military_factories >= 180 }
+		num_of_military_factories >= 210
+	}
+}

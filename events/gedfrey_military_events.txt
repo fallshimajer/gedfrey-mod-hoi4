@@ -1,0 +1,7 @@
+# ============================================================
+# Gedfrey Mod — Military Events (Phase 3)
+# gedfrey.military.1 — Monarch in Command
+# ============================================================
+# Placeholder — implemented in Phase 3.
+
+add_namespace = gedfrey_military

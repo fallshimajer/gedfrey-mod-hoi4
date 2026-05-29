@@ -1,0 +1,13 @@
+# Editor temp files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# HOI4 generated files (if any local testing artifacts)
+*.log

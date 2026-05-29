@@ -1,0 +1,11 @@
+# ============================================================
+# Gedfrey Mod — Exploration Events (Phase 4)
+# gedfrey.exploration.1 — Aluminium Found
+# gedfrey.exploration.2 — Iron Found
+# gedfrey.exploration.3 — Tungsten Found
+# gedfrey.exploration.4 — Chromium Found
+# gedfrey.exploration.cancel — Exploration cancelled (debt)
+# ============================================================
+# Placeholder — implemented in Phase 4.
+
+add_namespace = gedfrey_exploration

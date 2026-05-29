@@ -1,0 +1,7 @@
+# ============================================================
+# Gedfrey Mod — Economic Events (Phase 2–3)
+# gedfrey.economic.1 — Investment Failed
+# ============================================================
+# Placeholder — implemented in Phase 2.
+
+add_namespace = gedfrey_economic

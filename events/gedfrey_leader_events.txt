@@ -1,0 +1,9 @@
+# ============================================================
+# Gedfrey Mod — Leader Events (Phase 3)
+# gedfrey.leader.1 — Focus Speed
+# gedfrey.leader.2 — Research Slot
+# gedfrey.leader.3 — Research Speed
+# ============================================================
+# Placeholder — implemented in Phase 3.
+
+add_namespace = gedfrey_leader

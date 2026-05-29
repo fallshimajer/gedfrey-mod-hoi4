@@ -1,0 +1,164 @@
+# ============================================================
+# Gedfrey Mod — Scripted Values (costs and cooldowns)
+# All values are in country scope.
+# ============================================================
+# Cost pattern per tier:
+#   minor = base, medium = base*1.2, major = base*1.5
+# Cooldown pattern:
+#   minor = medium = base, major = base*1.5
+# ============================================================
+
+# --- COSTS: Leader Decisions ---
+
+gedfrey_industry_1_cost = {    # minor=75  medium=90  major=113
+	base = 75
+	modifier = { add = 15  gedfrey_is_medium = yes }
+	modifier = { add = 38  gedfrey_is_major = yes  }
+}
+
+gedfrey_industry_2_cost = {    # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+gedfrey_industry_3_cost = {    # minor=125  medium=150  major=188
+	base = 125
+	modifier = { add = 25  gedfrey_is_medium = yes }
+	modifier = { add = 63  gedfrey_is_major = yes  }
+}
+
+gedfrey_politics_1_cost = {    # minor=50  medium=60  major=75
+	base = 50
+	modifier = { add = 10  gedfrey_is_medium = yes }
+	modifier = { add = 25  gedfrey_is_major = yes  }
+}
+
+gedfrey_politics_2_cost = {    # minor=75  medium=90  major=113
+	base = 75
+	modifier = { add = 15  gedfrey_is_medium = yes }
+	modifier = { add = 38  gedfrey_is_major = yes  }
+}
+
+gedfrey_politics_3_cost = {    # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+gedfrey_royal_1_cost = {       # minor=75  medium=90  major=113
+	base = 75
+	modifier = { add = 15  gedfrey_is_medium = yes }
+	modifier = { add = 38  gedfrey_is_major = yes  }
+}
+
+gedfrey_royal_2_cost = {       # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+gedfrey_royal_3_cost = {       # minor=150  medium=180  major=225
+	base = 150
+	modifier = { add = 30  gedfrey_is_medium = yes }
+	modifier = { add = 75  gedfrey_is_major = yes  }
+}
+
+gedfrey_royal_4_cost = {       # minor=200  medium=240  major=300
+	base = 200
+	modifier = { add = 40  gedfrey_is_medium = yes }
+	modifier = { add = 100 gedfrey_is_major = yes  }
+}
+
+gedfrey_warfare_1_cost = {     # minor=75  medium=90  major=113
+	base = 75
+	modifier = { add = 15  gedfrey_is_medium = yes }
+	modifier = { add = 38  gedfrey_is_major = yes  }
+}
+
+gedfrey_warfare_2_cost = {     # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+gedfrey_warfare_3_cost = {     # minor=125  medium=150  major=188
+	base = 125
+	modifier = { add = 25  gedfrey_is_medium = yes }
+	modifier = { add = 63  gedfrey_is_major = yes  }
+}
+
+# --- COSTS: Military Decisions ---
+
+gedfrey_training_cost = {      # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+gedfrey_reform_cost = {        # minor=500  medium=600  major=750
+	base = 500
+	modifier = { add = 100 gedfrey_is_medium = yes }
+	modifier = { add = 250 gedfrey_is_major = yes  }
+}
+
+gedfrey_talent_cost = {        # minor=300  medium=360  major=450
+	base = 300
+	modifier = { add = 60  gedfrey_is_medium = yes }
+	modifier = { add = 150 gedfrey_is_major = yes  }
+}
+
+gedfrey_supreme_cost = {       # minor=150  medium=180  major=225
+	base = 150
+	modifier = { add = 30  gedfrey_is_medium = yes }
+	modifier = { add = 75  gedfrey_is_major = yes  }
+}
+
+# --- COSTS: Economic Decisions (Phase 1: build factories) ---
+
+gedfrey_build_factory_cost = { # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+gedfrey_build_dock_cost = {    # minor=100  medium=120  major=150
+	base = 100
+	modifier = { add = 20  gedfrey_is_medium = yes }
+	modifier = { add = 50  gedfrey_is_major = yes  }
+}
+
+# ============================================================
+# COOLDOWNS (days_re_enable)
+# minor = medium = base; major = base * 1.5
+# ============================================================
+
+gedfrey_cd_leader = {          # minor=120  medium=120  major=180
+	base = 120
+	modifier = { add = 60  gedfrey_is_major = yes }
+}
+
+gedfrey_cd_training = {        # minor=30  medium=30  major=45
+	base = 30
+	modifier = { add = 15  gedfrey_is_major = yes }
+}
+
+gedfrey_cd_reform = {          # minor=300  medium=300  major=450
+	base = 300
+	modifier = { add = 150 gedfrey_is_major = yes }
+}
+
+gedfrey_cd_talent = {          # minor=365  medium=365  major=548
+	base = 365
+	modifier = { add = 183 gedfrey_is_major = yes }
+}
+
+gedfrey_cd_build_factory = {   # minor=50  medium=50  major=75
+	base = 50
+	modifier = { add = 25  gedfrey_is_major = yes }
+}
+
+gedfrey_cd_build_dock = {      # minor=60  medium=60  major=90
+	base = 60
+	modifier = { add = 30  gedfrey_is_major = yes }
+}

@@ -1,0 +1,180 @@
+# ============================================================
+# Gedfrey Mod — Economic Decisions (Phase 1: decisions 1–3)
+# These decisions have a 30-day timer (days_remove = 30).
+# The building is constructed when the timer expires (remove_effect).
+# Total cycle: 30 days construction + cooldown before retaking.
+# ============================================================
+
+gedfrey_economic_decisions = {
+
+	# ============================================================
+	# DECISIÓN 1: Construir Fábrica Militar / Build Military Factory
+	# Adds 1 arms_factory to the owned+controlled state with most free slots.
+	# Cost: minor=100, medium=120, major=150 PP
+	# Time: 30 days | Cooldown: minor/medium=50d, major=75d
+	# ============================================================
+
+	gedfrey_build_military_factory = {
+		icon = generic_industry
+
+		allowed = { always = yes }
+		visible = { always = yes }
+
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+
+		cost = gedfrey_build_factory_cost
+		days_remove = 30
+		days_re_enable = gedfrey_cd_build_factory
+
+		complete_effect = { }
+
+		remove_effect = {
+			# Build in the owned+controlled state with the most free arms_factory slots
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				num_of_military_factories < 20
+			}
+		}
+	}
+
+	# ============================================================
+	# DECISIÓN 2: Construir Fábrica Civil / Build Civilian Factory
+	# Adds 1 industrial_complex to the owned+controlled state with most free slots.
+	# Cost: minor=100, medium=120, major=150 PP
+	# Time: 30 days | Cooldown: minor/medium=50d, major=75d
+	# ============================================================
+
+	gedfrey_build_civilian_factory = {
+		icon = generic_industry
+
+		allowed = { always = yes }
+		visible = { always = yes }
+
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+
+		cost = gedfrey_build_factory_cost
+		days_remove = 30
+		days_re_enable = gedfrey_cd_build_factory
+
+		complete_effect = { }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				num_of_civilian_factories < 15
+			}
+		}
+	}
+
+	# ============================================================
+	# DECISIÓN 3: Construir Astillero / Build Shipyard
+	# Adds 1 dockyard to the owned+controlled coastal state with most free slots.
+	# Cost: minor=100, medium=120, major=150 PP
+	# Time: 30 days | Cooldown: minor/medium=60d, major=90d
+	# ============================================================
+
+	gedfrey_build_shipyard = {
+		icon = generic_navy
+
+		allowed = { always = yes }
+		visible = { always = yes }
+
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				is_coastal = yes
+				free_building_slots = {
+					building = dockyard
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+
+		cost = gedfrey_build_dock_cost
+		days_remove = 30
+		days_re_enable = gedfrey_cd_build_dock
+
+		complete_effect = { }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+					free_building_slots = {
+						building = dockyard
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { any_owned_state = { is_coastal = yes } }
+			}
+		}
+	}
+}

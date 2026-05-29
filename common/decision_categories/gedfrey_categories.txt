@@ -1,0 +1,28 @@
+# ============================================================
+# Gedfrey Mod — Decision Categories
+# Individual decisions handle their own visibility/date limits.
+# ============================================================
+
+gedfrey_leader_decisions = {
+	allowed = { always = yes }
+	visible = { always = yes }
+	priority = { base = 100 }
+}
+
+gedfrey_military_decisions = {
+	allowed = { always = yes }
+	visible = { always = yes }
+	priority = { base = 90 }
+}
+
+gedfrey_economic_decisions = {
+	allowed = { always = yes }
+	visible = { always = yes }
+	priority = { base = 80 }
+}
+
+gedfrey_exploration_decisions = {
+	allowed = { always = yes }
+	visible = { is_ai = no }   # only human players see exploration
+	priority = { base = 70 }
+}

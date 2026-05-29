@@ -1,0 +1,454 @@
+# ============================================================
+# Gedfrey Mod — Leader Decisions
+# All decisions are INSTANT (no days_remove).
+# Traits are applied to the current country leader.
+# If the leader changes, all traits are lost; levels reset to N1.
+# Cooldown: 120 days (major: 180). See gedfrey_scripted_values.txt.
+# ============================================================
+
+gedfrey_leader_decisions = {
+
+	# ============================================================
+	# POTENCIA INDUSTRIAL / Industrial Power
+	# Requirements (civ + mil factories):
+	#   N1: minor>=30, medium>=50, major>=70
+	#   N2: minor>=60, medium>=100, major>=140
+	#   N3: minor>=90, medium>=150, major>=210
+	# ============================================================
+
+	gedfrey_industry_decision_1 = {
+		icon = generic_industry
+
+		allowed = { always = yes }
+
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			OR = {
+				AND = { gedfrey_is_major  = yes  gedfrey_factories_major_n1  = yes }
+				AND = { gedfrey_is_medium = yes  gedfrey_factories_medium_n1 = yes }
+				AND = { gedfrey_is_minor  = yes  gedfrey_factories_minor_n1  = yes }
+			}
+		}
+
+		cost = gedfrey_industry_1_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			add_country_leader_trait = gedfrey_industry_1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_industry_decision_2 = {
+		icon = generic_industry
+
+		allowed = { always = yes }
+
+		visible = {
+			has_country_leader_with_trait = gedfrey_industry_1
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+
+		available = {
+			has_country_leader_with_trait = gedfrey_industry_1
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			OR = {
+				AND = { gedfrey_is_major  = yes  gedfrey_factories_major_n2  = yes }
+				AND = { gedfrey_is_medium = yes  gedfrey_factories_medium_n2 = yes }
+				AND = { gedfrey_is_minor  = yes  gedfrey_factories_minor_n2  = yes }
+			}
+		}
+
+		cost = gedfrey_industry_2_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_industry_1
+			add_country_leader_trait = gedfrey_industry_2
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_industry_decision_3 = {
+		icon = generic_industry
+
+		allowed = { always = yes }
+
+		visible = {
+			has_country_leader_with_trait = gedfrey_industry_2
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+
+		available = {
+			has_country_leader_with_trait = gedfrey_industry_2
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			OR = {
+				AND = { gedfrey_is_major  = yes  gedfrey_factories_major_n3  = yes }
+				AND = { gedfrey_is_medium = yes  gedfrey_factories_medium_n3 = yes }
+				AND = { gedfrey_is_minor  = yes  gedfrey_factories_minor_n3  = yes }
+			}
+		}
+
+		cost = gedfrey_industry_3_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_industry_2
+			add_country_leader_trait = gedfrey_industry_3
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# CONSOLIDACIÓN POLÍTICA / Political Consolidation
+	# Requirements (stability):
+	#   N1: stability >= 0.25
+	#   N2: stability >= 0.50 + has gedfrey_politics_1
+	#   N3: stability >= 0.75 + has gedfrey_politics_2
+	# ============================================================
+
+	gedfrey_politics_decision_1 = {
+		icon = generic_political_actions
+
+		allowed = { always = yes }
+
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+		}
+
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			stability >= 0.25
+		}
+
+		cost = gedfrey_politics_1_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			add_country_leader_trait = gedfrey_politics_1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_2 = {
+		icon = generic_political_actions
+
+		allowed = { always = yes }
+
+		visible = {
+			has_country_leader_with_trait = gedfrey_politics_1
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+		}
+
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_1
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			stability >= 0.50
+		}
+
+		cost = gedfrey_politics_2_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_politics_1
+			add_country_leader_trait = gedfrey_politics_2
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_3 = {
+		icon = generic_political_actions
+
+		allowed = { always = yes }
+
+		visible = {
+			has_country_leader_with_trait = gedfrey_politics_2
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+		}
+
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_2
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			stability >= 0.75
+		}
+
+		cost = gedfrey_politics_3_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_politics_2
+			add_country_leader_trait = gedfrey_politics_3
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# GRACIA REAL / Royal Grace
+	# Requires monarchy. Level 4 exclusive to POL_anastasia_romanova.
+	# Requirements (stability + war_support + previous trait):
+	#   N1: stab>=0.25, ws>=0.25
+	#   N2: stab>=0.40, ws>=0.40 + gedfrey_royal_1
+	#   N3: stab>=0.55, ws>=0.55 + gedfrey_royal_2
+	#   N4: stab>=0.70, ws>=0.70 + gedfrey_royal_3 + POL_anastasia_romanova
+	# ============================================================
+
+	gedfrey_royal_decision_1 = {
+		icon = generic_monarchy
+
+		allowed = { always = yes }
+
+		visible = {
+			has_government = monarchy
+			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+
+		available = {
+			has_government = monarchy
+			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			stability >= 0.25
+			war_support >= 0.25
+		}
+
+		cost = gedfrey_royal_1_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			add_country_leader_trait = gedfrey_royal_1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_royal_decision_2 = {
+		icon = generic_monarchy
+
+		allowed = { always = yes }
+
+		visible = {
+			has_government = monarchy
+			has_country_leader_with_trait = gedfrey_royal_1
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+
+		available = {
+			has_government = monarchy
+			has_country_leader_with_trait = gedfrey_royal_1
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			stability >= 0.40
+			war_support >= 0.40
+		}
+
+		cost = gedfrey_royal_2_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_royal_1
+			add_country_leader_trait = gedfrey_royal_2
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_royal_decision_3 = {
+		icon = generic_monarchy
+
+		allowed = { always = yes }
+
+		visible = {
+			has_government = monarchy
+			has_country_leader_with_trait = gedfrey_royal_2
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+
+		available = {
+			has_government = monarchy
+			has_country_leader_with_trait = gedfrey_royal_2
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			stability >= 0.55
+			war_support >= 0.55
+		}
+
+		cost = gedfrey_royal_3_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_royal_2
+			add_country_leader_trait = gedfrey_royal_3
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_royal_decision_4 = {
+		icon = generic_monarchy
+
+		allowed = { always = yes }
+
+		visible = {
+			has_government = monarchy
+			has_country_leader_with_trait = gedfrey_royal_3
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			# FUTURE_LEADERS: add OR conditions here for other special leaders
+			has_country_leader = { character = POL_anastasia_romanova }
+		}
+
+		available = {
+			has_government = monarchy
+			has_country_leader_with_trait = gedfrey_royal_3
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			stability >= 0.70
+			war_support >= 0.70
+			# FUTURE_LEADERS: add OR conditions here for other special leaders
+			has_country_leader = { character = POL_anastasia_romanova }
+		}
+
+		cost = gedfrey_royal_4_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_royal_3
+			add_country_leader_trait = gedfrey_royal_4
+		}
+
+		ai_will_do = { factor = 0 }   # extremely rare; skip for AI
+	}
+
+	# ============================================================
+	# DOCTRINA DE GUERRA / Doctrine of War
+	# Requirements (deployed army size in divisions):
+	#   N1: minor>=15div (~300k), medium>=30div (~600k), major>=38div (~750k)
+	#   N2: minor>=25div (~500k), medium>=45div (~900k), major>=63div (~1.25M)
+	#   N3: minor>=38div (~750k), medium>=75div (~1.5M), major>=100div (~2M)
+	# Division ≈ 20k men used as conversion factor.
+	# ============================================================
+
+	gedfrey_warfare_decision_1 = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			OR = {
+				AND = { gedfrey_is_major  = yes  has_army_size = { size > 37 } }
+				AND = { gedfrey_is_medium = yes  has_army_size = { size > 29 } }
+				AND = { gedfrey_is_minor  = yes  has_army_size = { size > 14 } }
+			}
+		}
+
+		cost = gedfrey_warfare_1_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			add_country_leader_trait = gedfrey_warfare_1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_warfare_decision_2 = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			has_country_leader_with_trait = gedfrey_warfare_1
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+
+		available = {
+			has_country_leader_with_trait = gedfrey_warfare_1
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			OR = {
+				AND = { gedfrey_is_major  = yes  has_army_size = { size > 62 } }
+				AND = { gedfrey_is_medium = yes  has_army_size = { size > 44 } }
+				AND = { gedfrey_is_minor  = yes  has_army_size = { size > 24 } }
+			}
+		}
+
+		cost = gedfrey_warfare_2_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_warfare_1
+			add_country_leader_trait = gedfrey_warfare_2
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_warfare_decision_3 = {
+		icon = generic_army
+
+		allowed = { always = yes }
+
+		visible = {
+			has_country_leader_with_trait = gedfrey_warfare_2
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+
+		available = {
+			has_country_leader_with_trait = gedfrey_warfare_2
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			OR = {
+				AND = { gedfrey_is_major  = yes  has_army_size = { size > 99 } }
+				AND = { gedfrey_is_medium = yes  has_army_size = { size > 74 } }
+				AND = { gedfrey_is_minor  = yes  has_army_size = { size > 37 } }
+			}
+		}
+
+		cost = gedfrey_warfare_3_cost
+		days_re_enable = gedfrey_cd_leader
+
+		complete_effect = {
+			remove_country_leader_trait = gedfrey_warfare_2
+			add_country_leader_trait = gedfrey_warfare_3
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}
