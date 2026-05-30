@@ -31,9 +31,9 @@ gedfrey_economic_decisions = {
 			}
 		}
 
-		cost = gedfrey_build_factory_cost
+		cost = 100
 		days_remove = 30
-		days_re_enable = gedfrey_cd_build_factory
+		days_re_enable = 50
 
 		complete_effect = { }
 
@@ -88,9 +88,9 @@ gedfrey_economic_decisions = {
 			}
 		}
 
-		cost = gedfrey_build_factory_cost
+		cost = 100
 		days_remove = 30
-		days_re_enable = gedfrey_cd_build_factory
+		days_re_enable = 50
 
 		complete_effect = { }
 
@@ -145,9 +145,9 @@ gedfrey_economic_decisions = {
 			}
 		}
 
-		cost = gedfrey_build_dock_cost
+		cost = 100
 		days_remove = 30
-		days_re_enable = gedfrey_cd_build_dock
+		days_re_enable = 60
 
 		complete_effect = { }
 

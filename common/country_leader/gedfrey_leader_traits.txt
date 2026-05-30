@@ -13,28 +13,28 @@ leader_traits = {
 	gedfrey_industry_1 = {
 		industrial_capacity_factory = 0.05
 		weekly_manpower = 100
-		manpower_recovery_speed = 0.05
-		construction_speed = 0.05
+		monthly_population = 0.10
+		production_speed_buildings_factor = 0.05
 		global_building_slots_factor = 0.05
-		mining_resources_factor = 0.05
+		local_resources_factor = 0.05
 	}
 
 	gedfrey_industry_2 = {
 		industrial_capacity_factory = 0.10
 		weekly_manpower = 300
-		manpower_recovery_speed = 0.10
-		construction_speed = 0.10
+		monthly_population = 0.20
+		production_speed_buildings_factor = 0.10
 		global_building_slots_factor = 0.10
-		mining_resources_factor = 0.08
+		local_resources_factor = 0.08
 	}
 
 	gedfrey_industry_3 = {
 		industrial_capacity_factory = 0.15
 		weekly_manpower = 750
-		manpower_recovery_speed = 0.15
-		construction_speed = 0.15
+		monthly_population = 0.35
+		production_speed_buildings_factor = 0.15
 		global_building_slots_factor = 0.15
-		mining_resources_factor = 0.12
+		local_resources_factor = 0.12
 	}
 
 	# --------------------------------------------------------
@@ -60,21 +60,21 @@ leader_traits = {
 	# --------------------------------------------------------
 
 	gedfrey_royal_1 = {
-		weekly_war_support = 0.03
+		war_support_factor = 0.03
 		stability_weekly = 0.03
 		resistance_target = -0.05
 		industrial_capacity_factory = 0.03
 	}
 
 	gedfrey_royal_2 = {
-		weekly_war_support = 0.06
+		war_support_factor = 0.06
 		stability_weekly = 0.06
 		resistance_target = -0.10
 		industrial_capacity_factory = 0.06
 	}
 
 	gedfrey_royal_3 = {
-		weekly_war_support = 0.09
+		war_support_factor = 0.09
 		stability_weekly = 0.09
 		resistance_target = -0.15
 		industrial_capacity_factory = 0.09
@@ -84,7 +84,7 @@ leader_traits = {
 
 	gedfrey_royal_4 = {
 		# FUTURE_LEADERS: agregar traits adicionales para futuros líderes especiales
-		weekly_war_support = 0.12
+		war_support_factor = 0.12
 		stability_weekly = 0.12
 		resistance_target = -0.20
 		industrial_capacity_factory = 0.12

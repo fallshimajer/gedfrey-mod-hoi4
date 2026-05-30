@@ -18,24 +18,27 @@ gedfrey_military_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			date >= 1936.1.31
+			date > 1936.1.30
 		}
 
 		available = {
-			date >= 1936.1.31
+			date > 1936.1.30
 			any_unit_leader = { is_corps_commander = yes }
 		}
 
-		cost = gedfrey_training_cost
-		days_re_enable = gedfrey_cd_training
+		cost = 100
+		days_remove = 10
+		days_re_enable = 30
 
-		complete_effect = {
+		complete_effect = { }
+
+		remove_effect = {
 			random_unit_leader = {
 				limit = { is_corps_commander = yes }
 				random_list = {
 					25 = { add_attack    = 1 }
 					25 = { add_defense   = 1 }
-					25 = { add_maneuvering = 1 }
+					25 = { add_planning = 1 }
 					25 = { add_logistics = 1 }
 				}
 			}
@@ -57,24 +60,27 @@ gedfrey_military_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			date >= 1936.10.28
+			date > 1936.10.27
 		}
 
 		available = {
-			date >= 1936.10.28
+			date > 1936.10.27
 			any_unit_leader = { is_corps_commander = yes }
 		}
 
-		cost = gedfrey_reform_cost
-		days_re_enable = gedfrey_cd_reform
+		cost = 500
+		days_remove = 10
+		days_re_enable = 300
 
-		complete_effect = {
+		complete_effect = { }
+
+		remove_effect = {
 			every_unit_leader = {
 				limit = { is_corps_commander = yes }
 				random_list = {
 					25 = { add_attack    = 1 }
 					25 = { add_defense   = 1 }
-					25 = { add_maneuvering = 1 }
+					25 = { add_planning = 1 }
 					25 = { add_logistics = 1 }
 				}
 			}
@@ -96,18 +102,21 @@ gedfrey_military_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			date >= 1936.1.31
+			date > 1936.1.30
 		}
 
 		available = {
-			date >= 1936.1.31
+			date > 1936.1.30
 			any_unit_leader = { is_corps_commander = yes }
 		}
 
-		cost = gedfrey_talent_cost
-		days_re_enable = gedfrey_cd_talent
+		cost = 300
+		days_remove = 10
+		days_re_enable = 365
 
-		complete_effect = {
+		complete_effect = { }
+
+		remove_effect = {
 			random_unit_leader = {
 				limit = { is_corps_commander = yes }
 				random_list = {
@@ -195,18 +204,21 @@ gedfrey_military_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			date >= 1936.1.31
+			date > 1936.1.30
 		}
 
 		available = {
-			date >= 1936.1.31
+			date > 1936.1.30
 			any_unit_leader = { is_field_marshal = yes }
 		}
 
-		cost = gedfrey_supreme_cost
-		days_re_enable = gedfrey_cd_talent   # same cooldown as talent (365/548)
+		cost = 150
+		days_remove = 10
+		days_re_enable = 365
 
-		complete_effect = {
+		complete_effect = { }
+
+		remove_effect = {
 			random_unit_leader = {
 				limit = { is_field_marshal = yes }
 				random_list = {

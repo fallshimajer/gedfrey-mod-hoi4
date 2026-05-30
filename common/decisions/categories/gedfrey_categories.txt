@@ -1,6 +1,5 @@
 # ============================================================
 # Gedfrey Mod — Decision Categories
-# Individual decisions handle their own visibility/date limits.
 # ============================================================
 
 gedfrey_leader_decisions = {

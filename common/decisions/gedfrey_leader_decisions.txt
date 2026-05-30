@@ -38,8 +38,8 @@ gedfrey_leader_decisions = {
 			}
 		}
 
-		cost = gedfrey_industry_1_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 75
+		days_re_enable = 120
 
 		complete_effect = {
 			add_country_leader_trait = gedfrey_industry_1
@@ -70,8 +70,8 @@ gedfrey_leader_decisions = {
 			}
 		}
 
-		cost = gedfrey_industry_2_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 100
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_industry_1
@@ -101,8 +101,8 @@ gedfrey_leader_decisions = {
 			}
 		}
 
-		cost = gedfrey_industry_3_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 125
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_industry_2
@@ -135,11 +135,10 @@ gedfrey_leader_decisions = {
 			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
-			stability >= 0.25
 		}
 
-		cost = gedfrey_politics_1_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 50
+		days_re_enable = 120
 
 		complete_effect = {
 			add_country_leader_trait = gedfrey_politics_1
@@ -163,11 +162,10 @@ gedfrey_leader_decisions = {
 			has_country_leader_with_trait = gedfrey_politics_1
 			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
-			stability >= 0.50
 		}
 
-		cost = gedfrey_politics_2_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 75
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_politics_1
@@ -190,11 +188,10 @@ gedfrey_leader_decisions = {
 		available = {
 			has_country_leader_with_trait = gedfrey_politics_2
 			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
-			stability >= 0.75
 		}
 
-		cost = gedfrey_politics_3_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 100
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_politics_2
@@ -220,7 +217,7 @@ gedfrey_leader_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			has_government = monarchy
+			has_government = neutrality
 			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
@@ -228,17 +225,15 @@ gedfrey_leader_decisions = {
 		}
 
 		available = {
-			has_government = monarchy
+			has_government = neutrality
 			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
-			stability >= 0.25
-			war_support >= 0.25
 		}
 
-		cost = gedfrey_royal_1_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 75
+		days_re_enable = 120
 
 		complete_effect = {
 			add_country_leader_trait = gedfrey_royal_1
@@ -253,7 +248,7 @@ gedfrey_leader_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			has_government = monarchy
+			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_1
 			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
@@ -261,17 +256,15 @@ gedfrey_leader_decisions = {
 		}
 
 		available = {
-			has_government = monarchy
+			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_1
 			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
-			stability >= 0.40
-			war_support >= 0.40
 		}
 
-		cost = gedfrey_royal_2_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 100
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_royal_1
@@ -287,23 +280,21 @@ gedfrey_leader_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			has_government = monarchy
+			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_2
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
 
 		available = {
-			has_government = monarchy
+			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_2
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
-			stability >= 0.55
-			war_support >= 0.55
 		}
 
-		cost = gedfrey_royal_3_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 150
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_royal_2
@@ -319,7 +310,7 @@ gedfrey_leader_decisions = {
 		allowed = { always = yes }
 
 		visible = {
-			has_government = monarchy
+			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_3
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 			# FUTURE_LEADERS: add OR conditions here for other special leaders
@@ -327,17 +318,15 @@ gedfrey_leader_decisions = {
 		}
 
 		available = {
-			has_government = monarchy
+			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_3
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
-			stability >= 0.70
-			war_support >= 0.70
 			# FUTURE_LEADERS: add OR conditions here for other special leaders
 			has_country_leader = { character = POL_anastasia_romanova }
 		}
 
-		cost = gedfrey_royal_4_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 200
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_royal_3
@@ -378,8 +367,8 @@ gedfrey_leader_decisions = {
 			}
 		}
 
-		cost = gedfrey_warfare_1_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 75
+		days_re_enable = 120
 
 		complete_effect = {
 			add_country_leader_trait = gedfrey_warfare_1
@@ -410,8 +399,8 @@ gedfrey_leader_decisions = {
 			}
 		}
 
-		cost = gedfrey_warfare_2_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 100
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_warfare_1
@@ -441,8 +430,8 @@ gedfrey_leader_decisions = {
 			}
 		}
 
-		cost = gedfrey_warfare_3_cost
-		days_re_enable = gedfrey_cd_leader
+		cost = 125
+		days_re_enable = 120
 
 		complete_effect = {
 			remove_country_leader_trait = gedfrey_warfare_2
