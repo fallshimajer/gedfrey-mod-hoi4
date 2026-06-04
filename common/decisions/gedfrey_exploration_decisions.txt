@@ -1,7 +1,91 @@
 # ============================================================
 # Gedfrey Mod — Exploration Decisions (Phase 4)
+# Human-player only (category visible = is_ai = no).
+# Two decisions: Start and Stop exploration.
+# Start is tripled for PP cost. Stop has no cost and is shared.
 # ============================================================
-# Placeholder — implemented in Phase 4.
 
 gedfrey_exploration_decisions = {
+
+	# ============================================================
+	# INICIAR EXPLORACIÓN / Start Exploration
+	# Costs: 50/60/75 PP | Timer: 60d
+	# Sets flag → fires first exploration cycle event on completion.
+	# ============================================================
+
+	gedfrey_start_exploration_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_country_flag = gedfrey_exploration_active }
+		}
+		available = {
+			NOT = { has_country_flag = gedfrey_exploration_active }
+		}
+		cost = 50
+		days_remove = 30
+		complete_effect = { set_country_flag = gedfrey_exploration_active }
+		remove_effect = {
+			country_event = { id = gedfrey_exploration.0 days = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_start_exploration_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_country_flag = gedfrey_exploration_active }
+		}
+		available = {
+			NOT = { has_country_flag = gedfrey_exploration_active }
+		}
+		cost = 60
+		days_remove = 30
+		complete_effect = { set_country_flag = gedfrey_exploration_active }
+		remove_effect = {
+			country_event = { id = gedfrey_exploration.0 days = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_start_exploration_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_country_flag = gedfrey_exploration_active }
+		}
+		available = {
+			NOT = { has_country_flag = gedfrey_exploration_active }
+		}
+		cost = 75
+		days_remove = 30
+		complete_effect = { set_country_flag = gedfrey_exploration_active }
+		remove_effect = {
+			country_event = { id = gedfrey_exploration.0 days = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# DETENER EXPLORACIÓN / Stop Exploration
+	# Cost: 0 PP | Instant. Clears the active flag.
+	# The next scheduled cycle event will silently discard itself.
+	# ============================================================
+
+	gedfrey_stop_exploration = {
+		icon = generic_industry
+		allowed = { always = yes }
+		visible = {
+			has_country_flag = gedfrey_exploration_active
+		}
+		available = {
+			has_country_flag = gedfrey_exploration_active
+		}
+		cost = 0
+		complete_effect = {
+			clr_country_flag = gedfrey_exploration_active
+		}
+		ai_will_do = { factor = 0 }
+	}
 }

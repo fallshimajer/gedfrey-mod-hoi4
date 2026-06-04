@@ -42,15 +42,43 @@ leader_traits = {
 	# --------------------------------------------------------
 
 	gedfrey_politics_1 = {
-		political_power_gain = 0.05
+		political_power_gain = 0.5
 	}
 
 	gedfrey_politics_2 = {
-		political_power_gain = 0.10
+		political_power_gain = 1.0
 	}
 
 	gedfrey_politics_3 = {
-		political_power_gain = 0.15
+		political_power_gain = 1.5
+	}
+
+	gedfrey_politics_4 = {
+		political_power_gain = 2.0
+	}
+
+	gedfrey_politics_5 = {
+		political_power_gain = 2.50
+	}
+
+	gedfrey_politics_6 = {
+		political_power_gain = 3.00
+	}
+
+	gedfrey_politics_7 = {
+		political_power_gain = 3.25
+	}
+
+	gedfrey_politics_8 = {
+		political_power_gain = 3.50
+	}
+
+	gedfrey_politics_9 = {
+		political_power_gain = 3.75
+	}
+
+	gedfrey_politics_10 = {
+		political_power_gain = 4.00
 	}
 
 	# --------------------------------------------------------
@@ -60,21 +88,21 @@ leader_traits = {
 	# --------------------------------------------------------
 
 	gedfrey_royal_1 = {
-		war_support_factor = 0.03
+		war_support_weekly = 0.03
 		stability_weekly = 0.03
 		resistance_target = -0.05
 		industrial_capacity_factory = 0.03
 	}
 
 	gedfrey_royal_2 = {
-		war_support_factor = 0.06
+		war_support_weekly = 0.06
 		stability_weekly = 0.06
 		resistance_target = -0.10
 		industrial_capacity_factory = 0.06
 	}
 
 	gedfrey_royal_3 = {
-		war_support_factor = 0.09
+		war_support_weekly = 0.09
 		stability_weekly = 0.09
 		resistance_target = -0.15
 		industrial_capacity_factory = 0.09
@@ -84,7 +112,7 @@ leader_traits = {
 
 	gedfrey_royal_4 = {
 		# FUTURE_LEADERS: agregar traits adicionales para futuros líderes especiales
-		war_support_factor = 0.12
+		war_support_weekly = 0.12
 		stability_weekly = 0.12
 		resistance_target = -0.20
 		industrial_capacity_factory = 0.12

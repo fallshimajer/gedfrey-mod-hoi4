@@ -1,7 +1,19 @@
 # ============================================================
-# Gedfrey Mod — Economic Events (Phase 2–3)
-# gedfrey.economic.1 — Investment Failed
+# Gedfrey Mod — Economic Events
 # ============================================================
-# Placeholder — implemented in Phase 2.
 
 add_namespace = gedfrey_economic
+
+# gedfrey_economic.1 — Inversión Extranjera: La inversión falló
+country_event = {
+	id = gedfrey_economic.1
+	title = gedfrey_economic.1.t
+	desc = gedfrey_economic.1.d
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+
+	option = {
+		name = gedfrey_economic.1.a
+	}
+}

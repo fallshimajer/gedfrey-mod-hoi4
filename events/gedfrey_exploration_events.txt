@@ -1,11 +1,146 @@
 # ============================================================
 # Gedfrey Mod — Exploration Events (Phase 4)
-# gedfrey.exploration.1 — Aluminium Found
-# gedfrey.exploration.2 — Iron Found
-# gedfrey.exploration.3 — Tungsten Found
-# gedfrey.exploration.4 — Chromium Found
-# gedfrey.exploration.cancel — Exploration cancelled (debt)
+#
+# gedfrey_exploration.0  — Hidden background loop (every 60d)
+# gedfrey_exploration.1  — Aluminium found
+# gedfrey_exploration.2  — Steel found
+# gedfrey_exploration.3  — Tungsten found
+# gedfrey_exploration.4  — Chromium found
+# gedfrey_exploration.5  — Nothing found (silent, no popup)
+# gedfrey_exploration.cancel — Cancelled by PP debt
 # ============================================================
-# Placeholder — implemented in Phase 4.
 
 add_namespace = gedfrey_exploration
+
+# ============================================================
+# gedfrey_exploration.0 — Background loop
+# Hidden event. Fires every 60 days while flag is active.
+# Deducts PP by tier, picks a random result, reschedules itself.
+# Silently discarded if flag was cleared (Stop Exploration).
+# ============================================================
+
+country_event = {
+	id = gedfrey_exploration.0
+	hidden = yes
+	is_triggered_only = yes
+
+	trigger = { has_country_flag = gedfrey_exploration_active }
+
+	immediate = {
+		# Deduct PP cost by tier
+		if = {
+			limit = { gedfrey_is_minor = yes }
+			add_political_power = -25
+		}
+		else_if = {
+			limit = { gedfrey_is_medium = yes }
+			add_political_power = -30
+		}
+		else = {
+			add_political_power = -38
+		}
+
+		# Pick random result
+		random_list = {
+			30 = { country_event = { id = gedfrey_exploration.1 } }
+			30 = { country_event = { id = gedfrey_exploration.2 } }
+			20 = { country_event = { id = gedfrey_exploration.3 } }
+			15 = { country_event = { id = gedfrey_exploration.4 } }
+			5  = { }
+		}
+
+		# Reschedule next cycle
+		country_event = { id = gedfrey_exploration.0 days = 30 }
+	}
+
+	option = { name = gedfrey_exploration.0.a }
+}
+
+# ============================================================
+# gedfrey_exploration.1 — Aluminio encontrado
+# ============================================================
+
+country_event = {
+	id = gedfrey_exploration.1
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_state = {
+			add_resource = { type = aluminium amount = 3 }
+		}
+	}
+
+	option = { name = gedfrey_exploration.1.a }
+}
+
+# ============================================================
+# gedfrey_exploration.2 — Acero encontrado
+# ============================================================
+
+country_event = {
+	id = gedfrey_exploration.2
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_state = {
+			add_resource = { type = steel amount = 4 }
+		}
+	}
+
+	option = { name = gedfrey_exploration.2.a }
+}
+
+# ============================================================
+# gedfrey_exploration.3 — Tungsteno encontrado
+# ============================================================
+
+country_event = {
+	id = gedfrey_exploration.3
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_state = {
+			add_resource = { type = tungsten amount = 2 }
+		}
+	}
+
+	option = { name = gedfrey_exploration.3.a }
+}
+
+# ============================================================
+# gedfrey_exploration.4 — Cromo encontrado
+# ============================================================
+
+country_event = {
+	id = gedfrey_exploration.4
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_state = {
+			add_resource = { type = chromium amount = 2 }
+		}
+	}
+
+	option = { name = gedfrey_exploration.4.a }
+}
+
+# ============================================================
+# gedfrey_exploration.cancel — Cancelado por deuda de PP
+# ============================================================
+
+country_event = {
+	id = gedfrey_exploration.cancel
+	title = gedfrey_exploration.cancel.t
+	desc = gedfrey_exploration.cancel.d
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+
+	option = {
+		name = gedfrey_exploration.cancel.a
+	}
+}

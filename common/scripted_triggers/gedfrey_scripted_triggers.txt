@@ -37,6 +37,7 @@ gedfrey_is_naval_power = {
 	OR = {
 		tag = USA
 		tag = ENG
+		tag = JAP
 	}
 }
 
@@ -144,6 +145,97 @@ gedfrey_factories_medium_n3 = {      # civ + mil >= 150
 		AND = { num_of_civilian_factories > 49   num_of_military_factories > 99 }
 		AND = { num_of_civilian_factories > 24   num_of_military_factories > 124 }
 		num_of_military_factories > 149
+	}
+}
+
+gedfrey_factories_minor_n4 = {       # civ + mil >= 120
+	OR = {
+		num_of_civilian_factories > 119
+		AND = { num_of_civilian_factories > 104  num_of_military_factories > 14  }
+		AND = { num_of_civilian_factories > 89   num_of_military_factories > 29  }
+		AND = { num_of_civilian_factories > 74   num_of_military_factories > 44  }
+		AND = { num_of_civilian_factories > 59   num_of_military_factories > 59  }
+		AND = { num_of_civilian_factories > 44   num_of_military_factories > 74  }
+		AND = { num_of_civilian_factories > 29   num_of_military_factories > 89  }
+		AND = { num_of_civilian_factories > 14   num_of_military_factories > 104 }
+		num_of_military_factories > 119
+	}
+}
+
+gedfrey_factories_medium_n4 = {      # civ + mil >= 200
+	OR = {
+		num_of_civilian_factories > 199
+		AND = { num_of_civilian_factories > 179  num_of_military_factories > 19  }
+		AND = { num_of_civilian_factories > 159  num_of_military_factories > 39  }
+		AND = { num_of_civilian_factories > 139  num_of_military_factories > 59  }
+		AND = { num_of_civilian_factories > 119  num_of_military_factories > 79  }
+		AND = { num_of_civilian_factories > 99   num_of_military_factories > 99  }
+		AND = { num_of_civilian_factories > 79   num_of_military_factories > 119 }
+		AND = { num_of_civilian_factories > 59   num_of_military_factories > 139 }
+		AND = { num_of_civilian_factories > 39   num_of_military_factories > 159 }
+		AND = { num_of_civilian_factories > 19   num_of_military_factories > 179 }
+		num_of_military_factories > 199
+	}
+}
+
+gedfrey_factories_major_n4 = {       # civ + mil >= 280
+	OR = {
+		num_of_civilian_factories > 279
+		AND = { num_of_civilian_factories > 259  num_of_military_factories > 19  }
+		AND = { num_of_civilian_factories > 239  num_of_military_factories > 39  }
+		AND = { num_of_civilian_factories > 219  num_of_military_factories > 59  }
+		AND = { num_of_civilian_factories > 199  num_of_military_factories > 79  }
+		AND = { num_of_civilian_factories > 179  num_of_military_factories > 99  }
+		AND = { num_of_civilian_factories > 159  num_of_military_factories > 119 }
+		AND = { num_of_civilian_factories > 139  num_of_military_factories > 139 }
+		AND = { num_of_civilian_factories > 119  num_of_military_factories > 159 }
+		AND = { num_of_civilian_factories > 99   num_of_military_factories > 179 }
+		AND = { num_of_civilian_factories > 79   num_of_military_factories > 199 }
+		AND = { num_of_civilian_factories > 59   num_of_military_factories > 219 }
+		AND = { num_of_civilian_factories > 39   num_of_military_factories > 239 }
+		AND = { num_of_civilian_factories > 19   num_of_military_factories > 259 }
+		num_of_military_factories > 279
+	}
+}
+
+# ============================================================
+# Leader Trait Level Checks — "nivel 2 o mayor"
+# Industry/Politics/Warfare go up to 3; Royal goes up to 4.
+# ============================================================
+
+gedfrey_has_industry_2_plus = {
+	OR = {
+		has_country_leader_with_trait = gedfrey_industry_2
+		has_country_leader_with_trait = gedfrey_industry_3
+	}
+}
+
+gedfrey_has_politics_2_plus = {
+	OR = {
+		has_country_leader_with_trait = gedfrey_politics_2
+		has_country_leader_with_trait = gedfrey_politics_3
+		has_country_leader_with_trait = gedfrey_politics_4
+		has_country_leader_with_trait = gedfrey_politics_5
+		has_country_leader_with_trait = gedfrey_politics_6
+		has_country_leader_with_trait = gedfrey_politics_7
+		has_country_leader_with_trait = gedfrey_politics_8
+		has_country_leader_with_trait = gedfrey_politics_9
+		has_country_leader_with_trait = gedfrey_politics_10
+	}
+}
+
+gedfrey_has_warfare_2_plus = {
+	OR = {
+		has_country_leader_with_trait = gedfrey_warfare_2
+		has_country_leader_with_trait = gedfrey_warfare_3
+	}
+}
+
+gedfrey_has_royal_2_plus = {
+	OR = {
+		has_country_leader_with_trait = gedfrey_royal_2
+		has_country_leader_with_trait = gedfrey_royal_3
+		has_country_leader_with_trait = gedfrey_royal_4
 	}
 }
 

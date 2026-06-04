@@ -48,7 +48,20 @@ HOI4 versión objetivo: 1.14.x (Götterdämmerung)
 
 ---
 
-### 6. Modifiers inválidos en leader traits
+### 6. Modifiers inválidos en ideas de Fase 5 (naval y air supremacy)
+**Archivo:** `common/ideas/gedfrey_ideas.txt`
+
+| Modifier inválido | Motivo | Reemplazo |
+|---|---|---|
+| `naval_attack_factor` | No existe en HOI4 | `naval_damage_factor` |
+| `naval_defence_factor` | Spelling incorrecto | `naval_defense_factor` |
+| `landing_troops_factor` | No existe en HOI4 | eliminado (reemplazado por `navy_org_factor`) |
+| `repair_speed` | Nombre incorrecto | `repair_speed_factor` |
+**Nota:** `air_attack_factor`, `air_defence_factor`, `air_agility_factor` y `paradrop_organization` SÍ son válidos en ideas — las ideas de Air Supremacy funcionaban correctamente. Solo los navales tenían modifiers inválidos.
+
+---
+
+### 7. Modifiers inválidos en leader traits
 **Archivo:** `common/country_leader/gedfrey_leader_traits.txt`  
 
 | Modifier inválido | Motivo | Reemplazo |
@@ -100,6 +113,55 @@ HOI4 versión objetivo: 1.14.x (Götterdämmerung)
 
 ---
 
+---
+
+### 12. Monarca al Mando — decisión de prueba (TEST)
+**Archivo:** `common/decisions/gedfrey_military_decisions.txt`
+**ID:** `gedfrey_monarch_command_test`
+**Implementación:** Usa `every_country_leader { add_field_marshal_role { ... } }` para promover al líder actual a Field Marshal sin conocer su ID. El scope `every_country_leader` accede al personaje del gobernante vigente en tiempo de ejecución.
+**Diagnóstico intento 1 (fallido):**
+- `complete_effect { every_country_leader { add_field_marshal_role { ... } } }` → PP se gastó, flag se seteó, pero ningún Field Marshal apareció.
+- Causa probable: `add_field_marshal_role` llamado DIRECTAMENTE dentro de `every_country_leader` falla silenciosamente en HOI4 1.14. El scope no llega a ejecutar el efecto.
+
+**Fix aplicado (intento 2):** Patrón `save_as_event_target` + `event_target:` en `remove_effect`. También falló.
+
+**Intento 3:** Evento intermedio (`country_event = gedfrey_military.1`) con `every_country_leader { add_field_marshal_role }` en `immediate`. También falló.
+
+**Diagnóstico final confirmado:** `add_field_marshal_role` NO puede añadirse dinámicamente a un personaje que fue creado SOLO con rol de country_leader en HOI4 1.14. El engine lo ignora silenciosamente en todos los contextos (complete_effect, remove_effect, event immediate).
+
+**Por qué Stalin/SOV funciona:** El personaje `SOV_joseph_stalin` tiene AMBOS roles (country_leader + field_marshal) pre-definidos en `common/characters/SOV.txt` desde el inicio. El focus solo activa el rol FM ya existente usando el ID hardcodeado. No es un caso de adición dinámica de rol.
+
+**Solución futura planeada:** Definir una lista de personajes monarcas específicos en `common/characters/` con doble rol (country_leader + field_marshal) pre-definido. La decisión activará el rol FM usando el ID del personaje. Solo aplicará a los países con monarca definido en la lista.
+
+**Estado actual:** Feature en pausa. Decisión `gedfrey_monarch_command_test` y evento `gedfrey_military.1` quedan como placeholder no funcional.
+
+---
+
+### 13. Doctrina de Guerra — cambio de `has_army_size` a `army_manpower` (Phase 1 fix)
+**Archivo:** `common/decisions/gedfrey_leader_decisions.txt`
+**Cambio:** El requisito de las 9 decisiones de Doctrina de Guerra pasó de contar divisiones (`has_army_size = { size > X }`) a contar manpower desplegado en campo (`army_manpower > X`).
+**Valores aplicados:** Resto: N1=300k, N2=500k, N3=750k | Medianas: N1=600k, N2=900k, N3=1.5M | Grandes: N1=750k, N2=1.25M, N3=2M.
+**Nota:** `army_manpower` es un trigger nativo de HOI4 que retorna soldados en unidades de campo (no el pool de reserva). Si no funciona, revisar escala (podría ser en miles, no unidades crudas) y ajustar divisor.
+
+---
+
+### 13. Triggers de estadísticas de combate (Phase 5) — pendientes de verificación
+**Archivo:** `common/decisions/gedfrey_military_decisions.txt`
+**Contexto:** Las decisiones de Fase 5 usan tres triggers de estadísticas de combate que no han sido probados en esta instalación.
+
+| Trigger usado | Para | Estado |
+|---|---|---|
+| `num_of_naval_victories > X` | Naval Combat Supremacy | **INVÁLIDO** — ignorado silenciosamente, decisiones disponibles sin requisito |
+| `air_kills > X` | Air Supremacy | **INVÁLIDO** — ignorado silenciosamente, decisiones disponibles sin requisito |
+| `casualties > X` | War Veterancy | Válido (trigger nativo HOI4, retorna manpower perdido en números absolutos) |
+
+**Fix aplicado:** Reemplazados por `navy_experience > X` y `air_experience > X` (XP pools de combate naval/aéreo — triggers nativos válidos).
+**Valores navy_experience:** N1: minor 45 / medium 95 / major 170 / naval 345 | N2: minor 120 / medium 195 / major 295 / naval 390 | N3: minor 245 / medium 345 / major 395 / naval 445
+**Valores air_experience:** N1: minor 49 / medium 99 / major 149 | N2: minor 149 / medium 249 / major 349 | N3: minor 249 / medium 349 / major 449
+**Nota:** XP es pool actual (se gasta en upgrades). Si el jugador gasta XP activamente, puede tener dificultades para alcanzar los umbrales altos (>300).
+
+---
+
 ## INTENTOS FALLIDOS
 
 ### Intento 1 — Inline blocks para costos escalados
@@ -143,4 +205,7 @@ cost = {
 | Costo PP por tier (minor/medium/major) | ✗ No implementado — `cost` solo acepta números directos en HOI4 1.14 |
 | Cooldown por tier (minor/medium/major) | ✗ No implementado — mismo problema |
 | Requisitos de estabilidad (Political Consolidation) | ✗ Removido — trigger `stability` falla en esta instalación |
-| Resource exploration (Phase 4) | ✗ Pendiente de implementación |
+| Resource exploration (Phase 4) | ✓ Funciona |
+| Naval Combat Supremacy (Phase 5) | ⚠ Implementado — `num_of_naval_victories` necesita verificación en-juego |
+| Air Supremacy (Phase 5) | ⚠ Implementado — `air_kills` necesita verificación en-juego (puede no ser trigger válido) |
+| War Veterancy (Phase 5) | ✓ Implementado — usa `casualties` (propias, proxy de experiencia de combate) |

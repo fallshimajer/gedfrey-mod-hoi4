@@ -1,9 +1,8 @@
 # ============================================================
 # Gedfrey Mod — Leader Decisions
-# All decisions are INSTANT (no days_remove).
-# Traits are applied to the current country leader.
-# If the leader changes, all traits are lost; levels reset to N1.
-# Cooldown: 120 days (major: 180). See gedfrey_scripted_values.txt.
+# Each decision is tripled: _minor / _medium / _major.
+# allowed = gedfrey_is_X filters which variant each country sees.
+# Cooldown: minor/medium=120d, major=180d
 # ============================================================
 
 gedfrey_leader_decisions = {
@@ -14,208 +13,1654 @@ gedfrey_leader_decisions = {
 	#   N1: minor>=30, medium>=50, major>=70
 	#   N2: minor>=60, medium>=100, major>=140
 	#   N3: minor>=90, medium>=150, major>=210
+	# Costs: N1=75/90/113  N2=100/120/150  N3=125/150/188
 	# ============================================================
 
-	gedfrey_industry_decision_1 = {
+	gedfrey_industry_decision_1_minor = {
 		icon = generic_industry
-
-		allowed = { always = yes }
-
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
 		}
-
 		available = {
 			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
-			OR = {
-				AND = { gedfrey_is_major  = yes  gedfrey_factories_major_n1  = yes }
-				AND = { gedfrey_is_medium = yes  gedfrey_factories_medium_n1 = yes }
-				AND = { gedfrey_is_minor  = yes  gedfrey_factories_minor_n1  = yes }
-			}
+			gedfrey_factories_minor_n1 = yes
 		}
-
 		cost = 75
-		days_re_enable = 120
-
-		complete_effect = {
-			add_country_leader_trait = gedfrey_industry_1
-		}
-
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_industry_1 }
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_industry_decision_2 = {
+	gedfrey_industry_decision_1_medium = {
 		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			gedfrey_factories_medium_n1 = yes
+		}
+		cost = 90
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_industry_1 }
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_industry_decision_1_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_industry_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			gedfrey_factories_major_n1 = yes
+		}
+		cost = 113
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_industry_1 }
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_industry_decision_2_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_country_leader_with_trait = gedfrey_industry_1
 			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
 		}
-
 		available = {
 			has_country_leader_with_trait = gedfrey_industry_1
 			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
-			OR = {
-				AND = { gedfrey_is_major  = yes  gedfrey_factories_major_n2  = yes }
-				AND = { gedfrey_is_medium = yes  gedfrey_factories_medium_n2 = yes }
-				AND = { gedfrey_is_minor  = yes  gedfrey_factories_minor_n2  = yes }
-			}
+			gedfrey_factories_minor_n2 = yes
 		}
-
 		cost = 100
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_industry_1
 			add_country_leader_trait = gedfrey_industry_2
 		}
-
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_industry_decision_3 = {
+	gedfrey_industry_decision_2_medium = {
 		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_industry_1
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_industry_1
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			gedfrey_factories_medium_n2 = yes
+		}
+		cost = 120
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_industry_1
+			add_country_leader_trait = gedfrey_industry_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_industry_decision_2_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_industry_1
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_industry_1
+			NOT = { has_country_leader_with_trait = gedfrey_industry_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			gedfrey_factories_major_n2 = yes
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_industry_1
+			add_country_leader_trait = gedfrey_industry_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_industry_decision_3_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_country_leader_with_trait = gedfrey_industry_2
 			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
 		}
-
 		available = {
 			has_country_leader_with_trait = gedfrey_industry_2
 			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
-			OR = {
-				AND = { gedfrey_is_major  = yes  gedfrey_factories_major_n3  = yes }
-				AND = { gedfrey_is_medium = yes  gedfrey_factories_medium_n3 = yes }
-				AND = { gedfrey_is_minor  = yes  gedfrey_factories_minor_n3  = yes }
-			}
+			gedfrey_factories_minor_n3 = yes
 		}
-
 		cost = 125
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_industry_2
 			add_country_leader_trait = gedfrey_industry_3
 		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_industry_decision_3_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_industry_2
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_industry_2
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			gedfrey_factories_medium_n3 = yes
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_industry_2
+			add_country_leader_trait = gedfrey_industry_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_industry_decision_3_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_industry_2
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_industry_2
+			NOT = { has_country_leader_with_trait = gedfrey_industry_3 }
+			gedfrey_factories_major_n3 = yes
+		}
+		cost = 188
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_industry_2
+			add_country_leader_trait = gedfrey_industry_3
+		}
 		ai_will_do = { factor = 1 }
 	}
 
 	# ============================================================
-	# CONSOLIDACIÓN POLÍTICA / Political Consolidation
-	# Requirements (stability):
-	#   N1: stability >= 0.25
-	#   N2: stability >= 0.50 + has gedfrey_politics_1
-	#   N3: stability >= 0.75 + has gedfrey_politics_2
+	# CONSOLIDACIÓN POLÍTICA / Political Consolidation (10 niveles)
+	# Costs: N1=50/60/75  N2=75/90/113  N3=100/120/150
+	#        N4=125/150/188  N5=150/180/225  N6=175/210/263
+	#        N7=200/240/300  N8=225/270/338  N9=250/300/375  N10=275/330/413
+	# N2+ requieren gedfrey_decree_count >= N*10
 	# ============================================================
 
-	gedfrey_politics_decision_1 = {
+	gedfrey_politics_decision_1_minor = {
 		icon = generic_political_actions
-
-		allowed = { always = yes }
-
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_4 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_5 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_6 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_7 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_8 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_9 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_10 }
 		}
-
 		available = {
 			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_4 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_5 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_6 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_7 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_8 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_9 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_10 }
 		}
-
 		cost = 50
-		days_re_enable = 120
-
-		complete_effect = {
-			add_country_leader_trait = gedfrey_politics_1
-		}
-
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_politics_1 }
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_politics_decision_2 = {
+	gedfrey_politics_decision_1_medium = {
 		icon = generic_political_actions
-
-		allowed = { always = yes }
-
+		allowed = { gedfrey_is_medium = yes }
 		visible = {
-			has_country_leader_with_trait = gedfrey_politics_1
+			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_4 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_5 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_6 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_7 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_8 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_9 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_10 }
 		}
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_4 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_5 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_6 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_7 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_8 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_9 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_10 }
+		}
+		cost = 60
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_politics_1 }
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_politics_decision_1_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_4 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_5 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_6 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_7 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_8 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_9 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_10 }
+		}
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_politics_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_4 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_5 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_6 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_7 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_8 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_9 }
+			NOT = { has_country_leader_with_trait = gedfrey_politics_10 }
+		}
+		cost = 75
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_politics_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_2_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_1 }
 		available = {
 			has_country_leader_with_trait = gedfrey_politics_1
-			NOT = { has_country_leader_with_trait = gedfrey_politics_2 }
-			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			check_variable = { gedfrey_decree_count > 9 }
 		}
-
 		cost = 75
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_politics_1
 			add_country_leader_trait = gedfrey_politics_2
 		}
-
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_politics_decision_3 = {
+	gedfrey_politics_decision_2_medium = {
 		icon = generic_political_actions
-
-		allowed = { always = yes }
-
-		visible = {
-			has_country_leader_with_trait = gedfrey_politics_2
-			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_1 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_1
+			check_variable = { gedfrey_decree_count > 9 }
 		}
+		cost = 90
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_1
+			add_country_leader_trait = gedfrey_politics_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_politics_decision_2_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_1 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_1
+			check_variable = { gedfrey_decree_count > 9 }
+		}
+		cost = 113
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_1
+			add_country_leader_trait = gedfrey_politics_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_3_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_2 }
 		available = {
 			has_country_leader_with_trait = gedfrey_politics_2
-			NOT = { has_country_leader_with_trait = gedfrey_politics_3 }
+			check_variable = { gedfrey_decree_count > 19 }
 		}
-
 		cost = 100
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_politics_2
 			add_country_leader_trait = gedfrey_politics_3
 		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_politics_decision_3_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_2 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_2
+			check_variable = { gedfrey_decree_count > 19 }
+		}
+		cost = 120
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_2
+			add_country_leader_trait = gedfrey_politics_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_3_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_2 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_2
+			check_variable = { gedfrey_decree_count > 19 }
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_2
+			add_country_leader_trait = gedfrey_politics_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_4_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_3 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_3
+			check_variable = { gedfrey_decree_count > 29 }
+		}
+		cost = 125
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_3
+			add_country_leader_trait = gedfrey_politics_4
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_4_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_3 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_3
+			check_variable = { gedfrey_decree_count > 29 }
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_3
+			add_country_leader_trait = gedfrey_politics_4
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_4_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_3 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_3
+			check_variable = { gedfrey_decree_count > 29 }
+		}
+		cost = 188
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_3
+			add_country_leader_trait = gedfrey_politics_4
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_5_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_4 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_4
+			check_variable = { gedfrey_decree_count > 39 }
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_4
+			add_country_leader_trait = gedfrey_politics_5
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_5_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_4 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_4
+			check_variable = { gedfrey_decree_count > 39 }
+		}
+		cost = 180
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_4
+			add_country_leader_trait = gedfrey_politics_5
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_5_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_4 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_4
+			check_variable = { gedfrey_decree_count > 39 }
+		}
+		cost = 225
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_4
+			add_country_leader_trait = gedfrey_politics_5
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_6_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_5 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_5
+			check_variable = { gedfrey_decree_count > 49 }
+		}
+		cost = 175
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_5
+			add_country_leader_trait = gedfrey_politics_6
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_6_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_5 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_5
+			check_variable = { gedfrey_decree_count > 49 }
+		}
+		cost = 210
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_5
+			add_country_leader_trait = gedfrey_politics_6
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_6_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_5 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_5
+			check_variable = { gedfrey_decree_count > 49 }
+		}
+		cost = 263
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_5
+			add_country_leader_trait = gedfrey_politics_6
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_7_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_6 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_6
+			check_variable = { gedfrey_decree_count > 59 }
+		}
+		cost = 200
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_6
+			add_country_leader_trait = gedfrey_politics_7
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_7_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_6 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_6
+			check_variable = { gedfrey_decree_count > 59 }
+		}
+		cost = 240
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_6
+			add_country_leader_trait = gedfrey_politics_7
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_7_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_6 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_6
+			check_variable = { gedfrey_decree_count > 59 }
+		}
+		cost = 300
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_6
+			add_country_leader_trait = gedfrey_politics_7
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_8_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_7 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_7
+			check_variable = { gedfrey_decree_count > 69 }
+		}
+		cost = 225
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_7
+			add_country_leader_trait = gedfrey_politics_8
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_8_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_7 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_7
+			check_variable = { gedfrey_decree_count > 69 }
+		}
+		cost = 270
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_7
+			add_country_leader_trait = gedfrey_politics_8
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_8_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_7 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_7
+			check_variable = { gedfrey_decree_count > 69 }
+		}
+		cost = 338
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_7
+			add_country_leader_trait = gedfrey_politics_8
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_9_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_8 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_8
+			check_variable = { gedfrey_decree_count > 79 }
+		}
+		cost = 250
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_8
+			add_country_leader_trait = gedfrey_politics_9
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_9_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_8 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_8
+			check_variable = { gedfrey_decree_count > 79 }
+		}
+		cost = 300
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_8
+			add_country_leader_trait = gedfrey_politics_9
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_9_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_8 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_8
+			check_variable = { gedfrey_decree_count > 79 }
+		}
+		cost = 375
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_8
+			add_country_leader_trait = gedfrey_politics_9
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_10_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_9 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_9
+			check_variable = { gedfrey_decree_count > 89 }
+		}
+		cost = 275
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_9
+			add_country_leader_trait = gedfrey_politics_10
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_10_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_9 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_9
+			check_variable = { gedfrey_decree_count > 89 }
+		}
+		cost = 330
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_9
+			add_country_leader_trait = gedfrey_politics_10
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_politics_decision_10_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { has_country_leader_with_trait = gedfrey_politics_9 }
+		available = {
+			has_country_leader_with_trait = gedfrey_politics_9
+			check_variable = { gedfrey_decree_count > 89 }
+		}
+		cost = 413
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_politics_9
+			add_country_leader_trait = gedfrey_politics_10
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# DECRETO POLÍTICO / Political Decree
+	# PP/day buff + research/consumer debuffs, active 60 days.
+	# Available only when idea is NOT active (no stacking).
+	# Increments gedfrey_decree_count each use.
+	# ============================================================
+
+	gedfrey_decree_politics_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		cost = 30
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_political_decree_1 }
+			NOT = { has_idea = gedfrey_political_decree_2 }
+			NOT = { has_idea = gedfrey_political_decree_3 }
+			NOT = { has_idea = gedfrey_political_decree_4 }
+			NOT = { has_idea = gedfrey_political_decree_5 }
+			NOT = { has_idea = gedfrey_political_decree_6 }
+			NOT = { has_idea = gedfrey_political_decree_7 }
+			NOT = { has_idea = gedfrey_political_decree_8 }
+			NOT = { has_idea = gedfrey_political_decree_9 }
+			NOT = { has_idea = gedfrey_political_decree_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_political_decree_10 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_political_decree_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_political_decree_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_political_decree_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_political_decree_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_political_decree_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_political_decree_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_political_decree_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_political_decree_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_political_decree_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_decree_politics_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		cost = 36
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_political_decree_1 }
+			NOT = { has_idea = gedfrey_political_decree_2 }
+			NOT = { has_idea = gedfrey_political_decree_3 }
+			NOT = { has_idea = gedfrey_political_decree_4 }
+			NOT = { has_idea = gedfrey_political_decree_5 }
+			NOT = { has_idea = gedfrey_political_decree_6 }
+			NOT = { has_idea = gedfrey_political_decree_7 }
+			NOT = { has_idea = gedfrey_political_decree_8 }
+			NOT = { has_idea = gedfrey_political_decree_9 }
+			NOT = { has_idea = gedfrey_political_decree_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_political_decree_10 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_political_decree_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_political_decree_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_political_decree_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_political_decree_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_political_decree_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_political_decree_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_political_decree_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_political_decree_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_political_decree_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_decree_politics_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		cost = 45
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_political_decree_1 }
+			NOT = { has_idea = gedfrey_political_decree_2 }
+			NOT = { has_idea = gedfrey_political_decree_3 }
+			NOT = { has_idea = gedfrey_political_decree_4 }
+			NOT = { has_idea = gedfrey_political_decree_5 }
+			NOT = { has_idea = gedfrey_political_decree_6 }
+			NOT = { has_idea = gedfrey_political_decree_7 }
+			NOT = { has_idea = gedfrey_political_decree_8 }
+			NOT = { has_idea = gedfrey_political_decree_9 }
+			NOT = { has_idea = gedfrey_political_decree_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_political_decree_10 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_political_decree_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_political_decree_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_political_decree_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_political_decree_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_political_decree_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_political_decree_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_political_decree_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_political_decree_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_political_decree_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# ENTRENAMIENTO MILITAR / Military Training
+	# army/navy/air XP gain (1→5/week) active 60 days.
+	# Debuff: -0.15 PP gain. N10: +1 skill to random army leader.
+	# Costs: 30/36/45 | +1 gedfrey_decree_count each use.
+	# ============================================================
+
+	gedfrey_military_training_minor = {
+		icon = generic_army_bonus
+		allowed = { gedfrey_is_minor = yes }
+		cost = 30
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_military_training_1 }
+			NOT = { has_idea = gedfrey_military_training_2 }
+			NOT = { has_idea = gedfrey_military_training_3 }
+			NOT = { has_idea = gedfrey_military_training_4 }
+			NOT = { has_idea = gedfrey_military_training_5 }
+			NOT = { has_idea = gedfrey_military_training_6 }
+			NOT = { has_idea = gedfrey_military_training_7 }
+			NOT = { has_idea = gedfrey_military_training_8 }
+			NOT = { has_idea = gedfrey_military_training_9 }
+			NOT = { has_idea = gedfrey_military_training_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_military_training_10 days = 60 }
+				random_army_leader = {
+					random_list = {
+						25 = { add_attack = 1 }
+						25 = { add_defense = 1 }
+						25 = { add_logistics = 1 }
+						25 = { add_planning = 1 }
+					}
+				}
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_military_training_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_military_training_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_military_training_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_military_training_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_military_training_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_military_training_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_military_training_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_military_training_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_military_training_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_military_training_medium = {
+		icon = generic_army_bonus
+		allowed = { gedfrey_is_medium = yes }
+		cost = 36
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_military_training_1 }
+			NOT = { has_idea = gedfrey_military_training_2 }
+			NOT = { has_idea = gedfrey_military_training_3 }
+			NOT = { has_idea = gedfrey_military_training_4 }
+			NOT = { has_idea = gedfrey_military_training_5 }
+			NOT = { has_idea = gedfrey_military_training_6 }
+			NOT = { has_idea = gedfrey_military_training_7 }
+			NOT = { has_idea = gedfrey_military_training_8 }
+			NOT = { has_idea = gedfrey_military_training_9 }
+			NOT = { has_idea = gedfrey_military_training_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_military_training_10 days = 60 }
+				random_army_leader = {
+					random_list = {
+						25 = { add_attack = 1 }
+						25 = { add_defense = 1 }
+						25 = { add_logistics = 1 }
+						25 = { add_planning = 1 }
+					}
+				}
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_military_training_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_military_training_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_military_training_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_military_training_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_military_training_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_military_training_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_military_training_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_military_training_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_military_training_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_military_training_major = {
+		icon = generic_army_bonus
+		allowed = { gedfrey_is_major = yes }
+		cost = 45
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_military_training_1 }
+			NOT = { has_idea = gedfrey_military_training_2 }
+			NOT = { has_idea = gedfrey_military_training_3 }
+			NOT = { has_idea = gedfrey_military_training_4 }
+			NOT = { has_idea = gedfrey_military_training_5 }
+			NOT = { has_idea = gedfrey_military_training_6 }
+			NOT = { has_idea = gedfrey_military_training_7 }
+			NOT = { has_idea = gedfrey_military_training_8 }
+			NOT = { has_idea = gedfrey_military_training_9 }
+			NOT = { has_idea = gedfrey_military_training_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_military_training_10 days = 60 }
+				random_army_leader = {
+					random_list = {
+						25 = { add_attack = 1 }
+						25 = { add_defense = 1 }
+						25 = { add_logistics = 1 }
+						25 = { add_planning = 1 }
+					}
+				}
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_military_training_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_military_training_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_military_training_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_military_training_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_military_training_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_military_training_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_military_training_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_military_training_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_military_training_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PROGRAMA NACIONAL / National Program
+	# +population growth + build speed, active 120 days.
+	# Consumer goods debuff: N1-N4=+10%, N5-N9=+5%, N10=none.
+	# Costs: 90/108/135 | +1 gedfrey_decree_count each use.
+	# ============================================================
+
+	gedfrey_national_program_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		cost = 90
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_national_program_1 }
+			NOT = { has_idea = gedfrey_national_program_2 }
+			NOT = { has_idea = gedfrey_national_program_3 }
+			NOT = { has_idea = gedfrey_national_program_4 }
+			NOT = { has_idea = gedfrey_national_program_5 }
+			NOT = { has_idea = gedfrey_national_program_6 }
+			NOT = { has_idea = gedfrey_national_program_7 }
+			NOT = { has_idea = gedfrey_national_program_8 }
+			NOT = { has_idea = gedfrey_national_program_9 }
+			NOT = { has_idea = gedfrey_national_program_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_national_program_10 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_national_program_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_national_program_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_national_program_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_national_program_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_national_program_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_national_program_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_national_program_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_national_program_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_national_program_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_national_program_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		cost = 108
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_national_program_1 }
+			NOT = { has_idea = gedfrey_national_program_2 }
+			NOT = { has_idea = gedfrey_national_program_3 }
+			NOT = { has_idea = gedfrey_national_program_4 }
+			NOT = { has_idea = gedfrey_national_program_5 }
+			NOT = { has_idea = gedfrey_national_program_6 }
+			NOT = { has_idea = gedfrey_national_program_7 }
+			NOT = { has_idea = gedfrey_national_program_8 }
+			NOT = { has_idea = gedfrey_national_program_9 }
+			NOT = { has_idea = gedfrey_national_program_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_national_program_10 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_national_program_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_national_program_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_national_program_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_national_program_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_national_program_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_national_program_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_national_program_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_national_program_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_national_program_1 days = 60 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_national_program_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		cost = 135
+		days_remove = 61
+		visible = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+		}
+		available = {
+			OR = {
+				has_country_leader_with_trait = gedfrey_politics_1
+				has_country_leader_with_trait = gedfrey_politics_2
+				has_country_leader_with_trait = gedfrey_politics_3
+				has_country_leader_with_trait = gedfrey_politics_4
+				has_country_leader_with_trait = gedfrey_politics_5
+				has_country_leader_with_trait = gedfrey_politics_6
+				has_country_leader_with_trait = gedfrey_politics_7
+				has_country_leader_with_trait = gedfrey_politics_8
+				has_country_leader_with_trait = gedfrey_politics_9
+				has_country_leader_with_trait = gedfrey_politics_10
+			}
+			NOT = { has_idea = gedfrey_national_program_1 }
+			NOT = { has_idea = gedfrey_national_program_2 }
+			NOT = { has_idea = gedfrey_national_program_3 }
+			NOT = { has_idea = gedfrey_national_program_4 }
+			NOT = { has_idea = gedfrey_national_program_5 }
+			NOT = { has_idea = gedfrey_national_program_6 }
+			NOT = { has_idea = gedfrey_national_program_7 }
+			NOT = { has_idea = gedfrey_national_program_8 }
+			NOT = { has_idea = gedfrey_national_program_9 }
+			NOT = { has_idea = gedfrey_national_program_10 }
+		}
+		complete_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_10 }
+				add_timed_idea = { idea = gedfrey_national_program_10 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_9 }
+				add_timed_idea = { idea = gedfrey_national_program_9 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_8 }
+				add_timed_idea = { idea = gedfrey_national_program_8 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_7 }
+				add_timed_idea = { idea = gedfrey_national_program_7 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_6 }
+				add_timed_idea = { idea = gedfrey_national_program_6 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_5 }
+				add_timed_idea = { idea = gedfrey_national_program_5 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_4 }
+				add_timed_idea = { idea = gedfrey_national_program_4 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_3 }
+				add_timed_idea = { idea = gedfrey_national_program_3 days = 60 }
+			}
+			else_if = {
+				limit = { has_country_leader_with_trait = gedfrey_politics_2 }
+				add_timed_idea = { idea = gedfrey_national_program_2 days = 60 }
+			}
+			else = {
+				add_timed_idea = { idea = gedfrey_national_program_1 days = 60 }
+			}
+		}
 		ai_will_do = { factor = 1 }
 	}
 
 	# ============================================================
 	# GRACIA REAL / Royal Grace
-	# Requires monarchy. Level 4 exclusive to POL_anastasia_romanova.
-	# Requirements (stability + war_support + previous trait):
-	#   N1: stab>=0.25, ws>=0.25
-	#   N2: stab>=0.40, ws>=0.40 + gedfrey_royal_1
-	#   N3: stab>=0.55, ws>=0.55 + gedfrey_royal_2
-	#   N4: stab>=0.70, ws>=0.70 + gedfrey_royal_3 + POL_anastasia_romanova
+	# Requires has_government = neutrality
+	# Costs: N1=75/90/113  N2=100/120/150  N3=150/180/225  N4=200/240/300
+	# Cooldown: minor/medium=120d, major=180d
+	# N4: exclusive to POL_anna_andersson (Anna Anderson / Anastasia in Road to 56)
 	# ============================================================
 
-	gedfrey_royal_decision_1 = {
+	gedfrey_royal_decision_1_minor = {
 		icon = generic_monarchy
-
-		allowed = { always = yes }
-
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_government = neutrality
 			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
@@ -223,7 +1668,6 @@ gedfrey_leader_decisions = {
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
-
 		available = {
 			has_government = neutrality
 			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
@@ -231,22 +1675,64 @@ gedfrey_leader_decisions = {
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
-
 		cost = 75
-		days_re_enable = 120
-
-		complete_effect = {
-			add_country_leader_trait = gedfrey_royal_1
-		}
-
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_royal_1 }
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_royal_decision_2 = {
+	gedfrey_royal_decision_1_medium = {
 		icon = generic_monarchy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_government = neutrality
+			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		available = {
+			has_government = neutrality
+			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		cost = 90
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_royal_1 }
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_royal_decision_1_major = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_government = neutrality
+			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		available = {
+			has_government = neutrality
+			NOT = { has_country_leader_with_trait = gedfrey_royal_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		cost = 113
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_royal_1 }
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_royal_decision_2_minor = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_1
@@ -254,7 +1740,6 @@ gedfrey_leader_decisions = {
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
-
 		available = {
 			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_1
@@ -262,182 +1747,891 @@ gedfrey_leader_decisions = {
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
-
 		cost = 100
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_royal_1
 			add_country_leader_trait = gedfrey_royal_2
 		}
-
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_royal_decision_3 = {
+	gedfrey_royal_decision_2_medium = {
 		icon = generic_monarchy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_1
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		available = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_1
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		cost = 120
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_royal_1
+			add_country_leader_trait = gedfrey_royal_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_royal_decision_2_major = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_1
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		available = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_1
+			NOT = { has_country_leader_with_trait = gedfrey_royal_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_royal_1
+			add_country_leader_trait = gedfrey_royal_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_royal_decision_3_minor = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_2
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
-
 		available = {
 			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_2
 			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 		}
-
 		cost = 150
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_royal_2
 			add_country_leader_trait = gedfrey_royal_3
 		}
-
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_royal_decision_4 = {
+	gedfrey_royal_decision_3_medium = {
 		icon = generic_monarchy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_2
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		available = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_2
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		cost = 180
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_royal_2
+			add_country_leader_trait = gedfrey_royal_3
+		}
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_royal_decision_3_major = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_2
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		available = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_2
+			NOT = { has_country_leader_with_trait = gedfrey_royal_3 }
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+		}
+		cost = 225
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_royal_2
+			add_country_leader_trait = gedfrey_royal_3
+		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_royal_decision_4_minor = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_3
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 			# FUTURE_LEADERS: add OR conditions here for other special leaders
-			has_country_leader = { character = POL_anastasia_romanova }
+			has_country_leader = { character = POL_anna_andersson }
 		}
-
 		available = {
 			has_government = neutrality
 			has_country_leader_with_trait = gedfrey_royal_3
 			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
 			# FUTURE_LEADERS: add OR conditions here for other special leaders
-			has_country_leader = { character = POL_anastasia_romanova }
+			has_country_leader = { character = POL_anna_andersson }
 		}
-
 		cost = 200
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_royal_3
 			add_country_leader_trait = gedfrey_royal_4
 		}
+		ai_will_do = { factor = 0 }
+	}
 
-		ai_will_do = { factor = 0 }   # extremely rare; skip for AI
+	gedfrey_royal_decision_4_medium = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_3
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			# FUTURE_LEADERS: add OR conditions here for other special leaders
+			has_country_leader = { character = POL_anna_andersson }
+		}
+		available = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_3
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			# FUTURE_LEADERS: add OR conditions here for other special leaders
+			has_country_leader = { character = POL_anna_andersson }
+		}
+		cost = 240
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_royal_3
+			add_country_leader_trait = gedfrey_royal_4
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_royal_decision_4_major = {
+		icon = generic_monarchy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_3
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			# FUTURE_LEADERS: add OR conditions here for other special leaders
+			has_country_leader = { character = POL_anna_andersson }
+		}
+		available = {
+			has_government = neutrality
+			has_country_leader_with_trait = gedfrey_royal_3
+			NOT = { has_country_leader_with_trait = gedfrey_royal_4 }
+			# FUTURE_LEADERS: add OR conditions here for other special leaders
+			has_country_leader = { character = POL_anna_andersson }
+		}
+		cost = 300
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_royal_3
+			add_country_leader_trait = gedfrey_royal_4
+		}
+		ai_will_do = { factor = 0 }
 	}
 
 	# ============================================================
 	# DOCTRINA DE GUERRA / Doctrine of War
-	# Requirements (deployed army size in divisions):
-	#   N1: minor>=15div (~300k), medium>=30div (~600k), major>=38div (~750k)
-	#   N2: minor>=25div (~500k), medium>=45div (~900k), major>=63div (~1.25M)
-	#   N3: minor>=38div (~750k), medium>=75div (~1.5M), major>=100div (~2M)
-	# Division ≈ 20k men used as conversion factor.
+	# Requirements (deployed divisions):
+	#   N1: minor>14, medium>29, major>37
+	#   N2: minor>24, medium>44, major>62
+	#   N3: minor>37, medium>74, major>99
+	# Costs: N1=75/90/113  N2=100/120/150  N3=125/150/188
+	# Cooldown: minor/medium=120d, major=180d
 	# ============================================================
 
-	gedfrey_warfare_decision_1 = {
+	gedfrey_warfare_decision_1_minor = {
 		icon = generic_army
-
-		allowed = { always = yes }
-
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
 		}
-
 		available = {
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
-			OR = {
-				AND = { gedfrey_is_major  = yes  has_army_size = { size > 37 } }
-				AND = { gedfrey_is_medium = yes  has_army_size = { size > 29 } }
-				AND = { gedfrey_is_minor  = yes  has_army_size = { size > 14 } }
-			}
+			army_manpower > 299999
 		}
-
 		cost = 75
-		days_re_enable = 120
-
-		complete_effect = {
-			add_country_leader_trait = gedfrey_warfare_1
-		}
-
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_warfare_1 }
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_warfare_decision_2 = {
+	gedfrey_warfare_decision_1_medium = {
 		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			army_manpower > 599999
+		}
+		cost = 90
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_warfare_1 }
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_warfare_decision_1_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+		available = {
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_1 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			army_manpower > 749999
+		}
+		cost = 113
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = { add_country_leader_trait = gedfrey_warfare_1 }
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_warfare_decision_2_minor = {
+		icon = generic_army
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_country_leader_with_trait = gedfrey_warfare_1
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
 		}
-
 		available = {
 			has_country_leader_with_trait = gedfrey_warfare_1
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
-			OR = {
-				AND = { gedfrey_is_major  = yes  has_army_size = { size > 62 } }
-				AND = { gedfrey_is_medium = yes  has_army_size = { size > 44 } }
-				AND = { gedfrey_is_minor  = yes  has_army_size = { size > 24 } }
-			}
+			army_manpower > 499999
 		}
-
 		cost = 100
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_warfare_1
 			add_country_leader_trait = gedfrey_warfare_2
 		}
-
 		ai_will_do = { factor = 1 }
 	}
 
-	gedfrey_warfare_decision_3 = {
+	gedfrey_warfare_decision_2_medium = {
 		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_warfare_1
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_warfare_1
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			army_manpower > 899999
+		}
+		cost = 120
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_warfare_1
+			add_country_leader_trait = gedfrey_warfare_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
-		allowed = { always = yes }
+	gedfrey_warfare_decision_2_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_warfare_1
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_warfare_1
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_2 }
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			army_manpower > 1249999
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_warfare_1
+			add_country_leader_trait = gedfrey_warfare_2
+		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_warfare_decision_3_minor = {
+		icon = generic_army
+		allowed = { gedfrey_is_minor = yes }
 		visible = {
 			has_country_leader_with_trait = gedfrey_warfare_2
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
 		}
-
 		available = {
 			has_country_leader_with_trait = gedfrey_warfare_2
 			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
-			OR = {
-				AND = { gedfrey_is_major  = yes  has_army_size = { size > 99 } }
-				AND = { gedfrey_is_medium = yes  has_army_size = { size > 74 } }
-				AND = { gedfrey_is_minor  = yes  has_army_size = { size > 37 } }
-			}
+			army_manpower > 749999
 		}
-
 		cost = 125
-		days_re_enable = 120
-
-		complete_effect = {
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
 			remove_country_leader_trait = gedfrey_warfare_2
 			add_country_leader_trait = gedfrey_warfare_3
 		}
-
 		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_warfare_decision_3_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_warfare_2
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_warfare_2
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			army_manpower > 1499999
+		}
+		cost = 150
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_warfare_2
+			add_country_leader_trait = gedfrey_warfare_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_warfare_decision_3_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_country_leader_with_trait = gedfrey_warfare_2
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+		}
+		available = {
+			has_country_leader_with_trait = gedfrey_warfare_2
+			NOT = { has_country_leader_with_trait = gedfrey_warfare_3 }
+			army_manpower > 1999999
+		}
+		cost = 188
+		days_remove = 40
+		complete_effect = { }
+		remove_effect = {
+			remove_country_leader_trait = gedfrey_warfare_2
+			add_country_leader_trait = gedfrey_warfare_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+
+	# ============================================================
+	# PHASE 3 — EVENTO ÚNICO B: Ranura de Investigación / Research Slot
+	# Same requirements as Event A. Independent of A.
+	# Costs: 50/60/75 PP. Timer: 120d.
+	# Gives: gedfrey_research_slot (research_slots +1)
+	# ============================================================
+
+	gedfrey_leader_event_b_minor = {
+		icon = generic_research_bonus
+		allowed = { gedfrey_is_minor = yes }
+		visible = { NOT = { has_country_flag = gedfrey_event_b_taken } }
+		available = {
+			NOT = { has_country_flag = gedfrey_event_b_taken }
+			gedfrey_has_industry_2_plus = yes
+			gedfrey_has_politics_2_plus = yes
+			gedfrey_has_warfare_2_plus = yes
+		}
+		cost = 50
+		days_remove = 120
+		complete_effect = { set_country_flag = gedfrey_event_b_taken }
+		remove_effect = {
+			add_research_slot = 1
+			add_ideas = gedfrey_research_slot
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_leader_event_b_medium = {
+		icon = generic_research_bonus
+		allowed = { gedfrey_is_medium = yes }
+		visible = { NOT = { has_country_flag = gedfrey_event_b_taken } }
+		available = {
+			NOT = { has_country_flag = gedfrey_event_b_taken }
+			gedfrey_has_industry_2_plus = yes
+			gedfrey_has_politics_2_plus = yes
+			gedfrey_has_warfare_2_plus = yes
+		}
+		cost = 60
+		days_remove = 120
+		complete_effect = { set_country_flag = gedfrey_event_b_taken }
+		remove_effect = {
+			add_research_slot = 1
+			add_ideas = gedfrey_research_slot
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_leader_event_b_major = {
+		icon = generic_research_bonus
+		allowed = { gedfrey_is_major = yes }
+		visible = { NOT = { has_country_flag = gedfrey_event_b_taken } }
+		available = {
+			NOT = { has_country_flag = gedfrey_event_b_taken }
+			gedfrey_has_industry_2_plus = yes
+			gedfrey_has_politics_2_plus = yes
+			gedfrey_has_warfare_2_plus = yes
+		}
+		cost = 75
+		days_remove = 120
+		complete_effect = { set_country_flag = gedfrey_event_b_taken }
+		remove_effect = {
+			add_research_slot = 1
+			add_ideas = gedfrey_research_slot
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 3 — EVENTO ÚNICO C: Velocidad de Investigación / Research Speed
+	# Requires all 4 _3 traits (industry_3, politics_3, royal_3, warfare_3).
+	# One-time per country. Costs: 50/60/75 PP. Timer: 120d.
+	# Gives: gedfrey_research_speed (research_speed_factor +25%)
+	# ============================================================
+
+	gedfrey_leader_event_c_minor = {
+		icon = generic_research_bonus
+		allowed = { gedfrey_is_minor = yes }
+		visible = { NOT = { has_country_flag = gedfrey_event_c_taken } }
+		available = {
+			NOT = { has_country_flag = gedfrey_event_c_taken }
+			has_country_leader_with_trait = gedfrey_industry_3
+			has_country_leader_with_trait = gedfrey_politics_3
+			has_country_leader_with_trait = gedfrey_warfare_3
+		}
+		cost = 50
+		days_remove = 120
+		complete_effect = { set_country_flag = gedfrey_event_c_taken }
+		remove_effect = { add_ideas = gedfrey_research_speed }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_leader_event_c_medium = {
+		icon = generic_research_bonus
+		allowed = { gedfrey_is_medium = yes }
+		visible = { NOT = { has_country_flag = gedfrey_event_c_taken } }
+		available = {
+			NOT = { has_country_flag = gedfrey_event_c_taken }
+			has_country_leader_with_trait = gedfrey_industry_3
+			has_country_leader_with_trait = gedfrey_politics_3
+			has_country_leader_with_trait = gedfrey_warfare_3
+		}
+		cost = 60
+		days_remove = 120
+		complete_effect = { set_country_flag = gedfrey_event_c_taken }
+		remove_effect = { add_ideas = gedfrey_research_speed }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_leader_event_c_major = {
+		icon = generic_research_bonus
+		allowed = { gedfrey_is_major = yes }
+		visible = { NOT = { has_country_flag = gedfrey_event_c_taken } }
+		available = {
+			NOT = { has_country_flag = gedfrey_event_c_taken }
+			has_country_leader_with_trait = gedfrey_industry_3
+			has_country_leader_with_trait = gedfrey_politics_3
+			has_country_leader_with_trait = gedfrey_warfare_3
+		}
+		cost = 75
+		days_remove = 120
+		complete_effect = { set_country_flag = gedfrey_event_c_taken }
+		remove_effect = { add_ideas = gedfrey_research_speed }
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# INVERSIÓN CÍVICA / Civic Investment — 3 niveles permanentes
+	# Costo: 30/36/45 PP + 3 fábricas civiles consumidas.
+	# Incrementa gedfrey_decree_count. Buff: +0.5 PP/día por nivel.
+	# Timer: 1 día | AI: no toma esta decisión
+	# ============================================================
+
+	gedfrey_civic_investment_1_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_civic_investment_1 }
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_civic_investment_1 }
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 30
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_ideas = gedfrey_civic_investment_1
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_1_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_civic_investment_1 }
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_civic_investment_1 }
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 36
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_ideas = gedfrey_civic_investment_1
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_1_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_civic_investment_1 }
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_civic_investment_1 }
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 45
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_ideas = gedfrey_civic_investment_1
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_2_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_civic_investment_1
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			has_idea = gedfrey_civic_investment_1
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 30
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			remove_ideas = gedfrey_civic_investment_1
+			add_ideas = gedfrey_civic_investment_2
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_2_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_civic_investment_1
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			has_idea = gedfrey_civic_investment_1
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 36
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			remove_ideas = gedfrey_civic_investment_1
+			add_ideas = gedfrey_civic_investment_2
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_2_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_civic_investment_1
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			has_idea = gedfrey_civic_investment_1
+			NOT = { has_idea = gedfrey_civic_investment_2 }
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 45
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			remove_ideas = gedfrey_civic_investment_1
+			add_ideas = gedfrey_civic_investment_2
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_3_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_civic_investment_2
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			has_idea = gedfrey_civic_investment_2
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 30
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			remove_ideas = gedfrey_civic_investment_2
+			add_ideas = gedfrey_civic_investment_3
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_3_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_civic_investment_2
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			has_idea = gedfrey_civic_investment_2
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 36
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			remove_ideas = gedfrey_civic_investment_2
+			add_ideas = gedfrey_civic_investment_3
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civic_investment_3_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_civic_investment_2
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+		}
+		available = {
+			has_idea = gedfrey_civic_investment_2
+			NOT = { has_idea = gedfrey_civic_investment_3 }
+			num_of_civilian_factories > 2
+		}
+		cost = 45
+		days_remove = 1
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_decree_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			remove_ideas = gedfrey_civic_investment_2
+			add_ideas = gedfrey_civic_investment_3
+		}
+		ai_will_do = { factor = 0 }
 	}
 }

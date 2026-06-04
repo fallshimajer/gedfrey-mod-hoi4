@@ -1,295 +1,1234 @@
 # ============================================================
-# Gedfrey Mod — Military Decisions (Phase 1: decisions 1–4)
-# All decisions are INSTANT (no days_remove).
+# Gedfrey Mod — Military Decisions
+# Each decision tripled: _minor / _medium / _major.
+# Timer (days_remove=10) fires remove_effect after 10 days.
+# Costs/cooldowns:
+#   Individual Training:  100/120/150 PP  |  30/30/45d cooldown
+#   Military Reform:      500/600/750 PP  | 300/300/450d cooldown
+#   Special Talent:       300/360/450 PP  | 365/365/548d cooldown
+#   Supreme Command:      150/180/225 PP  | 365/365/548d cooldown
 # ============================================================
 
 gedfrey_military_decisions = {
 
 	# ============================================================
 	# DECISIÓN 1: Instrucción Individual / Individual Training
-	# Gives one random Corps Commander +1 in a random skill.
-	# Available after 30 days from game start (1936.1.31).
-	# Cooldown: minor/medium=30d, major=45d
 	# ============================================================
 
-	gedfrey_individual_training = {
+	gedfrey_individual_training_minor = {
 		icon = generic_army
-
-		allowed = { always = yes }
-
-		visible = {
-			date > 1936.1.30
-		}
-
+		allowed = { gedfrey_is_minor = yes }
+		visible = { date > 1936.1.30 }
 		available = {
 			date > 1936.1.30
 			any_unit_leader = { is_corps_commander = yes }
 		}
-
 		cost = 100
-		days_remove = 10
-		days_re_enable = 30
-
+		days_remove = 60
+		days_re_enable = 7
 		complete_effect = { }
-
 		remove_effect = {
 			random_unit_leader = {
 				limit = { is_corps_commander = yes }
 				random_list = {
 					25 = { add_attack    = 1 }
 					25 = { add_defense   = 1 }
-					25 = { add_planning = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+			random_unit_leader = {
+				limit = { is_field_marshal = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
 					25 = { add_logistics = 1 }
 				}
 			}
 		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_individual_training_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = { date > 1936.1.30 }
+		available = {
+			date > 1936.1.30
+			any_unit_leader = { is_corps_commander = yes }
+		}
+		cost = 120
+		days_remove = 60
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			random_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+			random_unit_leader = {
+				limit = { is_field_marshal = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_individual_training_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = { date > 1936.1.30 }
+		available = {
+			date > 1936.1.30
+			any_unit_leader = { is_corps_commander = yes }
+		}
+		cost = 150
+		days_remove = 60
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			random_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+			random_unit_leader = {
+				limit = { is_field_marshal = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+		}
 		ai_will_do = { factor = 1 }
 	}
 
 	# ============================================================
 	# DECISIÓN 2: Reforma Militar General / General Military Reform
-	# All Corps Commanders each get +1 in their own random skill.
-	# Available after 300 days from game start (1936.10.28).
-	# Cooldown: minor/medium=300d, major=450d
 	# ============================================================
 
-	gedfrey_military_reform = {
+	gedfrey_military_reform_minor = {
 		icon = generic_army
-
-		allowed = { always = yes }
-
-		visible = {
-			date > 1936.10.27
-		}
-
+		allowed = { gedfrey_is_minor = yes }
+		visible = { date > 1936.10.27 }
 		available = {
 			date > 1936.10.27
 			any_unit_leader = { is_corps_commander = yes }
 		}
-
 		cost = 500
-		days_remove = 10
+		days_remove = 180
 		days_re_enable = 300
-
 		complete_effect = { }
-
 		remove_effect = {
 			every_unit_leader = {
 				limit = { is_corps_commander = yes }
 				random_list = {
 					25 = { add_attack    = 1 }
 					25 = { add_defense   = 1 }
-					25 = { add_planning = 1 }
+					25 = { add_planning  = 1 }
 					25 = { add_logistics = 1 }
 				}
 			}
 		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_military_reform_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = { date > 1936.10.27 }
+		available = {
+			date > 1936.10.27
+			any_unit_leader = { is_corps_commander = yes }
+		}
+		cost = 600
+		days_remove = 180
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			every_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_military_reform_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = { date > 1936.10.27 }
+		available = {
+			date > 1936.10.27
+			any_unit_leader = { is_corps_commander = yes }
+		}
+		cost = 750
+		days_remove = 10
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			every_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					25 = { add_attack    = 1 }
+					25 = { add_defense   = 1 }
+					25 = { add_planning  = 1 }
+					25 = { add_logistics = 1 }
+				}
+			}
+		}
 		ai_will_do = { factor = 1 }
 	}
 
 	# ============================================================
 	# DECISIÓN 3: Talento Especial / Special Talent
-	# One random Corps Commander gains a random trait they don't have.
-	# Pool of 16 traits. Weight=0 if already owned, skip silently.
-	# Available after 30 days. Cooldown: minor/medium=365d, major=548d
 	# ============================================================
 
-	gedfrey_special_talent = {
+	gedfrey_special_talent_minor = {
 		icon = generic_army
-
-		allowed = { always = yes }
-
-		visible = {
-			date > 1936.1.30
-		}
-
+		allowed = { gedfrey_is_minor = yes }
+		visible = { date > 1936.1.30 }
 		available = {
 			date > 1936.1.30
 			any_unit_leader = { is_corps_commander = yes }
 		}
-
 		cost = 300
-		days_remove = 10
-		days_re_enable = 365
-
+		days_remove = 120
+		days_re_enable = 7
 		complete_effect = { }
-
 		remove_effect = {
 			random_unit_leader = {
 				limit = { is_corps_commander = yes }
 				random_list = {
-					1 = {
-						modifier = { factor = 0  has_trait = infantry_officer }
-						add_trait = { trait = infantry_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = armor_officer }
-						add_trait = { trait = armor_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = cavalry_officer }
-						add_trait = { trait = cavalry_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = artillery_officer }
-						add_trait = { trait = artillery_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = defensive_doctrine }
-						add_trait = { trait = defensive_doctrine }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = offensive_doctrine }
-						add_trait = { trait = offensive_doctrine }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = logistics_wizard }
-						add_trait = { trait = logistics_wizard }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = engineer }
-						add_trait = { trait = engineer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = winter_specialist }
-						add_trait = { trait = winter_specialist }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = commando }
-						add_trait = { trait = commando }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = camouflage_expert }
-						add_trait = { trait = camouflage_expert }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = hill_fighter }
-						add_trait = { trait = hill_fighter }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = jungle_rat }
-						add_trait = { trait = jungle_rat }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = desert_fox }
-						add_trait = { trait = desert_fox }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = inflexible_strategist }
-						add_trait = { trait = inflexible_strategist }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = brilliant_strategist }
-						add_trait = { trait = brilliant_strategist }
-					}
+					1 = { modifier = { factor = 0  has_trait = infantry_officer }     add_trait = { trait = infantry_officer } }
+					1 = { modifier = { factor = 0  has_trait = armor_officer }        add_trait = { trait = armor_officer } }
+					1 = { modifier = { factor = 0  has_trait = cavalry_officer }      add_trait = { trait = cavalry_officer } }
+					1 = { modifier = { factor = 0  has_trait = artillery_officer }    add_trait = { trait = artillery_officer } }
+					1 = { modifier = { factor = 0  has_trait = defensive_doctrine }   add_trait = { trait = defensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = offensive_doctrine }   add_trait = { trait = offensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = logistics_wizard }     add_trait = { trait = logistics_wizard } }
+					1 = { modifier = { factor = 0  has_trait = engineer }             add_trait = { trait = engineer } }
+					1 = { modifier = { factor = 0  has_trait = winter_specialist }    add_trait = { trait = winter_specialist } }
+					1 = { modifier = { factor = 0  has_trait = commando }             add_trait = { trait = commando } }
+					1 = { modifier = { factor = 0  has_trait = camouflage_expert }    add_trait = { trait = camouflage_expert } }
+					1 = { modifier = { factor = 0  has_trait = hill_fighter }         add_trait = { trait = hill_fighter } }
+					1 = { modifier = { factor = 0  has_trait = jungle_rat }           add_trait = { trait = jungle_rat } }
+					1 = { modifier = { factor = 0  has_trait = desert_fox }           add_trait = { trait = desert_fox } }
+					1 = { modifier = { factor = 0  has_trait = inflexible_strategist } add_trait = { trait = inflexible_strategist } }
+					1 = { modifier = { factor = 0  has_trait = brilliant_strategist } add_trait = { trait = brilliant_strategist } }
 				}
 			}
 		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_special_talent_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = { date > 1936.1.30 }
+		available = {
+			date > 1936.1.30
+			any_unit_leader = { is_corps_commander = yes }
+		}
+		cost = 360
+		days_remove = 120
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			random_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					1 = { modifier = { factor = 0  has_trait = infantry_officer }     add_trait = { trait = infantry_officer } }
+					1 = { modifier = { factor = 0  has_trait = armor_officer }        add_trait = { trait = armor_officer } }
+					1 = { modifier = { factor = 0  has_trait = cavalry_officer }      add_trait = { trait = cavalry_officer } }
+					1 = { modifier = { factor = 0  has_trait = artillery_officer }    add_trait = { trait = artillery_officer } }
+					1 = { modifier = { factor = 0  has_trait = defensive_doctrine }   add_trait = { trait = defensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = offensive_doctrine }   add_trait = { trait = offensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = logistics_wizard }     add_trait = { trait = logistics_wizard } }
+					1 = { modifier = { factor = 0  has_trait = engineer }             add_trait = { trait = engineer } }
+					1 = { modifier = { factor = 0  has_trait = winter_specialist }    add_trait = { trait = winter_specialist } }
+					1 = { modifier = { factor = 0  has_trait = commando }             add_trait = { trait = commando } }
+					1 = { modifier = { factor = 0  has_trait = camouflage_expert }    add_trait = { trait = camouflage_expert } }
+					1 = { modifier = { factor = 0  has_trait = hill_fighter }         add_trait = { trait = hill_fighter } }
+					1 = { modifier = { factor = 0  has_trait = jungle_rat }           add_trait = { trait = jungle_rat } }
+					1 = { modifier = { factor = 0  has_trait = desert_fox }           add_trait = { trait = desert_fox } }
+					1 = { modifier = { factor = 0  has_trait = inflexible_strategist } add_trait = { trait = inflexible_strategist } }
+					1 = { modifier = { factor = 0  has_trait = brilliant_strategist } add_trait = { trait = brilliant_strategist } }
+				}
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_special_talent_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = { date > 1936.1.30 }
+		available = {
+			date > 1936.1.30
+			any_unit_leader = { is_corps_commander = yes }
+		}
+		cost = 450
+		days_remove = 120
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			random_unit_leader = {
+				limit = { is_corps_commander = yes }
+				random_list = {
+					1 = { modifier = { factor = 0  has_trait = infantry_officer }     add_trait = { trait = infantry_officer } }
+					1 = { modifier = { factor = 0  has_trait = armor_officer }        add_trait = { trait = armor_officer } }
+					1 = { modifier = { factor = 0  has_trait = cavalry_officer }      add_trait = { trait = cavalry_officer } }
+					1 = { modifier = { factor = 0  has_trait = artillery_officer }    add_trait = { trait = artillery_officer } }
+					1 = { modifier = { factor = 0  has_trait = defensive_doctrine }   add_trait = { trait = defensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = offensive_doctrine }   add_trait = { trait = offensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = logistics_wizard }     add_trait = { trait = logistics_wizard } }
+					1 = { modifier = { factor = 0  has_trait = engineer }             add_trait = { trait = engineer } }
+					1 = { modifier = { factor = 0  has_trait = winter_specialist }    add_trait = { trait = winter_specialist } }
+					1 = { modifier = { factor = 0  has_trait = commando }             add_trait = { trait = commando } }
+					1 = { modifier = { factor = 0  has_trait = camouflage_expert }    add_trait = { trait = camouflage_expert } }
+					1 = { modifier = { factor = 0  has_trait = hill_fighter }         add_trait = { trait = hill_fighter } }
+					1 = { modifier = { factor = 0  has_trait = jungle_rat }           add_trait = { trait = jungle_rat } }
+					1 = { modifier = { factor = 0  has_trait = desert_fox }           add_trait = { trait = desert_fox } }
+					1 = { modifier = { factor = 0  has_trait = inflexible_strategist } add_trait = { trait = inflexible_strategist } }
+					1 = { modifier = { factor = 0  has_trait = brilliant_strategist } add_trait = { trait = brilliant_strategist } }
+				}
+			}
+		}
 		ai_will_do = { factor = 1 }
 	}
 
 	# ============================================================
 	# DECISIÓN 4: Mando Supremo / Supreme Command
-	# One random Field Marshal gains a random trait they don't have.
-	# Same trait pool as Decision 3.
-	# Available after 30 days. Cooldown: minor/medium=365d, major=548d
 	# ============================================================
 
-	gedfrey_supreme_command = {
+	gedfrey_supreme_command_minor = {
 		icon = generic_army
-
-		allowed = { always = yes }
-
-		visible = {
-			date > 1936.1.30
-		}
-
+		allowed = { gedfrey_is_minor = yes }
+		visible = { date > 1936.1.30 }
 		available = {
 			date > 1936.1.30
 			any_unit_leader = { is_field_marshal = yes }
 		}
-
 		cost = 150
-		days_remove = 10
-		days_re_enable = 365
-
+		days_remove = 365
+		days_re_enable = 7
 		complete_effect = { }
-
 		remove_effect = {
 			random_unit_leader = {
 				limit = { is_field_marshal = yes }
 				random_list = {
-					1 = {
-						modifier = { factor = 0  has_trait = infantry_officer }
-						add_trait = { trait = infantry_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = armor_officer }
-						add_trait = { trait = armor_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = cavalry_officer }
-						add_trait = { trait = cavalry_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = artillery_officer }
-						add_trait = { trait = artillery_officer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = defensive_doctrine }
-						add_trait = { trait = defensive_doctrine }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = offensive_doctrine }
-						add_trait = { trait = offensive_doctrine }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = logistics_wizard }
-						add_trait = { trait = logistics_wizard }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = engineer }
-						add_trait = { trait = engineer }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = winter_specialist }
-						add_trait = { trait = winter_specialist }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = commando }
-						add_trait = { trait = commando }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = camouflage_expert }
-						add_trait = { trait = camouflage_expert }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = hill_fighter }
-						add_trait = { trait = hill_fighter }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = jungle_rat }
-						add_trait = { trait = jungle_rat }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = desert_fox }
-						add_trait = { trait = desert_fox }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = inflexible_strategist }
-						add_trait = { trait = inflexible_strategist }
-					}
-					1 = {
-						modifier = { factor = 0  has_trait = brilliant_strategist }
-						add_trait = { trait = brilliant_strategist }
-					}
+					1 = { modifier = { factor = 0  has_trait = infantry_officer }     add_trait = { trait = infantry_officer } }
+					1 = { modifier = { factor = 0  has_trait = armor_officer }        add_trait = { trait = armor_officer } }
+					1 = { modifier = { factor = 0  has_trait = cavalry_officer }      add_trait = { trait = cavalry_officer } }
+					1 = { modifier = { factor = 0  has_trait = artillery_officer }    add_trait = { trait = artillery_officer } }
+					1 = { modifier = { factor = 0  has_trait = defensive_doctrine }   add_trait = { trait = defensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = offensive_doctrine }   add_trait = { trait = offensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = logistics_wizard }     add_trait = { trait = logistics_wizard } }
+					1 = { modifier = { factor = 0  has_trait = engineer }             add_trait = { trait = engineer } }
+					1 = { modifier = { factor = 0  has_trait = winter_specialist }    add_trait = { trait = winter_specialist } }
+					1 = { modifier = { factor = 0  has_trait = commando }             add_trait = { trait = commando } }
+					1 = { modifier = { factor = 0  has_trait = camouflage_expert }    add_trait = { trait = camouflage_expert } }
+					1 = { modifier = { factor = 0  has_trait = hill_fighter }         add_trait = { trait = hill_fighter } }
+					1 = { modifier = { factor = 0  has_trait = jungle_rat }           add_trait = { trait = jungle_rat } }
+					1 = { modifier = { factor = 0  has_trait = desert_fox }           add_trait = { trait = desert_fox } }
+					1 = { modifier = { factor = 0  has_trait = inflexible_strategist } add_trait = { trait = inflexible_strategist } }
+					1 = { modifier = { factor = 0  has_trait = brilliant_strategist } add_trait = { trait = brilliant_strategist } }
 				}
 			}
 		}
+		ai_will_do = { factor = 1 }
+	}
 
+	gedfrey_supreme_command_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = { date > 1936.1.30 }
+		available = {
+			date > 1936.1.30
+			any_unit_leader = { is_field_marshal = yes }
+		}
+		cost = 180
+		days_remove = 365
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			random_unit_leader = {
+				limit = { is_field_marshal = yes }
+				random_list = {
+					1 = { modifier = { factor = 0  has_trait = infantry_officer }     add_trait = { trait = infantry_officer } }
+					1 = { modifier = { factor = 0  has_trait = armor_officer }        add_trait = { trait = armor_officer } }
+					1 = { modifier = { factor = 0  has_trait = cavalry_officer }      add_trait = { trait = cavalry_officer } }
+					1 = { modifier = { factor = 0  has_trait = artillery_officer }    add_trait = { trait = artillery_officer } }
+					1 = { modifier = { factor = 0  has_trait = defensive_doctrine }   add_trait = { trait = defensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = offensive_doctrine }   add_trait = { trait = offensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = logistics_wizard }     add_trait = { trait = logistics_wizard } }
+					1 = { modifier = { factor = 0  has_trait = engineer }             add_trait = { trait = engineer } }
+					1 = { modifier = { factor = 0  has_trait = winter_specialist }    add_trait = { trait = winter_specialist } }
+					1 = { modifier = { factor = 0  has_trait = commando }             add_trait = { trait = commando } }
+					1 = { modifier = { factor = 0  has_trait = camouflage_expert }    add_trait = { trait = camouflage_expert } }
+					1 = { modifier = { factor = 0  has_trait = hill_fighter }         add_trait = { trait = hill_fighter } }
+					1 = { modifier = { factor = 0  has_trait = jungle_rat }           add_trait = { trait = jungle_rat } }
+					1 = { modifier = { factor = 0  has_trait = desert_fox }           add_trait = { trait = desert_fox } }
+					1 = { modifier = { factor = 0  has_trait = inflexible_strategist } add_trait = { trait = inflexible_strategist } }
+					1 = { modifier = { factor = 0  has_trait = brilliant_strategist } add_trait = { trait = brilliant_strategist } }
+				}
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_supreme_command_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = { date > 1936.1.30 }
+		available = {
+			date > 1936.1.30
+			any_unit_leader = { is_field_marshal = yes }
+		}
+		cost = 225
+		days_remove = 365
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			random_unit_leader = {
+				limit = { is_field_marshal = yes }
+				random_list = {
+					1 = { modifier = { factor = 0  has_trait = infantry_officer }     add_trait = { trait = infantry_officer } }
+					1 = { modifier = { factor = 0  has_trait = armor_officer }        add_trait = { trait = armor_officer } }
+					1 = { modifier = { factor = 0  has_trait = cavalry_officer }      add_trait = { trait = cavalry_officer } }
+					1 = { modifier = { factor = 0  has_trait = artillery_officer }    add_trait = { trait = artillery_officer } }
+					1 = { modifier = { factor = 0  has_trait = defensive_doctrine }   add_trait = { trait = defensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = offensive_doctrine }   add_trait = { trait = offensive_doctrine } }
+					1 = { modifier = { factor = 0  has_trait = logistics_wizard }     add_trait = { trait = logistics_wizard } }
+					1 = { modifier = { factor = 0  has_trait = engineer }             add_trait = { trait = engineer } }
+					1 = { modifier = { factor = 0  has_trait = winter_specialist }    add_trait = { trait = winter_specialist } }
+					1 = { modifier = { factor = 0  has_trait = commando }             add_trait = { trait = commando } }
+					1 = { modifier = { factor = 0  has_trait = camouflage_expert }    add_trait = { trait = camouflage_expert } }
+					1 = { modifier = { factor = 0  has_trait = hill_fighter }         add_trait = { trait = hill_fighter } }
+					1 = { modifier = { factor = 0  has_trait = jungle_rat }           add_trait = { trait = jungle_rat } }
+					1 = { modifier = { factor = 0  has_trait = desert_fox }           add_trait = { trait = desert_fox } }
+					1 = { modifier = { factor = 0  has_trait = inflexible_strategist } add_trait = { trait = inflexible_strategist } }
+					1 = { modifier = { factor = 0  has_trait = brilliant_strategist } add_trait = { trait = brilliant_strategist } }
+				}
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 5 — BUFF: Supremacía en Combate Naval / Naval Combat Supremacy
+	# Requirement: navy_experience (XP pool naval — num_of_naval_victories inválido en 1.14)
+	# 4 tiers: minor | medium | major (non-naval) | naval (USA/ENG)
+	# Cost: minor=200 | medium=240 | major=300 | naval=600 PP
+	# Timer: 90 days | Cooldown: minor/medium=120d | major/naval=180d
+	# ============================================================
+
+	# --- Naval Supremacy N1 ---
+
+	gedfrey_naval_supremacy_1_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 4
+			}
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_1_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 14
+			}
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_1_major = {
+		icon = generic_navy
+		allowed = {
+			gedfrey_is_major = yes
+			NOT = { gedfrey_is_naval_power = yes }
+		}
+		visible = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 29
+			}
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_1_naval = {
+		icon = generic_navy
+		allowed = { gedfrey_is_naval_power = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_supremacy_1 }
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 99
+			}
+		}
+		cost = 600
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	# --- Naval Supremacy N2 ---
+
+	gedfrey_naval_supremacy_2_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 9
+			}
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_1
+			add_ideas = gedfrey_naval_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_2_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 29
+			}
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_1
+			add_ideas = gedfrey_naval_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_2_major = {
+		icon = generic_navy
+		allowed = {
+			gedfrey_is_major = yes
+			NOT = { gedfrey_is_naval_power = yes }
+		}
+		visible = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 59
+			}
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_1
+			add_ideas = gedfrey_naval_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_2_naval = {
+		icon = generic_navy
+		allowed = { gedfrey_is_naval_power = yes }
+		visible = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_1
+			NOT = { has_idea = gedfrey_naval_supremacy_2 }
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 199
+			}
+		}
+		cost = 600
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_1
+			add_ideas = gedfrey_naval_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# --- Naval Supremacy N3 ---
+
+	gedfrey_naval_supremacy_3_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 19
+			}
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_2
+			add_ideas = gedfrey_naval_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_3_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 49
+			}
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_2
+			add_ideas = gedfrey_naval_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_3_major = {
+		icon = generic_navy
+		allowed = {
+			gedfrey_is_major = yes
+			NOT = { gedfrey_is_naval_power = yes }
+		}
+		visible = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 99
+			}
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_2
+			add_ideas = gedfrey_naval_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_naval_supremacy_3_naval = {
+		icon = generic_navy
+		allowed = { gedfrey_is_naval_power = yes }
+		visible = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_supremacy_2
+			NOT = { has_idea = gedfrey_naval_supremacy_3 }
+			has_navy_size = {
+				size > 299
+			}
+		}
+		cost = 600
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_supremacy_2
+			add_ideas = gedfrey_naval_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 5 — BUFF: Supremacía Aérea / Air Supremacy
+	# Requirement: air_experience (XP pool aéreo — air_kills inválido en 1.14)
+	# 3 tiers: minor | medium | major
+	# Cost: minor=200 | medium=240 | major=300 PP
+	# Timer: 90 days | Cooldown: minor/medium=120d | major=180d
+	# ============================================================
+
+	# --- Air Supremacy N1 ---
+
+	gedfrey_air_supremacy_1_minor = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_air_supremacy_1 }
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_air_supremacy_1 }
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 49
+			}
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_air_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_air_supremacy_1_medium = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_air_supremacy_1 }
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_air_supremacy_1 }
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 99
+			}
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_air_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_air_supremacy_1_major = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_air_supremacy_1 }
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_air_supremacy_1 }
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 199
+			}
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_air_supremacy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	# --- Air Supremacy N2 ---
+
+	gedfrey_air_supremacy_2_minor = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_air_supremacy_1
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_air_supremacy_1
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 99
+			}
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_air_supremacy_1
+			add_ideas = gedfrey_air_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_air_supremacy_2_medium = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_air_supremacy_1
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_air_supremacy_1
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 249
+			}
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_air_supremacy_1
+			add_ideas = gedfrey_air_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_air_supremacy_2_major = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_air_supremacy_1
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_air_supremacy_1
+			NOT = { has_idea = gedfrey_air_supremacy_2 }
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 499
+			}
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_air_supremacy_1
+			add_ideas = gedfrey_air_supremacy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# --- Air Supremacy N3 ---
+
+	gedfrey_air_supremacy_3_minor = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_air_supremacy_2
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_air_supremacy_2
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 199
+			}
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_air_supremacy_2
+			add_ideas = gedfrey_air_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_air_supremacy_3_medium = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_air_supremacy_2
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_air_supremacy_2
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 499
+			}
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_air_supremacy_2
+			add_ideas = gedfrey_air_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_air_supremacy_3_major = {
+		icon = generic_air_training
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_air_supremacy_2
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+		}
+		available = {
+			has_idea = gedfrey_air_supremacy_2
+			NOT = { has_idea = gedfrey_air_supremacy_3 }
+			has_deployed_air_force_size = {
+				size > 999
+			}
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_air_supremacy_2
+			add_ideas = gedfrey_air_supremacy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 5 — BUFF: Veteranía de Guerra / War Veterancy
+	# Requirement: casualties (own manpower casualties, proxy for battle experience)
+	# 3 tiers: minor | medium | major
+	# Cost: minor=200 | medium=240 | major=300 PP
+	# Timer: 90 days | Cooldown: minor/medium=120d | major=180d
+	# Values (raw manpower): minor 100k/300k/700k | medium 250k/600k/1.5M | major 187k/450k/1.1M
+	# ============================================================
+
+	# --- War Veterancy N1 ---
+
+	gedfrey_war_veterancy_1_minor = {
+		icon = generic_army
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_war_veterancy_1 }
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_war_veterancy_1 }
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 99999
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_war_veterancy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_war_veterancy_1_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_war_veterancy_1 }
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_war_veterancy_1 }
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 249999
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_war_veterancy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_war_veterancy_1_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_war_veterancy_1 }
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_war_veterancy_1 }
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 186999
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_war_veterancy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	# --- War Veterancy N2 ---
+
+	gedfrey_war_veterancy_2_minor = {
+		icon = generic_army
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_war_veterancy_1
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			has_idea = gedfrey_war_veterancy_1
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 299999
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_war_veterancy_1
+			add_ideas = gedfrey_war_veterancy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_war_veterancy_2_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_war_veterancy_1
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			has_idea = gedfrey_war_veterancy_1
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 599999
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_war_veterancy_1
+			add_ideas = gedfrey_war_veterancy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_war_veterancy_2_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_war_veterancy_1
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			has_idea = gedfrey_war_veterancy_1
+			NOT = { has_idea = gedfrey_war_veterancy_2 }
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 449999
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_war_veterancy_1
+			add_ideas = gedfrey_war_veterancy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# --- War Veterancy N3 ---
+
+	gedfrey_war_veterancy_3_minor = {
+		icon = generic_army
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_war_veterancy_2
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			has_idea = gedfrey_war_veterancy_2
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 699999
+		}
+		cost = 200
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_war_veterancy_2
+			add_ideas = gedfrey_war_veterancy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_war_veterancy_3_medium = {
+		icon = generic_army
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_war_veterancy_2
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			has_idea = gedfrey_war_veterancy_2
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 1499999
+		}
+		cost = 240
+		days_remove = 90
+		days_re_enable = 120
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_war_veterancy_2
+			add_ideas = gedfrey_war_veterancy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_war_veterancy_3_major = {
+		icon = generic_army
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_war_veterancy_2
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+		}
+		available = {
+			has_idea = gedfrey_war_veterancy_2
+			NOT = { has_idea = gedfrey_war_veterancy_3 }
+			casualties > 1099999
+		}
+		cost = 300
+		days_remove = 90
+		days_re_enable = 180
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_war_veterancy_2
+			add_ideas = gedfrey_war_veterancy_3
+		}
 		ai_will_do = { factor = 1 }
 	}
 }

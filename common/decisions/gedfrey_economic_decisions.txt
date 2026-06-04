@@ -1,180 +1,3516 @@
 # ============================================================
-# Gedfrey Mod — Economic Decisions (Phase 1: decisions 1–3)
-# These decisions have a 30-day timer (days_remove = 30).
-# The building is constructed when the timer expires (remove_effect).
-# Total cycle: 30 days construction + cooldown before retaking.
+# Gedfrey Mod — Economic Decisions
+# Phase 1: Decisiones 1-3 (construir fábricas)
+# Phase 2: Decisiones 4-8 (asentamiento, inversión, reubicación)
+#          Buffs A-D (ideas nacionales permanentes)
+# Each decision tripled: _minor / _medium / _major
 # ============================================================
 
 gedfrey_economic_decisions = {
 
 	# ============================================================
-	# DECISIÓN 1: Construir Fábrica Militar / Build Military Factory
-	# Adds 1 arms_factory to the owned+controlled state with most free slots.
-	# Cost: minor=100, medium=120, major=150 PP
-	# Time: 30 days | Cooldown: minor/medium=50d, major=75d
+	# PHASE 1 — DECISIÓN 1: Construir Fábrica Militar
+	# Costs: 100/120/150 | Timer: 30d | Cooldown: 50/50/75d
 	# ============================================================
 
-	gedfrey_build_military_factory = {
+	gedfrey_build_military_factory_minor = {
 		icon = generic_industry
-
-		allowed = { always = yes }
+		allowed = { gedfrey_is_minor = yes }
 		visible = { always = yes }
-
 		available = {
 			any_owned_state = {
 				is_controlled_by = ROOT
-				free_building_slots = {
-					building = arms_factory
-					size > 0
-					include_locked = no
-				}
+				free_building_slots = { building = arms_factory size > 0 include_locked = no }
 			}
 		}
-
 		cost = 100
 		days_remove = 30
 		days_re_enable = 50
-
 		complete_effect = { }
-
 		remove_effect = {
-			# Build in the owned+controlled state with the most free arms_factory slots
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
 			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = no
-					}
+				limit = { free_building_slots = { building = arms_factory size > 0 include_locked = no } }
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 100000
 				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
 				}
 			}
 		}
-
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 2
-				num_of_military_factories < 20
-			}
-		}
+		ai_will_do = { factor = 1  modifier = { factor = 2  num_of_military_factories < 20 } }
 	}
 
-	# ============================================================
-	# DECISIÓN 2: Construir Fábrica Civil / Build Civilian Factory
-	# Adds 1 industrial_complex to the owned+controlled state with most free slots.
-	# Cost: minor=100, medium=120, major=150 PP
-	# Time: 30 days | Cooldown: minor/medium=50d, major=75d
-	# ============================================================
-
-	gedfrey_build_civilian_factory = {
+	gedfrey_build_military_factory_medium = {
 		icon = generic_industry
-
-		allowed = { always = yes }
+		allowed = { gedfrey_is_medium = yes }
 		visible = { always = yes }
-
 		available = {
 			any_owned_state = {
 				is_controlled_by = ROOT
-				free_building_slots = {
-					building = industrial_complex
-					size > 0
-					include_locked = no
-				}
+				free_building_slots = { building = arms_factory size > 0 include_locked = no }
 			}
 		}
-
-		cost = 100
+		cost = 120
 		days_remove = 30
 		days_re_enable = 50
-
 		complete_effect = { }
-
 		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
 			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = no
-					}
+				limit = { free_building_slots = { building = arms_factory size > 0 include_locked = no } }
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 100000
 				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
 				}
 			}
 		}
+		ai_will_do = { factor = 1  modifier = { factor = 2  num_of_military_factories < 20 } }
+	}
 
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 2
-				num_of_civilian_factories < 15
+	gedfrey_build_military_factory_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				free_building_slots = { building = arms_factory size > 0 include_locked = no }
 			}
 		}
+		cost = 150
+		days_remove = 30
+		days_re_enable = 75
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { free_building_slots = { building = arms_factory size > 0 include_locked = no } }
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = arms_factory level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 2  num_of_military_factories < 20 } }
 	}
 
 	# ============================================================
-	# DECISIÓN 3: Construir Astillero / Build Shipyard
-	# Adds 1 dockyard to the owned+controlled coastal state with most free slots.
-	# Cost: minor=100, medium=120, major=150 PP
-	# Time: 30 days | Cooldown: minor/medium=60d, major=90d
+	# PHASE 1 — DECISIÓN 2: Construir Fábrica Civil
+	# Costs: 100/120/150 | Timer: 30d | Cooldown: 50/50/75d
 	# ============================================================
 
-	gedfrey_build_shipyard = {
+	gedfrey_build_civilian_factory_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				free_building_slots = { building = industrial_complex size > 0 include_locked = no }
+			}
+		}
+		cost = 100
+		days_remove = 30
+		days_re_enable = 50
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = no } }
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 2  num_of_civilian_factories < 15 } }
+	}
+
+	gedfrey_build_civilian_factory_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				free_building_slots = { building = industrial_complex size > 0 include_locked = no }
+			}
+		}
+		cost = 120
+		days_remove = 30
+		days_re_enable = 50
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = no } }
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 2  num_of_civilian_factories < 15 } }
+	}
+
+	gedfrey_build_civilian_factory_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				free_building_slots = { building = industrial_complex size > 0 include_locked = no }
+			}
+		}
+		cost = 150
+		days_remove = 30
+		days_re_enable = 75
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = no } }
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = industrial_complex level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 2  num_of_civilian_factories < 15 } }
+	}
+
+	# ============================================================
+	# PHASE 1 — DECISIÓN 3: Construir Astillero
+	# Costs: 100/120/150 | Timer: 30d | Cooldown: 60/60/90d
+	# ============================================================
+
+	gedfrey_build_shipyard_minor = {
 		icon = generic_navy
-
-		allowed = { always = yes }
+		allowed = { gedfrey_is_minor = yes }
 		visible = { always = yes }
-
 		available = {
 			any_owned_state = {
 				is_controlled_by = ROOT
 				is_coastal = yes
-				free_building_slots = {
-					building = dockyard
-					size > 0
-					include_locked = no
-				}
+				free_building_slots = { building = dockyard size > 0 include_locked = no }
 			}
 		}
-
 		cost = 100
 		days_remove = 30
 		days_re_enable = 60
-
 		complete_effect = { }
-
 		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
 			random_owned_controlled_state = {
 				limit = {
 					is_coastal = yes
-					free_building_slots = {
-						building = dockyard
-						size > 0
-						include_locked = no
+					free_building_slots = { building = dockyard size > 0 include_locked = no }
+				}
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 0  NOT = { any_owned_state = { is_coastal = yes } } } }
+	}
+
+	gedfrey_build_shipyard_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				is_coastal = yes
+				free_building_slots = { building = dockyard size > 0 include_locked = no }
+			}
+		}
+		cost = 120
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+					free_building_slots = { building = dockyard size > 0 include_locked = no }
+				}
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 0  NOT = { any_owned_state = { is_coastal = yes } } } }
+	}
+
+	gedfrey_build_shipyard_major = {
+		icon = generic_navy
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				is_coastal = yes
+				free_building_slots = { building = dockyard size > 0 include_locked = no }
+			}
+		}
+		cost = 150
+		days_remove = 30
+		days_re_enable = 90
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+					free_building_slots = { building = dockyard size > 0 include_locked = no }
+				}
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_building_construction = { type = dockyard level = 2 instant_build = yes }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+					add_manpower = 10000
+				}
+				else = {
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+				}
+			}
+		}
+		ai_will_do = { factor = 1  modifier = { factor = 0  NOT = { any_owned_state = { is_coastal = yes } } } }
+	}
+
+	# ============================================================
+	# PHASE 2 — DECISIÓN 4: Asentamiento Regional (base)
+	# +50k manpower en 2 estados aleatorios propios.
+	# Visible cuando líder NO tiene politics_2 ni politics_3.
+	# Costs: 50/60/75 | Timer: 30d | Cooldown: 30/30/45d
+	# ============================================================
+
+	gedfrey_settlement_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 50
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			if = {
+				limit = { has_idea = gedfrey_national_growth_10 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_9 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_8 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_7 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_6 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_5 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_4 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_3 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_2 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+			}
+			else = {
+				random_owned_controlled_state = { add_manpower = 50000 }
+				random_owned_controlled_state = { add_manpower = 50000 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_settlement_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 60
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			if = {
+				limit = { has_idea = gedfrey_national_growth_10 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_9 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_8 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_7 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_6 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_5 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_4 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_3 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_2 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+			}
+			else = {
+				random_owned_controlled_state = { add_manpower = 50000 }
+				random_owned_controlled_state = { add_manpower = 50000 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_settlement_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 75
+		days_remove = 30
+		days_re_enable = 45
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			if = {
+				limit = { has_idea = gedfrey_national_growth_10 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_9 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_8 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_7 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_6 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_5 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_4 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_3 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_2 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+			}
+			else = {
+				random_owned_controlled_state = { add_manpower = 50000 }
+				random_owned_controlled_state = { add_manpower = 50000 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 2 — DECISIÓN 4: Asentamiento Regional (mejorado)
+	# +75k manpower en 2 estados aleatorios propios.
+	# Visible cuando líder TIENE politics_2 o politics_3.
+	# Costs: 50/60/75 | Timer: 15d | Cooldown: 20/20/30d
+	# ============================================================
+
+	gedfrey_settlement_improved_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = no }
+		available = { always = yes }
+		cost = 50
+		days_remove = 15
+		days_re_enable = 20
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			if = {
+				limit = { has_idea = gedfrey_national_growth_10 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_9 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_8 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_7 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_6 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_5 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_4 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_3 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_2 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+			}
+			else = {
+				random_owned_controlled_state = { add_manpower = 50000 }
+				random_owned_controlled_state = { add_manpower = 50000 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_settlement_improved_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = no }
+		available = { always = yes }
+		cost = 60
+		days_remove = 15
+		days_re_enable = 20
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			if = {
+				limit = { has_idea = gedfrey_national_growth_10 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_9 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_8 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_7 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_6 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_5 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_4 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_3 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_2 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+			}
+			else = {
+				random_owned_controlled_state = { add_manpower = 50000 }
+				random_owned_controlled_state = { add_manpower = 50000 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_settlement_improved_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = no }
+		available = { always = yes }
+		cost = 75
+		days_remove = 15
+		days_re_enable = 30
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			if = {
+				limit = { has_idea = gedfrey_national_growth_10 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+				random_owned_controlled_state = { add_manpower = 500000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_9 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+				random_owned_controlled_state = { add_manpower = 450000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_8 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+				random_owned_controlled_state = { add_manpower = 400000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_7 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+				random_owned_controlled_state = { add_manpower = 350000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_6 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+				random_owned_controlled_state = { add_manpower = 300000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_5 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+				random_owned_controlled_state = { add_manpower = 250000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_4 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+				random_owned_controlled_state = { add_manpower = 200000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_3 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+				random_owned_controlled_state = { add_manpower = 150000 }
+			}
+			else_if = {
+				limit = { has_idea = gedfrey_national_growth_2 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+				random_owned_controlled_state = { add_manpower = 100000 }
+			}
+			else = {
+				random_owned_controlled_state = { add_manpower = 50000 }
+				random_owned_controlled_state = { add_manpower = 50000 }
+			}
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 2 — DECISIÓN 5: Inversión Extranjera
+	# 75%: +1 edificio en estado extranjero aleatorio con slots libres.
+	# 25%: evento gedfrey_economic.1 (inversión falló).
+	# Costs: 150/180/225 | Timer: 30d | Cooldown: 30/30/45d
+	# ============================================================
+
+	gedfrey_foreign_investment_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 150
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = { }
+		remove_effect = {
+			random_list = {
+				75 = {
+					random_list = {
+						33 = { add_offsite_building = { type = arms_factory level = 1 } }
+						33 = { add_offsite_building = { type = industrial_complex level = 1 } }
+						34 = { add_offsite_building = { type = dockyard level = 1 } }
 					}
 				}
-				add_building_construction = {
-					type = dockyard
-					level = 1
-					instant_build = yes
+				25 = { country_event = { id = gedfrey_economic.1 } }
+			}
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_foreign_investment_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 180
+		days_remove = 30
+		days_re_enable = 30
+		complete_effect = { }
+		remove_effect = {
+			random_list = {
+				75 = {
+					random_list = {
+						33 = { add_offsite_building = { type = arms_factory level = 1 } }
+						33 = { add_offsite_building = { type = industrial_complex level = 1 } }
+						34 = { add_offsite_building = { type = dockyard level = 1 } }
+					}
+				}
+				25 = { country_event = { id = gedfrey_economic.1 } }
+			}
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_foreign_investment_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 225
+		days_remove = 30
+		days_re_enable = 45
+		complete_effect = { }
+		remove_effect = {
+			random_list = {
+				75 = {
+					random_list = {
+						33 = { add_offsite_building = { type = arms_factory level = 1 } }
+						33 = { add_offsite_building = { type = industrial_complex level = 1 } }
+						34 = { add_offsite_building = { type = dockyard level = 1 } }
+					}
+				}
+				25 = { country_event = { id = gedfrey_economic.1 } }
+			}
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 2 — DECISIÓN 6: Reubicar Fábrica Civil
+	# Elimina 1 industrial_complex propio, añade 1 en estado extranjero.
+	# Costs: 50/60/75 | Timer: 30d | Cooldown: 60/60/90d
+	# ============================================================
+
+	gedfrey_relocate_civ_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { industrial_complex > 0 }
+		}
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_relocate_civ_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { industrial_complex > 0 }
+		}
+		cost = 60
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_relocate_civ_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { industrial_complex > 0 }
+		}
+		cost = 75
+		days_remove = 30
+		days_re_enable = 90
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 2 — DECISIÓN 7: Reubicar Fábrica Militar
+	# Costs: 50/60/75 | Timer: 30d | Cooldown: 60/60/90d
+	# ============================================================
+
+	gedfrey_relocate_mil_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { arms_factory > 0 }
+		}
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { arms_factory > 0 }
+				damage_building = { type = arms_factory level = 1 }
+			}
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_relocate_mil_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { arms_factory > 0 }
+		}
+		cost = 60
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { arms_factory > 0 }
+				damage_building = { type = arms_factory level = 1 }
+			}
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_relocate_mil_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { arms_factory > 0 }
+		}
+		cost = 75
+		days_remove = 30
+		days_re_enable = 90
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { arms_factory > 0 }
+				damage_building = { type = arms_factory level = 1 }
+			}
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 2 — DECISIÓN 8: Reubicar Astillero
+	# Costs: 50/60/75 | Timer: 30d | Cooldown: 60/60/90d
+	# ============================================================
+
+	gedfrey_relocate_shipyard_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { dockyard > 0 }
+		}
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { dockyard > 0 }
+				damage_building = { type = dockyard level = 1 }
+			}
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_relocate_shipyard_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { dockyard > 0 }
+		}
+		cost = 60
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { dockyard > 0 }
+				damage_building = { type = dockyard level = 1 }
+			}
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_relocate_shipyard_major = {
+		icon = generic_navy
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			any_owned_controlled_state = { dockyard > 0 }
+		}
+		cost = 75
+		days_remove = 30
+		days_re_enable = 90
+		complete_effect = { }
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { dockyard > 0 }
+				damage_building = { type = dockyard level = 1 }
+			}
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 2 — BUFF A: Eficiencia Civil
+	# Req (civ+mil): N1>=60/100/140  N2>=90/150/210  N3>=120/200/280
+	# Costs: 100/120/150 | Timer: 120d | Cooldown: 300/300/450d
+	# ============================================================
+
+	gedfrey_buff_efficiency_1_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_consumer_efficiency_1 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_consumer_efficiency_1 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_minor_n2 = yes
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_consumer_efficiency_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_1_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_consumer_efficiency_1 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_consumer_efficiency_1 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_medium_n2 = yes
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_consumer_efficiency_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_1_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_consumer_efficiency_1 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_consumer_efficiency_1 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_major_n2 = yes
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_consumer_efficiency_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_2_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_consumer_efficiency_1
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			has_idea = gedfrey_consumer_efficiency_1
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_minor_n3 = yes
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_consumer_efficiency_1
+			add_ideas = gedfrey_consumer_efficiency_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_2_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_consumer_efficiency_1
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			has_idea = gedfrey_consumer_efficiency_1
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_medium_n3 = yes
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_consumer_efficiency_1
+			add_ideas = gedfrey_consumer_efficiency_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_2_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_consumer_efficiency_1
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			has_idea = gedfrey_consumer_efficiency_1
+			NOT = { has_idea = gedfrey_consumer_efficiency_2 }
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_major_n3 = yes
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_consumer_efficiency_1
+			add_ideas = gedfrey_consumer_efficiency_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_3_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_consumer_efficiency_2
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			has_idea = gedfrey_consumer_efficiency_2
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_minor_n4 = yes
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_consumer_efficiency_2
+			add_ideas = gedfrey_consumer_efficiency_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_3_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_consumer_efficiency_2
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			has_idea = gedfrey_consumer_efficiency_2
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_medium_n4 = yes
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_consumer_efficiency_2
+			add_ideas = gedfrey_consumer_efficiency_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_efficiency_3_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_consumer_efficiency_2
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+		}
+		available = {
+			has_idea = gedfrey_consumer_efficiency_2
+			NOT = { has_idea = gedfrey_consumer_efficiency_3 }
+			gedfrey_factories_major_n4 = yes
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_consumer_efficiency_2
+			add_ideas = gedfrey_consumer_efficiency_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 2 — BUFF B: Potencia Constructora
+	# Req (solo civiles): N1>=30/50/70  N2>=60/100/140  N3>=90/150/210
+	# Costs: 100/120/150 | Timer: 120d | Cooldown: 300/300/450d
+	# ============================================================
+
+	gedfrey_buff_construction_1_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_construction_power_1 }
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_construction_power_1 }
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 29
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_construction_power_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_1_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_construction_power_1 }
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_construction_power_1 }
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 49
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_construction_power_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_1_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_construction_power_1 }
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_construction_power_1 }
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 69
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_construction_power_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_2_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_construction_power_1
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			has_idea = gedfrey_construction_power_1
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 59
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_construction_power_1
+			add_ideas = gedfrey_construction_power_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_2_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_construction_power_1
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			has_idea = gedfrey_construction_power_1
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 99
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_construction_power_1
+			add_ideas = gedfrey_construction_power_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_2_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_construction_power_1
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			has_idea = gedfrey_construction_power_1
+			NOT = { has_idea = gedfrey_construction_power_2 }
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 139
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_construction_power_1
+			add_ideas = gedfrey_construction_power_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_3_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_construction_power_2
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			has_idea = gedfrey_construction_power_2
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 89
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_construction_power_2
+			add_ideas = gedfrey_construction_power_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_3_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_construction_power_2
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			has_idea = gedfrey_construction_power_2
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 149
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_construction_power_2
+			add_ideas = gedfrey_construction_power_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_construction_3_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_construction_power_2
+			NOT = { has_idea = gedfrey_construction_power_3 }
+		}
+		available = {
+			has_idea = gedfrey_construction_power_2
+			NOT = { has_idea = gedfrey_construction_power_3 }
+			num_of_civilian_factories > 209
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_construction_power_2
+			add_ideas = gedfrey_construction_power_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 2 — BUFF C: Supremacía Naval Económica
+	# Req (astilleros): N1>=25/50/70  N2>=40/75/105  N3>=60/100/140
+	# Costs: 200/240/300 | Timer: 120d | Cooldown: 300/300/450d
+	# ============================================================
+
+	gedfrey_buff_naval_economy_1_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_naval_economy_1 }
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_economy_1 }
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 24
+			navy_experience > 24
+		}
+		cost = 200
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_economy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_1_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_naval_economy_1 }
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_economy_1 }
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 49
+			navy_experience > 49
+		}
+		cost = 240
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_economy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_1_major = {
+		icon = generic_navy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_naval_economy_1 }
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_naval_economy_1 }
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 69
+			navy_experience > 74
+		}
+		cost = 300
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_naval_economy_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_2_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_naval_economy_1
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_economy_1
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 39
+			navy_experience > 49
+		}
+		cost = 200
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_economy_1
+			add_ideas = gedfrey_naval_economy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_2_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_naval_economy_1
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_economy_1
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 74
+			navy_experience > 99
+		}
+		cost = 240
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_economy_1
+			add_ideas = gedfrey_naval_economy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_2_major = {
+		icon = generic_navy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_naval_economy_1
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_economy_1
+			NOT = { has_idea = gedfrey_naval_economy_2 }
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 104
+			navy_experience > 149
+		}
+		cost = 300
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_economy_1
+			add_ideas = gedfrey_naval_economy_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_3_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_naval_economy_2
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_economy_2
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 59
+			navy_experience > 99
+		}
+		cost = 200
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_economy_2
+			add_ideas = gedfrey_naval_economy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_3_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_naval_economy_2
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_economy_2
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 99
+			navy_experience > 199
+		}
+		cost = 240
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_economy_2
+			add_ideas = gedfrey_naval_economy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_naval_economy_3_major = {
+		icon = generic_navy
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_naval_economy_2
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+		}
+		available = {
+			has_idea = gedfrey_naval_economy_2
+			NOT = { has_idea = gedfrey_naval_economy_3 }
+			num_of_naval_factories > 139
+			navy_experience > 299
+		}
+		cost = 300
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_naval_economy_2
+			add_ideas = gedfrey_naval_economy_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 2 — BUFF D: Crecimiento Nacional (5 niveles)
+	# Req: gedfrey_settlement_count >= N*10
+	# Timer: 120d | Cooldown: 300/300/450d
+	# Costs N1=75/90/113  N2=100/120/150  N3=125/150/188
+	#       N4=150/180/225  N5=175/210/263
+	# ============================================================
+
+	gedfrey_buff_growth_1_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_national_growth_1 }
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			NOT = { has_idea = gedfrey_national_growth_10 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_national_growth_1 }
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			NOT = { has_idea = gedfrey_national_growth_10 }
+			check_variable = { gedfrey_settlement_count > 9 }
+		}
+		cost = 75
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_national_growth_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_1_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_national_growth_1 }
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			NOT = { has_idea = gedfrey_national_growth_10 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_national_growth_1 }
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			NOT = { has_idea = gedfrey_national_growth_10 }
+			check_variable = { gedfrey_settlement_count > 9 }
+		}
+		cost = 90
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_national_growth_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_1_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			NOT = { has_idea = gedfrey_national_growth_1 }
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			NOT = { has_idea = gedfrey_national_growth_10 }
+		}
+		available = {
+			NOT = { has_idea = gedfrey_national_growth_1 }
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			NOT = { has_idea = gedfrey_national_growth_10 }
+			check_variable = { gedfrey_settlement_count > 9 }
+		}
+		cost = 113
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = { add_ideas = gedfrey_national_growth_1 }
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_2_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_1
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_1
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			check_variable = { gedfrey_settlement_count > 19 }
+		}
+		cost = 100
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_1
+			add_ideas = gedfrey_national_growth_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_2_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_1
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_1
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			check_variable = { gedfrey_settlement_count > 19 }
+		}
+		cost = 120
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_1
+			add_ideas = gedfrey_national_growth_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_2_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_1
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_1
+			NOT = { has_idea = gedfrey_national_growth_2 }
+			check_variable = { gedfrey_settlement_count > 19 }
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_1
+			add_ideas = gedfrey_national_growth_2
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_3_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_2
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_2
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			check_variable = { gedfrey_settlement_count > 29 }
+		}
+		cost = 125
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_2
+			add_ideas = gedfrey_national_growth_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_3_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_2
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_2
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			check_variable = { gedfrey_settlement_count > 29 }
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_2
+			add_ideas = gedfrey_national_growth_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_3_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_2
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_2
+			NOT = { has_idea = gedfrey_national_growth_3 }
+			check_variable = { gedfrey_settlement_count > 29 }
+		}
+		cost = 188
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_2
+			add_ideas = gedfrey_national_growth_3
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_4_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_3
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_3
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			check_variable = { gedfrey_settlement_count > 39 }
+		}
+		cost = 150
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_3
+			add_ideas = gedfrey_national_growth_4
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_4_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_3
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_3
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			check_variable = { gedfrey_settlement_count > 39 }
+		}
+		cost = 180
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_3
+			add_ideas = gedfrey_national_growth_4
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_4_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_3
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_3
+			NOT = { has_idea = gedfrey_national_growth_4 }
+			check_variable = { gedfrey_settlement_count > 39 }
+		}
+		cost = 225
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_3
+			add_ideas = gedfrey_national_growth_4
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_5_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_4
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_4
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			check_variable = { gedfrey_settlement_count > 49 }
+		}
+		cost = 175
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_4
+			add_ideas = gedfrey_national_growth_5
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_5_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_4
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_4
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			check_variable = { gedfrey_settlement_count > 49 }
+		}
+		cost = 210
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_4
+			add_ideas = gedfrey_national_growth_5
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_5_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_4
+			NOT = { has_idea = gedfrey_national_growth_5 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_4
+			NOT = { has_idea = gedfrey_national_growth_5 }
+			check_variable = { gedfrey_settlement_count > 49 }
+		}
+		cost = 263
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_4
+			add_ideas = gedfrey_national_growth_5
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# BUFF D — Crecimiento Nacional (Niveles 6–10)
+	# Req: settlement_count >= 60/70/80/90/100
+	# Timer: 120d | Cooldown: 300/300/450d
+	# Costs N6=200/240/300  N7=225/270/338  N8=250/300/375
+	#       N9=275/330/413  N10=300/360/450
+	# ============================================================
+
+	gedfrey_buff_growth_6_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_5
+			NOT = { has_idea = gedfrey_national_growth_6 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_5
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			check_variable = { gedfrey_settlement_count > 59 }
+		}
+		cost = 200
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_5
+			add_ideas = gedfrey_national_growth_6
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_6_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_5
+			NOT = { has_idea = gedfrey_national_growth_6 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_5
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			check_variable = { gedfrey_settlement_count > 59 }
+		}
+		cost = 240
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_5
+			add_ideas = gedfrey_national_growth_6
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_6_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_5
+			NOT = { has_idea = gedfrey_national_growth_6 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_5
+			NOT = { has_idea = gedfrey_national_growth_6 }
+			check_variable = { gedfrey_settlement_count > 59 }
+		}
+		cost = 300
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_5
+			add_ideas = gedfrey_national_growth_6
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_7_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_6
+			NOT = { has_idea = gedfrey_national_growth_7 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_6
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			check_variable = { gedfrey_settlement_count > 69 }
+		}
+		cost = 225
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_6
+			add_ideas = gedfrey_national_growth_7
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_7_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_6
+			NOT = { has_idea = gedfrey_national_growth_7 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_6
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			check_variable = { gedfrey_settlement_count > 69 }
+		}
+		cost = 270
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_6
+			add_ideas = gedfrey_national_growth_7
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_7_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_6
+			NOT = { has_idea = gedfrey_national_growth_7 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_6
+			NOT = { has_idea = gedfrey_national_growth_7 }
+			check_variable = { gedfrey_settlement_count > 69 }
+		}
+		cost = 338
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_6
+			add_ideas = gedfrey_national_growth_7
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_8_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_7
+			NOT = { has_idea = gedfrey_national_growth_8 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_7
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			check_variable = { gedfrey_settlement_count > 79 }
+		}
+		cost = 250
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_7
+			add_ideas = gedfrey_national_growth_8
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_8_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_7
+			NOT = { has_idea = gedfrey_national_growth_8 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_7
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			check_variable = { gedfrey_settlement_count > 79 }
+		}
+		cost = 300
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_7
+			add_ideas = gedfrey_national_growth_8
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_8_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_7
+			NOT = { has_idea = gedfrey_national_growth_8 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_7
+			NOT = { has_idea = gedfrey_national_growth_8 }
+			check_variable = { gedfrey_settlement_count > 79 }
+		}
+		cost = 375
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_7
+			add_ideas = gedfrey_national_growth_8
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_9_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_8
+			NOT = { has_idea = gedfrey_national_growth_9 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_8
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			check_variable = { gedfrey_settlement_count > 89 }
+		}
+		cost = 275
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_8
+			add_ideas = gedfrey_national_growth_9
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_9_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_8
+			NOT = { has_idea = gedfrey_national_growth_9 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_8
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			check_variable = { gedfrey_settlement_count > 89 }
+		}
+		cost = 330
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_8
+			add_ideas = gedfrey_national_growth_9
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_9_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_8
+			NOT = { has_idea = gedfrey_national_growth_9 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_8
+			NOT = { has_idea = gedfrey_national_growth_9 }
+			check_variable = { gedfrey_settlement_count > 89 }
+		}
+		cost = 413
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_8
+			add_ideas = gedfrey_national_growth_9
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_10_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_9
+			NOT = { has_idea = gedfrey_national_growth_10 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_9
+			NOT = { has_idea = gedfrey_national_growth_10 }
+			check_variable = { gedfrey_settlement_count > 99 }
+		}
+		cost = 300
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_9
+			add_ideas = gedfrey_national_growth_10
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_10_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_9
+			NOT = { has_idea = gedfrey_national_growth_10 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_9
+			NOT = { has_idea = gedfrey_national_growth_10 }
+			check_variable = { gedfrey_settlement_count > 99 }
+		}
+		cost = 360
+		days_remove = 120
+		days_re_enable = 300
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_9
+			add_ideas = gedfrey_national_growth_10
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_buff_growth_10_major = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_major = yes }
+		visible = {
+			has_idea = gedfrey_national_growth_9
+			NOT = { has_idea = gedfrey_national_growth_10 }
+		}
+		available = {
+			has_idea = gedfrey_national_growth_9
+			NOT = { has_idea = gedfrey_national_growth_10 }
+			check_variable = { gedfrey_settlement_count > 99 }
+		}
+		cost = 450
+		days_remove = 120
+		days_re_enable = 450
+		complete_effect = { }
+		remove_effect = {
+			remove_ideas = gedfrey_national_growth_9
+			add_ideas = gedfrey_national_growth_10
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# PHASE 3 — DECISIÓN 9: Conversión de Fábrica Civil a PP
+	# Removes 1 industrial_complex → PP gain for 90d → returns offsite
+	# Available until 1940.12.31. Re-executable once per cycle.
+	# Costs: 50/60/75 | Timer: 90d | No cooldown after expiry
+	# ============================================================
+
+	gedfrey_civil_conversion_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_civil_conversion }
+			any_owned_controlled_state = { industrial_complex > 0 }
+		}
+		cost = 50
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_ideas = gedfrey_civil_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_civil_conversion
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civil_conversion_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_civil_conversion }
+			any_owned_controlled_state = { industrial_complex > 0 }
+		}
+		cost = 60
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_ideas = gedfrey_civil_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_civil_conversion
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_civil_conversion_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_civil_conversion }
+			any_owned_controlled_state = { industrial_complex > 0 }
+		}
+		cost = 75
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { industrial_complex > 0 }
+				damage_building = { type = industrial_complex level = 1 }
+			}
+			add_ideas = gedfrey_civil_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_civil_conversion
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 3 — DECISIÓN 10: Conversión de Fábrica Militar a PP
+	# Costs: 50/60/75 | Timer: 90d | No cooldown after expiry
+	# ============================================================
+
+	gedfrey_military_conversion_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_military_conversion }
+			any_owned_controlled_state = { arms_factory > 0 }
+		}
+		cost = 50
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { arms_factory > 0 }
+				damage_building = { type = arms_factory level = 1 }
+			}
+			add_ideas = gedfrey_military_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_military_conversion
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_military_conversion_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_military_conversion }
+			any_owned_controlled_state = { arms_factory > 0 }
+		}
+		cost = 60
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { arms_factory > 0 }
+				damage_building = { type = arms_factory level = 1 }
+			}
+			add_ideas = gedfrey_military_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_military_conversion
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_military_conversion_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_military_conversion }
+			any_owned_controlled_state = { arms_factory > 0 }
+		}
+		cost = 75
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { arms_factory > 0 }
+				damage_building = { type = arms_factory level = 1 }
+			}
+			add_ideas = gedfrey_military_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_military_conversion
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 3 — DECISIÓN 11: Conversión de Astillero a PP
+	# Costs: 50/60/75 | Timer: 90d | No cooldown after expiry
+	# ============================================================
+
+	gedfrey_dockyard_conversion_minor = {
+		icon = generic_navy
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_dockyard_conversion }
+			any_owned_controlled_state = { dockyard > 0 }
+		}
+		cost = 50
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { dockyard > 0 }
+				damage_building = { type = dockyard level = 1 }
+			}
+			add_ideas = gedfrey_dockyard_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_dockyard_conversion
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_dockyard_conversion_medium = {
+		icon = generic_navy
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_dockyard_conversion }
+			any_owned_controlled_state = { dockyard > 0 }
+		}
+		cost = 60
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { dockyard > 0 }
+				damage_building = { type = dockyard level = 1 }
+			}
+			add_ideas = gedfrey_dockyard_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_dockyard_conversion
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	gedfrey_dockyard_conversion_major = {
+		icon = generic_navy
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = {
+			NOT = { date > 1940.12.31 }
+			NOT = { has_idea = gedfrey_dockyard_conversion }
+			any_owned_controlled_state = { dockyard > 0 }
+		}
+		cost = 75
+		days_remove = 90
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { dockyard > 0 }
+				damage_building = { type = dockyard level = 1 }
+			}
+			add_ideas = gedfrey_dockyard_conversion
+		}
+		remove_effect = {
+			remove_ideas = gedfrey_dockyard_conversion
+			add_offsite_building = { type = dockyard level = 1 }
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	# ============================================================
+	# PHASE 3 — BONUS NACIONES SUBDESARROLLADAS
+	# Available 1936–1939. One-time per country. Minor and medium only.
+	# Minor: 50 PP, 50d timer, 730d idea (gedfrey_underdeveloped_nation)
+	# Medium: 100 PP, 50d timer, 365d idea (gedfrey_developing_nation)
+	# ============================================================
+
+	gedfrey_underdeveloped_bonus_minor = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_minor = yes }
+		visible = {
+			NOT = { has_country_flag = gedfrey_underdeveloped_taken }
+		}
+		available = {
+			NOT = { has_country_flag = gedfrey_underdeveloped_taken }
+			NOT = { date > 1939.12.31 }
+		}
+		cost = 50
+		days_remove = 50
+		complete_effect = { set_country_flag = gedfrey_underdeveloped_taken }
+		remove_effect = {
+			add_timed_idea = { idea = gedfrey_underdeveloped_nation days = 730 }
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_underdeveloped_bonus_medium = {
+		icon = generic_political_actions
+		allowed = { gedfrey_is_medium = yes }
+		visible = {
+			NOT = { has_country_flag = gedfrey_underdeveloped_taken }
+		}
+		available = {
+			NOT = { has_country_flag = gedfrey_underdeveloped_taken }
+			NOT = { date > 1939.12.31 }
+		}
+		cost = 100
+		days_remove = 50
+		complete_effect = { set_country_flag = gedfrey_underdeveloped_taken }
+		remove_effect = {
+			add_timed_idea = { idea = gedfrey_developing_nation days = 365 }
+		}
+		ai_will_do = { factor = 1 }
+	}
+
+	# ============================================================
+	# DECISIÓN 12: Ampliar Espacios de Construcción
+	# +2 slots en estado random. Siempre disponible, sin cap.
+	# +manpower y recursos escalan con National Growth.
+	# Costs: 75/100/150 | Timer: 30d | Cooldown: 7d
+	# ============================================================
+
+	gedfrey_expand_building_slots_minor = {
+		icon = generic_industry
+		allowed = { gedfrey_is_minor = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 75
+		days_remove = 30
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_manpower = 10000
+				}
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 10 } }
+						10 = { add_resource = { type = iron amount = 10 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 9 } }
+						10 = { add_resource = { type = iron amount = 9 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 8 } }
+						10 = { add_resource = { type = iron amount = 8 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 7 } }
+						10 = { add_resource = { type = iron amount = 7 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 6 } }
+						10 = { add_resource = { type = iron amount = 6 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 5 } }
+						10 = { add_resource = { type = iron amount = 5 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+						2  = { }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 4 } }
+						10 = { add_resource = { type = iron amount = 4 } }
+						10 = { add_resource = { type = tungsten amount = 2 } }
+						10 = { add_resource = { type = chromium amount = 2 } }
+						6  = { }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 3 } }
+						10 = { add_resource = { type = iron amount = 3 } }
+						10 = { add_resource = { type = tungsten amount = 1 } }
+						10 = { add_resource = { type = chromium amount = 1 } }
+						10 = { }
+					}
 				}
 			}
 		}
+		ai_will_do = { factor = 1 }
+	}
 
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				NOT = { any_owned_state = { is_coastal = yes } }
+	gedfrey_expand_building_slots_medium = {
+		icon = generic_industry
+		allowed = { gedfrey_is_medium = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 100
+		days_remove = 30
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_manpower = 10000
+				}
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 10 } }
+						10 = { add_resource = { type = iron amount = 10 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 9 } }
+						10 = { add_resource = { type = iron amount = 9 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 8 } }
+						10 = { add_resource = { type = iron amount = 8 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 7 } }
+						10 = { add_resource = { type = iron amount = 7 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 6 } }
+						10 = { add_resource = { type = iron amount = 6 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 5 } }
+						10 = { add_resource = { type = iron amount = 5 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+						2  = { }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 4 } }
+						10 = { add_resource = { type = iron amount = 4 } }
+						10 = { add_resource = { type = tungsten amount = 2 } }
+						10 = { add_resource = { type = chromium amount = 2 } }
+						6  = { }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 3 } }
+						10 = { add_resource = { type = iron amount = 3 } }
+						10 = { add_resource = { type = tungsten amount = 1 } }
+						10 = { add_resource = { type = chromium amount = 1 } }
+						10 = { }
+					}
+				}
 			}
 		}
+		ai_will_do = { factor = 1 }
+	}
+
+	gedfrey_expand_building_slots_major = {
+		icon = generic_industry
+		allowed = { gedfrey_is_major = yes }
+		visible = { always = yes }
+		available = { always = yes }
+		cost = 150
+		days_remove = 30
+		days_re_enable = 7
+		complete_effect = { }
+		remove_effect = {
+			add_to_variable = { var = gedfrey_settlement_count value = 1 }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					add_manpower = 100000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					add_manpower = 90000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					add_manpower = 80000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					add_manpower = 70000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					add_manpower = 60000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					add_manpower = 50000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					add_manpower = 40000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					add_manpower = 30000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_2 } }
+					add_manpower = 20000
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_1 } }
+					add_manpower = 10000
+				}
+				if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_10 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 10 } }
+						10 = { add_resource = { type = iron amount = 10 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_9 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 9 } }
+						10 = { add_resource = { type = iron amount = 9 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_8 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 8 } }
+						10 = { add_resource = { type = iron amount = 8 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_7 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 7 } }
+						10 = { add_resource = { type = iron amount = 7 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_6 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 6 } }
+						10 = { add_resource = { type = iron amount = 6 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_5 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 5 } }
+						10 = { add_resource = { type = iron amount = 5 } }
+						10 = { add_resource = { type = tungsten amount = 3 } }
+						10 = { add_resource = { type = chromium amount = 3 } }
+						2  = { }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_4 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 4 } }
+						10 = { add_resource = { type = iron amount = 4 } }
+						10 = { add_resource = { type = tungsten amount = 2 } }
+						10 = { add_resource = { type = chromium amount = 2 } }
+						6  = { }
+					}
+				}
+				else_if = {
+					limit = { ROOT = { has_idea = gedfrey_national_growth_3 } }
+					random_list = {
+						10 = { add_resource = { type = aluminium amount = 3 } }
+						10 = { add_resource = { type = iron amount = 3 } }
+						10 = { add_resource = { type = tungsten amount = 1 } }
+						10 = { add_resource = { type = chromium amount = 1 } }
+						10 = { }
+					}
+				}
+			}
+		}
+		ai_will_do = { factor = 1 }
 	}
 }

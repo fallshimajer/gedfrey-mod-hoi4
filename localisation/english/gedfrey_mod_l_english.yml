@@ -53,66 +53,885 @@
  gedfrey_warfare_3_desc:0 "The nation's armed forces operate at peak doctrinal efficiency. Troops dig in deeper and recover faster than any foe."
 
  # ============================================================
- # LEADER DECISIONS
+ # LEADER DECISIONS — Industrial Power
  # ============================================================
 
- # --- Industrial Power ---
- gedfrey_industry_decision_1:0 "Industrial Power I"
- gedfrey_industry_decision_1_tooltip:0 "Direct political investment into the nation's industrial base. The leader will focus on improving factory output, manpower recovery, and resource extraction.\n\nRequires sufficient combined civilian and military industrial capacity."
- gedfrey_industry_decision_2:0 "Industrial Power II"
- gedfrey_industry_decision_2_tooltip:0 "Deepen industrial reforms, replacing the initial improvements with more comprehensive programmes.\n\nRequires [gedfrey_industry_1] and a larger combined factory base."
- gedfrey_industry_decision_3:0 "Industrial Power III"
- gedfrey_industry_decision_3_tooltip:0 "The leader commits fully to transforming the nation into an industrial juggernaut.\n\nRequires [gedfrey_industry_2] and a vast combined factory base."
+ gedfrey_industry_decision_1_minor:0 "Industrial Power I"
+ gedfrey_industry_decision_1_minor_tooltip:0 "Direct political investment into the nation's industrial base. The leader will focus on improving factory output, manpower recovery, and resource extraction.\n\nRequires sufficient combined civilian and military industrial capacity."
+ gedfrey_industry_decision_1_medium:0 "Industrial Power I"
+ gedfrey_industry_decision_1_medium_tooltip:0 "Direct political investment into the nation's industrial base. The leader will focus on improving factory output, manpower recovery, and resource extraction.\n\nRequires sufficient combined civilian and military industrial capacity."
+ gedfrey_industry_decision_1_major:0 "Industrial Power I"
+ gedfrey_industry_decision_1_major_tooltip:0 "Direct political investment into the nation's industrial base. The leader will focus on improving factory output, manpower recovery, and resource extraction.\n\nRequires sufficient combined civilian and military industrial capacity."
 
- # --- Political Consolidation ---
- gedfrey_politics_decision_1:0 "Political Consolidation I"
- gedfrey_politics_decision_1_tooltip:0 "The leader consolidates political alliances, generating additional political power daily.\n\nRequires stability ≥ 25%."
- gedfrey_politics_decision_2:0 "Political Consolidation II"
- gedfrey_politics_decision_2_tooltip:0 "Broader political control replaces earlier consolidation efforts.\n\nRequires [gedfrey_politics_1] and stability ≥ 50%."
- gedfrey_politics_decision_3:0 "Political Consolidation III"
- gedfrey_politics_decision_3_tooltip:0 "The leader achieves near-absolute political dominance.\n\nRequires [gedfrey_politics_2] and stability ≥ 75%."
+ gedfrey_industry_decision_2_minor:0 "Industrial Power II"
+ gedfrey_industry_decision_2_minor_tooltip:0 "Deepen industrial reforms, replacing the initial improvements with more comprehensive programmes.\n\nRequires [gedfrey_industry_1] and a larger combined factory base."
+ gedfrey_industry_decision_2_medium:0 "Industrial Power II"
+ gedfrey_industry_decision_2_medium_tooltip:0 "Deepen industrial reforms, replacing the initial improvements with more comprehensive programmes.\n\nRequires [gedfrey_industry_1] and a larger combined factory base."
+ gedfrey_industry_decision_2_major:0 "Industrial Power II"
+ gedfrey_industry_decision_2_major_tooltip:0 "Deepen industrial reforms, replacing the initial improvements with more comprehensive programmes.\n\nRequires [gedfrey_industry_1] and a larger combined factory base."
 
- # --- Royal Grace ---
- gedfrey_royal_decision_1:0 "Royal Grace I"
- gedfrey_royal_decision_1_tooltip:0 "The crown channels its legitimacy to inspire morale and reduce resistance across the realm.\n\nAvailable only to monarchies. Requires stability ≥ 25% and war support ≥ 25%."
- gedfrey_royal_decision_2:0 "Royal Grace II"
- gedfrey_royal_decision_2_tooltip:0 "The monarch's influence deepens across the nation and its occupied territories.\n\nRequires [gedfrey_royal_1], stability ≥ 40% and war support ≥ 40%."
- gedfrey_royal_decision_3:0 "Royal Grace III"
- gedfrey_royal_decision_3_tooltip:0 "The sovereign's authority inspires the armies in the field.\n\nRequires [gedfrey_royal_2], stability ≥ 55% and war support ≥ 55%."
- gedfrey_royal_decision_4:0 "Imperial Mandate"
- gedfrey_royal_decision_4_tooltip:0 "A ruler of singular destiny claims an imperial mandate, unlocking extraordinary political and military power.\n\nExclusive to rulers of exceptional pedigree. Requires [gedfrey_royal_3], stability ≥ 70% and war support ≥ 70%."
+ gedfrey_industry_decision_3_minor:0 "Industrial Power III"
+ gedfrey_industry_decision_3_minor_tooltip:0 "The leader commits fully to transforming the nation into an industrial juggernaut.\n\nRequires [gedfrey_industry_2] and a vast combined factory base."
+ gedfrey_industry_decision_3_medium:0 "Industrial Power III"
+ gedfrey_industry_decision_3_medium_tooltip:0 "The leader commits fully to transforming the nation into an industrial juggernaut.\n\nRequires [gedfrey_industry_2] and a vast combined factory base."
+ gedfrey_industry_decision_3_major:0 "Industrial Power III"
+ gedfrey_industry_decision_3_major_tooltip:0 "The leader commits fully to transforming the nation into an industrial juggernaut.\n\nRequires [gedfrey_industry_2] and a vast combined factory base."
 
- # --- Doctrine of War ---
- gedfrey_warfare_decision_1:0 "Doctrine of War I"
- gedfrey_warfare_decision_1_tooltip:0 "The leader invests in standardised military doctrine, giving armies a tactical edge.\n\nRequires sufficient deployed forces."
- gedfrey_warfare_decision_2:0 "Doctrine of War II"
- gedfrey_warfare_decision_2_tooltip:0 "Advanced tactical doctrine replaces earlier manuals, improving recovery and flexibility.\n\nRequires [gedfrey_warfare_1] and a larger deployed army."
- gedfrey_warfare_decision_3:0 "Doctrine of War III"
- gedfrey_warfare_decision_3_tooltip:0 "The nation's military has fully internalised elite doctrinal practice.\n\nRequires [gedfrey_warfare_2] and a large deployed army."
+ # ============================================================
+ # LEADER DECISIONS — Political Consolidation
+ # ============================================================
+
+ gedfrey_politics_decision_1_minor:0 "Political Consolidation I"
+ gedfrey_politics_decision_1_minor_tooltip:0 "The leader consolidates political alliances, generating additional political power daily."
+ gedfrey_politics_decision_1_medium:0 "Political Consolidation I"
+ gedfrey_politics_decision_1_medium_tooltip:0 "The leader consolidates political alliances, generating additional political power daily."
+ gedfrey_politics_decision_1_major:0 "Political Consolidation I"
+ gedfrey_politics_decision_1_major_tooltip:0 "The leader consolidates political alliances, generating additional political power daily."
+
+ gedfrey_politics_decision_2_minor:0 "Political Consolidation II"
+ gedfrey_politics_decision_2_minor_tooltip:0 "Broader political control replaces earlier consolidation efforts.\n\nRequires [gedfrey_politics_1]."
+ gedfrey_politics_decision_2_medium:0 "Political Consolidation II"
+ gedfrey_politics_decision_2_medium_tooltip:0 "Broader political control replaces earlier consolidation efforts.\n\nRequires [gedfrey_politics_1]."
+ gedfrey_politics_decision_2_major:0 "Political Consolidation II"
+ gedfrey_politics_decision_2_major_tooltip:0 "Broader political control replaces earlier consolidation efforts.\n\nRequires [gedfrey_politics_1]."
+
+ gedfrey_politics_decision_3_minor:0 "Political Consolidation III"
+ gedfrey_politics_decision_3_minor_tooltip:0 "The leader achieves near-absolute political dominance.\n\nRequires [gedfrey_politics_2]."
+ gedfrey_politics_decision_3_medium:0 "Political Consolidation III"
+ gedfrey_politics_decision_3_medium_tooltip:0 "The leader achieves near-absolute political dominance.\n\nRequires [gedfrey_politics_2]."
+ gedfrey_politics_decision_3_major:0 "Political Consolidation III"
+ gedfrey_politics_decision_3_major_tooltip:0 "The leader achieves near-absolute political dominance.\n\nRequires [gedfrey_politics_2]."
+
+ # ============================================================
+ # LEADER DECISIONS — Royal Grace
+ # ============================================================
+
+ gedfrey_royal_decision_1_minor:0 "Royal Grace I"
+ gedfrey_royal_decision_1_minor_tooltip:0 "The crown channels its legitimacy to inspire morale and reduce resistance across the realm.\n\nAvailable only to monarchies (neutrality government)."
+ gedfrey_royal_decision_1_medium:0 "Royal Grace I"
+ gedfrey_royal_decision_1_medium_tooltip:0 "The crown channels its legitimacy to inspire morale and reduce resistance across the realm.\n\nAvailable only to monarchies (neutrality government)."
+ gedfrey_royal_decision_1_major:0 "Royal Grace I"
+ gedfrey_royal_decision_1_major_tooltip:0 "The crown channels its legitimacy to inspire morale and reduce resistance across the realm.\n\nAvailable only to monarchies (neutrality government)."
+
+ gedfrey_royal_decision_2_minor:0 "Royal Grace II"
+ gedfrey_royal_decision_2_minor_tooltip:0 "The monarch's influence deepens across the nation and its occupied territories.\n\nRequires [gedfrey_royal_1]."
+ gedfrey_royal_decision_2_medium:0 "Royal Grace II"
+ gedfrey_royal_decision_2_medium_tooltip:0 "The monarch's influence deepens across the nation and its occupied territories.\n\nRequires [gedfrey_royal_1]."
+ gedfrey_royal_decision_2_major:0 "Royal Grace II"
+ gedfrey_royal_decision_2_major_tooltip:0 "The monarch's influence deepens across the nation and its occupied territories.\n\nRequires [gedfrey_royal_1]."
+
+ gedfrey_royal_decision_3_minor:0 "Royal Grace III"
+ gedfrey_royal_decision_3_minor_tooltip:0 "The sovereign's authority inspires the armies in the field.\n\nRequires [gedfrey_royal_2]."
+ gedfrey_royal_decision_3_medium:0 "Royal Grace III"
+ gedfrey_royal_decision_3_medium_tooltip:0 "The sovereign's authority inspires the armies in the field.\n\nRequires [gedfrey_royal_2]."
+ gedfrey_royal_decision_3_major:0 "Royal Grace III"
+ gedfrey_royal_decision_3_major_tooltip:0 "The sovereign's authority inspires the armies in the field.\n\nRequires [gedfrey_royal_2]."
+
+ gedfrey_royal_decision_4_minor:0 "Imperial Mandate"
+ gedfrey_royal_decision_4_minor_tooltip:0 "A ruler of singular destiny claims an imperial mandate, unlocking extraordinary political and military power.\n\nExclusive to rulers of exceptional pedigree. Requires [gedfrey_royal_3]."
+ gedfrey_royal_decision_4_medium:0 "Imperial Mandate"
+ gedfrey_royal_decision_4_medium_tooltip:0 "A ruler of singular destiny claims an imperial mandate, unlocking extraordinary political and military power.\n\nExclusive to rulers of exceptional pedigree. Requires [gedfrey_royal_3]."
+ gedfrey_royal_decision_4_major:0 "Imperial Mandate"
+ gedfrey_royal_decision_4_major_tooltip:0 "A ruler of singular destiny claims an imperial mandate, unlocking extraordinary political and military power.\n\nExclusive to rulers of exceptional pedigree. Requires [gedfrey_royal_3]."
+
+ # ============================================================
+ # LEADER DECISIONS — Doctrine of War
+ # ============================================================
+
+ gedfrey_warfare_decision_1_minor:0 "Doctrine of War I"
+ gedfrey_warfare_decision_1_minor_tooltip:0 "The leader invests in standardised military doctrine, giving armies a tactical edge.\n\nRequires deployed field army manpower (minor 300k / medium 600k / major 750k)."
+ gedfrey_warfare_decision_1_medium:0 "Doctrine of War I"
+ gedfrey_warfare_decision_1_medium_tooltip:0 "The leader invests in standardised military doctrine, giving armies a tactical edge.\n\nRequires deployed field army manpower (minor 300k / medium 600k / major 750k)."
+ gedfrey_warfare_decision_1_major:0 "Doctrine of War I"
+ gedfrey_warfare_decision_1_major_tooltip:0 "The leader invests in standardised military doctrine, giving armies a tactical edge.\n\nRequires deployed field army manpower (minor 300k / medium 600k / major 750k)."
+
+ gedfrey_warfare_decision_2_minor:0 "Doctrine of War II"
+ gedfrey_warfare_decision_2_minor_tooltip:0 "Advanced tactical doctrine replaces earlier manuals, improving recovery and flexibility.\n\nRequires [gedfrey_warfare_1] and deployed field army (minor 500k / medium 900k / major 1.25M)."
+ gedfrey_warfare_decision_2_medium:0 "Doctrine of War II"
+ gedfrey_warfare_decision_2_medium_tooltip:0 "Advanced tactical doctrine replaces earlier manuals, improving recovery and flexibility.\n\nRequires [gedfrey_warfare_1] and deployed field army (minor 500k / medium 900k / major 1.25M)."
+ gedfrey_warfare_decision_2_major:0 "Doctrine of War II"
+ gedfrey_warfare_decision_2_major_tooltip:0 "Advanced tactical doctrine replaces earlier manuals, improving recovery and flexibility.\n\nRequires [gedfrey_warfare_1] and deployed field army (minor 500k / medium 900k / major 1.25M)."
+
+ gedfrey_warfare_decision_3_minor:0 "Doctrine of War III"
+ gedfrey_warfare_decision_3_minor_tooltip:0 "The nation's military has fully internalised elite doctrinal practice.\n\nRequires [gedfrey_warfare_2] and deployed field army (minor 750k / medium 1.5M / major 2M)."
+ gedfrey_warfare_decision_3_medium:0 "Doctrine of War III"
+ gedfrey_warfare_decision_3_medium_tooltip:0 "The nation's military has fully internalised elite doctrinal practice.\n\nRequires [gedfrey_warfare_2] and deployed field army (minor 750k / medium 1.5M / major 2M)."
+ gedfrey_warfare_decision_3_major:0 "Doctrine of War III"
+ gedfrey_warfare_decision_3_major_tooltip:0 "The nation's military has fully internalised elite doctrinal practice.\n\nRequires [gedfrey_warfare_2] and deployed field army (minor 750k / medium 1.5M / major 2M)."
 
  # ============================================================
  # MILITARY DECISIONS
  # ============================================================
 
- gedfrey_individual_training:0 "Individual Training"
- gedfrey_individual_training_tooltip:0 "Select a Corps Commander for intensive personal training. They will gain +1 in a randomly chosen skill (Attack, Defence, Maneuvering, or Logistics).\n\nA random commander is chosen."
- gedfrey_military_reform:0 "General Military Reform"
- gedfrey_military_reform_tooltip:0 "Issue a sweeping military reform order. Every Corps Commander in the army gains +1 in their own randomly chosen skill.\n\nAffects all commanders simultaneously."
- gedfrey_special_talent:0 "Special Talent"
- gedfrey_special_talent_tooltip:0 "Identify exceptional talent among the officer corps. A random Corps Commander gains a new specialist trait they do not yet possess."
- gedfrey_supreme_command:0 "Supreme Command"
- gedfrey_supreme_command_tooltip:0 "The highest levels of command are reviewed and reinforced. A random Field Marshal gains a new specialist trait they do not yet possess."
+
+ gedfrey_individual_training_minor:0 "Individual Training"
+ gedfrey_individual_training_minor_tooltip:0 "Select a Corps Commander for intensive personal training. They will gain +1 in a randomly chosen skill (Attack, Defence, Planning, or Logistics).\n\nA random commander is chosen."
+ gedfrey_individual_training_medium:0 "Individual Training"
+ gedfrey_individual_training_medium_tooltip:0 "Select a Corps Commander for intensive personal training. They will gain +1 in a randomly chosen skill (Attack, Defence, Planning, or Logistics).\n\nA random commander is chosen."
+ gedfrey_individual_training_major:0 "Individual Training"
+ gedfrey_individual_training_major_tooltip:0 "Select a Corps Commander for intensive personal training. They will gain +1 in a randomly chosen skill (Attack, Defence, Planning, or Logistics).\n\nA random commander is chosen."
+
+ gedfrey_military_reform_minor:0 "General Military Reform"
+ gedfrey_military_reform_minor_tooltip:0 "Issue a sweeping military reform order. Every Corps Commander in the army gains +1 in their own randomly chosen skill.\n\nAffects all commanders simultaneously."
+ gedfrey_military_reform_medium:0 "General Military Reform"
+ gedfrey_military_reform_medium_tooltip:0 "Issue a sweeping military reform order. Every Corps Commander in the army gains +1 in their own randomly chosen skill.\n\nAffects all commanders simultaneously."
+ gedfrey_military_reform_major:0 "General Military Reform"
+ gedfrey_military_reform_major_tooltip:0 "Issue a sweeping military reform order. Every Corps Commander in the army gains +1 in their own randomly chosen skill.\n\nAffects all commanders simultaneously."
+
+ gedfrey_special_talent_minor:0 "Special Talent"
+ gedfrey_special_talent_minor_tooltip:0 "Identify exceptional talent among the officer corps. A random Corps Commander gains a new specialist trait they do not yet possess."
+ gedfrey_special_talent_medium:0 "Special Talent"
+ gedfrey_special_talent_medium_tooltip:0 "Identify exceptional talent among the officer corps. A random Corps Commander gains a new specialist trait they do not yet possess."
+ gedfrey_special_talent_major:0 "Special Talent"
+ gedfrey_special_talent_major_tooltip:0 "Identify exceptional talent among the officer corps. A random Corps Commander gains a new specialist trait they do not yet possess."
+
+ gedfrey_supreme_command_minor:0 "Supreme Command"
+ gedfrey_supreme_command_minor_tooltip:0 "The highest levels of command are reviewed and reinforced. A random Field Marshal gains a new specialist trait they do not yet possess."
+ gedfrey_supreme_command_medium:0 "Supreme Command"
+ gedfrey_supreme_command_medium_tooltip:0 "The highest levels of command are reviewed and reinforced. A random Field Marshal gains a new specialist trait they do not yet possess."
+ gedfrey_supreme_command_major:0 "Supreme Command"
+ gedfrey_supreme_command_major_tooltip:0 "The highest levels of command are reviewed and reinforced. A random Field Marshal gains a new specialist trait they do not yet possess."
 
  # ============================================================
  # ECONOMIC DECISIONS
  # ============================================================
 
- gedfrey_build_military_factory:0 "Construct Military Factory"
- gedfrey_build_military_factory_tooltip:0 "Invest in a new military factory. Construction will complete in 30 days in the state with the most available building slots.\n\nCooldown applies after construction completes."
- gedfrey_build_military_factory_complete:0 "Military factory construction underway."
- gedfrey_build_civilian_factory:0 "Construct Civilian Factory"
- gedfrey_build_civilian_factory_tooltip:0 "Invest in a new civilian factory. Construction will complete in 30 days in the state with the most available building slots."
- gedfrey_build_civilian_factory_complete:0 "Civilian factory construction underway."
- gedfrey_build_shipyard:0 "Construct Naval Shipyard"
- gedfrey_build_shipyard_tooltip:0 "Fund a new naval shipyard in a coastal state. Construction will complete in 30 days.\n\nRequires a coastal state with free building slots."
- gedfrey_build_shipyard_complete:0 "Naval shipyard construction underway."
+ gedfrey_build_military_factory_minor:0 "Construct Military Factory"
+ gedfrey_build_military_factory_minor_tooltip:0 "Invest in a new military factory. Construction will complete in 30 days in the state with the most available building slots.\n\nCooldown applies after construction completes."
+ gedfrey_build_military_factory_minor_complete:0 "Military factory construction underway."
+ gedfrey_build_military_factory_medium:0 "Construct Military Factory"
+ gedfrey_build_military_factory_medium_tooltip:0 "Invest in a new military factory. Construction will complete in 30 days in the state with the most available building slots.\n\nCooldown applies after construction completes."
+ gedfrey_build_military_factory_medium_complete:0 "Military factory construction underway."
+ gedfrey_build_military_factory_major:0 "Construct Military Factory"
+ gedfrey_build_military_factory_major_tooltip:0 "Invest in a new military factory. Construction will complete in 30 days in the state with the most available building slots.\n\nCooldown applies after construction completes."
+ gedfrey_build_military_factory_major_complete:0 "Military factory construction underway."
+
+ gedfrey_build_civilian_factory_minor:0 "Construct Civilian Factory"
+ gedfrey_build_civilian_factory_minor_tooltip:0 "Invest in a new civilian factory. Construction will complete in 30 days in the state with the most available building slots."
+ gedfrey_build_civilian_factory_minor_complete:0 "Civilian factory construction underway."
+ gedfrey_build_civilian_factory_medium:0 "Construct Civilian Factory"
+ gedfrey_build_civilian_factory_medium_tooltip:0 "Invest in a new civilian factory. Construction will complete in 30 days in the state with the most available building slots."
+ gedfrey_build_civilian_factory_medium_complete:0 "Civilian factory construction underway."
+ gedfrey_build_civilian_factory_major:0 "Construct Civilian Factory"
+ gedfrey_build_civilian_factory_major_tooltip:0 "Invest in a new civilian factory. Construction will complete in 30 days in the state with the most available building slots."
+ gedfrey_build_civilian_factory_major_complete:0 "Civilian factory construction underway."
+
+ gedfrey_build_shipyard_minor:0 "Construct Naval Shipyard"
+ gedfrey_build_shipyard_minor_tooltip:0 "Fund a new naval shipyard in a coastal state. Construction will complete in 30 days.\n\nRequires a coastal state with free building slots."
+ gedfrey_build_shipyard_minor_complete:0 "Naval shipyard construction underway."
+ gedfrey_build_shipyard_medium:0 "Construct Naval Shipyard"
+ gedfrey_build_shipyard_medium_tooltip:0 "Fund a new naval shipyard in a coastal state. Construction will complete in 30 days.\n\nRequires a coastal state with free building slots."
+ gedfrey_build_shipyard_medium_complete:0 "Naval shipyard construction underway."
+ gedfrey_build_shipyard_major:0 "Construct Naval Shipyard"
+ gedfrey_build_shipyard_major_tooltip:0 "Fund a new naval shipyard in a coastal state. Construction will complete in 30 days.\n\nRequires a coastal state with free building slots."
+ gedfrey_build_shipyard_major_complete:0 "Naval shipyard construction underway."
+
+ # ============================================================
+ # PHASE 2 — ECONOMIC DECISIONS
+ # ============================================================
+
+ # --- Decision 4: Asentamiento Regional (base) ---
+ gedfrey_settlement_minor:0 "Regional Settlement"
+ gedfrey_settlement_minor_tooltip:0 "Redirect political resources to underpopulated regions. Two random states will receive an influx of 50,000 settlers.\n\nUpgraded version available once the leader holds Political Consolidation II."
+ gedfrey_settlement_medium:0 "Regional Settlement"
+ gedfrey_settlement_medium_tooltip:0 "Redirect political resources to underpopulated regions. Two random states will receive an influx of 50,000 settlers.\n\nUpgraded version available once the leader holds Political Consolidation II."
+ gedfrey_settlement_major:0 "Regional Settlement"
+ gedfrey_settlement_major_tooltip:0 "Redirect political resources to underpopulated regions. Two random states will receive an influx of 50,000 settlers.\n\nUpgraded version available once the leader holds Political Consolidation II."
+
+ # --- Decision 4: Asentamiento Regional (mejorado) ---
+ gedfrey_settlement_improved_minor:0 "Regional Settlement (Enhanced)"
+ gedfrey_settlement_improved_minor_tooltip:0 "The leader's political authority accelerates and expands the settlement programme. Two random states will receive 75,000 settlers in just 15 days.\n\nRequires Political Consolidation II or III."
+ gedfrey_settlement_improved_medium:0 "Regional Settlement (Enhanced)"
+ gedfrey_settlement_improved_medium_tooltip:0 "The leader's political authority accelerates and expands the settlement programme. Two random states will receive 75,000 settlers in just 15 days.\n\nRequires Political Consolidation II or III."
+ gedfrey_settlement_improved_major:0 "Regional Settlement (Enhanced)"
+ gedfrey_settlement_improved_major_tooltip:0 "The leader's political authority accelerates and expands the settlement programme. Two random states will receive 75,000 settlers in just 15 days.\n\nRequires Political Consolidation II or III."
+
+ # --- Decision 5: Inversión Extranjera ---
+ gedfrey_foreign_investment_minor:0 "Foreign Investment"
+ gedfrey_foreign_investment_minor_tooltip:0 "Channel capital abroad to fund industrial development in a foreign state. 75% chance of success — a random building will be constructed. 25% chance the investment yields no return."
+ gedfrey_foreign_investment_medium:0 "Foreign Investment"
+ gedfrey_foreign_investment_medium_tooltip:0 "Channel capital abroad to fund industrial development in a foreign state. 75% chance of success — a random building will be constructed. 25% chance the investment yields no return."
+ gedfrey_foreign_investment_major:0 "Foreign Investment"
+ gedfrey_foreign_investment_major_tooltip:0 "Channel capital abroad to fund industrial development in a foreign state. 75% chance of success — a random building will be constructed. 25% chance the investment yields no return."
+
+ # --- Decisions 6-8: Reubicación ---
+ gedfrey_relocate_civ_minor:0 "Relocate Civilian Factory"
+ gedfrey_relocate_civ_minor_tooltip:0 "Transfer an existing civilian factory to a foreign state with available building capacity. Requires at least one civilian factory in a controlled state."
+ gedfrey_relocate_civ_medium:0 "Relocate Civilian Factory"
+ gedfrey_relocate_civ_medium_tooltip:0 "Transfer an existing civilian factory to a foreign state with available building capacity. Requires at least one civilian factory in a controlled state."
+ gedfrey_relocate_civ_major:0 "Relocate Civilian Factory"
+ gedfrey_relocate_civ_major_tooltip:0 "Transfer an existing civilian factory to a foreign state with available building capacity. Requires at least one civilian factory in a controlled state."
+
+ gedfrey_relocate_mil_minor:0 "Relocate Military Factory"
+ gedfrey_relocate_mil_minor_tooltip:0 "Transfer an existing military factory to a foreign state with available building capacity. Requires at least one military factory in a controlled state."
+ gedfrey_relocate_mil_medium:0 "Relocate Military Factory"
+ gedfrey_relocate_mil_medium_tooltip:0 "Transfer an existing military factory to a foreign state with available building capacity. Requires at least one military factory in a controlled state."
+ gedfrey_relocate_mil_major:0 "Relocate Military Factory"
+ gedfrey_relocate_mil_major_tooltip:0 "Transfer an existing military factory to a foreign state with available building capacity. Requires at least one military factory in a controlled state."
+
+ gedfrey_relocate_shipyard_minor:0 "Relocate Naval Shipyard"
+ gedfrey_relocate_shipyard_minor_tooltip:0 "Transfer an existing dockyard to a foreign coastal state with available building capacity. Requires at least one dockyard in a controlled state."
+ gedfrey_relocate_shipyard_medium:0 "Relocate Naval Shipyard"
+ gedfrey_relocate_shipyard_medium_tooltip:0 "Transfer an existing dockyard to a foreign coastal state with available building capacity. Requires at least one dockyard in a controlled state."
+ gedfrey_relocate_shipyard_major:0 "Relocate Naval Shipyard"
+ gedfrey_relocate_shipyard_major_tooltip:0 "Transfer an existing dockyard to a foreign coastal state with available building capacity. Requires at least one dockyard in a controlled state."
+
+ # ============================================================
+ # PHASE 2 — NATIONAL IDEAS (Buffs A–D)
+ # ============================================================
+
+ # --- Buff A: Eficiencia Civil ---
+ gedfrey_consumer_efficiency_1:0 "Civil Efficiency I"
+ gedfrey_consumer_efficiency_1_desc:0 "Streamlined production protocols reduce the share of output diverted to consumer goods."
+ gedfrey_consumer_efficiency_2:0 "Civil Efficiency II"
+ gedfrey_consumer_efficiency_2_desc:0 "Deeper reforms further reduce consumer goods overhead, freeing more capacity for war production."
+ gedfrey_consumer_efficiency_3:0 "Civil Efficiency III"
+ gedfrey_consumer_efficiency_3_desc:0 "Near-optimal allocation of civilian output. The economy runs lean with minimal waste."
+
+ gedfrey_buff_efficiency_1_minor:0 "Civil Efficiency I"
+ gedfrey_buff_efficiency_1_minor_tooltip:0 "Invest in streamlining civilian production to reduce consumer goods overhead.\n\nRequires sufficient combined factory capacity."
+ gedfrey_buff_efficiency_1_medium:0 "Civil Efficiency I"
+ gedfrey_buff_efficiency_1_medium_tooltip:0 "Invest in streamlining civilian production to reduce consumer goods overhead.\n\nRequires sufficient combined factory capacity."
+ gedfrey_buff_efficiency_1_major:0 "Civil Efficiency I"
+ gedfrey_buff_efficiency_1_major_tooltip:0 "Invest in streamlining civilian production to reduce consumer goods overhead.\n\nRequires sufficient combined factory capacity."
+ gedfrey_buff_efficiency_2_minor:0 "Civil Efficiency II"
+ gedfrey_buff_efficiency_2_minor_tooltip:0 "Deepen efficiency reforms.\n\nRequires [gedfrey_consumer_efficiency_1] and greater industrial capacity."
+ gedfrey_buff_efficiency_2_medium:0 "Civil Efficiency II"
+ gedfrey_buff_efficiency_2_medium_tooltip:0 "Deepen efficiency reforms.\n\nRequires [gedfrey_consumer_efficiency_1] and greater industrial capacity."
+ gedfrey_buff_efficiency_2_major:0 "Civil Efficiency II"
+ gedfrey_buff_efficiency_2_major_tooltip:0 "Deepen efficiency reforms.\n\nRequires [gedfrey_consumer_efficiency_1] and greater industrial capacity."
+ gedfrey_buff_efficiency_3_minor:0 "Civil Efficiency III"
+ gedfrey_buff_efficiency_3_minor_tooltip:0 "Achieve near-optimal civilian output allocation.\n\nRequires [gedfrey_consumer_efficiency_2] and vast industrial capacity."
+ gedfrey_buff_efficiency_3_medium:0 "Civil Efficiency III"
+ gedfrey_buff_efficiency_3_medium_tooltip:0 "Achieve near-optimal civilian output allocation.\n\nRequires [gedfrey_consumer_efficiency_2] and vast industrial capacity."
+ gedfrey_buff_efficiency_3_major:0 "Civil Efficiency III"
+ gedfrey_buff_efficiency_3_major_tooltip:0 "Achieve near-optimal civilian output allocation.\n\nRequires [gedfrey_consumer_efficiency_2] and vast industrial capacity."
+
+ # --- Buff B: Potencia Constructora ---
+ gedfrey_construction_power_1:0 "Construction Power I"
+ gedfrey_construction_power_1_desc:0 "Improved engineering organisation accelerates all construction projects."
+ gedfrey_construction_power_2:0 "Construction Power II"
+ gedfrey_construction_power_2_desc:0 "Advanced construction techniques halve project delays across the board."
+ gedfrey_construction_power_3:0 "Construction Power III"
+ gedfrey_construction_power_3_desc:0 "The nation's construction industry operates at peak capability."
+
+ gedfrey_buff_construction_1_minor:0 "Construction Power I"
+ gedfrey_buff_construction_1_minor_tooltip:0 "Invest in engineering reform to accelerate construction nationwide.\n\nRequires sufficient civilian factory capacity."
+ gedfrey_buff_construction_1_medium:0 "Construction Power I"
+ gedfrey_buff_construction_1_medium_tooltip:0 "Invest in engineering reform to accelerate construction nationwide.\n\nRequires sufficient civilian factory capacity."
+ gedfrey_buff_construction_1_major:0 "Construction Power I"
+ gedfrey_buff_construction_1_major_tooltip:0 "Invest in engineering reform to accelerate construction nationwide.\n\nRequires sufficient civilian factory capacity."
+ gedfrey_buff_construction_2_minor:0 "Construction Power II"
+ gedfrey_buff_construction_2_minor_tooltip:0 "Advanced construction reforms.\n\nRequires [gedfrey_construction_power_1] and a larger civilian base."
+ gedfrey_buff_construction_2_medium:0 "Construction Power II"
+ gedfrey_buff_construction_2_medium_tooltip:0 "Advanced construction reforms.\n\nRequires [gedfrey_construction_power_1] and a larger civilian base."
+ gedfrey_buff_construction_2_major:0 "Construction Power II"
+ gedfrey_buff_construction_2_major_tooltip:0 "Advanced construction reforms.\n\nRequires [gedfrey_construction_power_1] and a larger civilian base."
+ gedfrey_buff_construction_3_minor:0 "Construction Power III"
+ gedfrey_buff_construction_3_minor_tooltip:0 "Peak construction capability.\n\nRequires [gedfrey_construction_power_2] and an extensive civilian base."
+ gedfrey_buff_construction_3_medium:0 "Construction Power III"
+ gedfrey_buff_construction_3_medium_tooltip:0 "Peak construction capability.\n\nRequires [gedfrey_construction_power_2] and an extensive civilian base."
+ gedfrey_buff_construction_3_major:0 "Construction Power III"
+ gedfrey_buff_construction_3_major_tooltip:0 "Peak construction capability.\n\nRequires [gedfrey_construction_power_2] and an extensive civilian base."
+
+ # --- Buff C: Supremacía Naval Económica ---
+ gedfrey_naval_economy_1:0 "Naval Economic Supremacy I"
+ gedfrey_naval_economy_1_desc:0 "An expanded shipbuilding programme improves dockyard output and accelerates repairs."
+ gedfrey_naval_economy_2:0 "Naval Economic Supremacy II"
+ gedfrey_naval_economy_2_desc:0 "Consolidated naval industry dominates the seas in both production and maintenance."
+ gedfrey_naval_economy_3:0 "Naval Economic Supremacy III"
+ gedfrey_naval_economy_3_desc:0 "Unmatched naval industrial capacity. Ships are built faster and repaired before the enemy can press the advantage."
+
+ gedfrey_buff_naval_economy_1_minor:0 "Naval Economic Supremacy I"
+ gedfrey_buff_naval_economy_1_minor_tooltip:0 "Expand the nation's shipbuilding capacity.\n\nRequires sufficient dockyards."
+ gedfrey_buff_naval_economy_1_medium:0 "Naval Economic Supremacy I"
+ gedfrey_buff_naval_economy_1_medium_tooltip:0 "Expand the nation's shipbuilding capacity.\n\nRequires sufficient dockyards."
+ gedfrey_buff_naval_economy_1_major:0 "Naval Economic Supremacy I"
+ gedfrey_buff_naval_economy_1_major_tooltip:0 "Expand the nation's shipbuilding capacity.\n\nRequires sufficient dockyards."
+ gedfrey_buff_naval_economy_2_minor:0 "Naval Economic Supremacy II"
+ gedfrey_buff_naval_economy_2_minor_tooltip:0 "Consolidate naval industrial dominance.\n\nRequires [gedfrey_naval_economy_1] and more dockyards."
+ gedfrey_buff_naval_economy_2_medium:0 "Naval Economic Supremacy II"
+ gedfrey_buff_naval_economy_2_medium_tooltip:0 "Consolidate naval industrial dominance.\n\nRequires [gedfrey_naval_economy_1] and more dockyards."
+ gedfrey_buff_naval_economy_2_major:0 "Naval Economic Supremacy II"
+ gedfrey_buff_naval_economy_2_major_tooltip:0 "Consolidate naval industrial dominance.\n\nRequires [gedfrey_naval_economy_1] and more dockyards."
+ gedfrey_buff_naval_economy_3_minor:0 "Naval Economic Supremacy III"
+ gedfrey_buff_naval_economy_3_minor_tooltip:0 "Achieve unmatched naval production capability.\n\nRequires [gedfrey_naval_economy_2] and an extensive dockyard network."
+ gedfrey_buff_naval_economy_3_medium:0 "Naval Economic Supremacy III"
+ gedfrey_buff_naval_economy_3_medium_tooltip:0 "Achieve unmatched naval production capability.\n\nRequires [gedfrey_naval_economy_2] and an extensive dockyard network."
+ gedfrey_buff_naval_economy_3_major:0 "Naval Economic Supremacy III"
+ gedfrey_buff_naval_economy_3_major_tooltip:0 "Achieve unmatched naval production capability.\n\nRequires [gedfrey_naval_economy_2] and an extensive dockyard network."
+
+ # --- Buff D: Crecimiento Nacional ---
+ gedfrey_national_growth_1:0 "National Growth I"
+ gedfrey_national_growth_1_desc:0 "Sustained settlement programmes begin bearing fruit — population grows and conscription pools deepen."
+ gedfrey_national_growth_2:0 "National Growth II"
+ gedfrey_national_growth_2_desc:0 "Expanding settlements establish permanent communities across the nation."
+ gedfrey_national_growth_3:0 "National Growth III"
+ gedfrey_national_growth_3_desc:0 "A generation of settlers has taken root. Population growth is self-sustaining."
+ gedfrey_national_growth_4:0 "National Growth IV"
+ gedfrey_national_growth_4_desc:0 "The nation's demographics have shifted. Manpower reserves are vast."
+ gedfrey_national_growth_5:0 "National Growth V"
+ gedfrey_national_growth_5_desc:0 "The settlement programme has transformed the nation into a demographic powerhouse."
+
+ gedfrey_buff_growth_1_minor:0 "National Growth I"
+ gedfrey_buff_growth_1_minor_tooltip:0 "The settlement programme has begun to yield results. Unlock the first tier of population growth.\n\nRequires 10 completed settlement actions."
+ gedfrey_buff_growth_1_medium:0 "National Growth I"
+ gedfrey_buff_growth_1_medium_tooltip:0 "The settlement programme has begun to yield results.\n\nRequires 10 completed settlement actions."
+ gedfrey_buff_growth_1_major:0 "National Growth I"
+ gedfrey_buff_growth_1_major_tooltip:0 "The settlement programme has begun to yield results.\n\nRequires 10 completed settlement actions."
+ gedfrey_buff_growth_2_minor:0 "National Growth II"
+ gedfrey_buff_growth_2_minor_tooltip:0 "Expanding communities strengthen the national population base.\n\nRequires [gedfrey_national_growth_1] and 20 settlement actions."
+ gedfrey_buff_growth_2_medium:0 "National Growth II"
+ gedfrey_buff_growth_2_medium_tooltip:0 "Expanding communities strengthen the national population base.\n\nRequires [gedfrey_national_growth_1] and 20 settlement actions."
+ gedfrey_buff_growth_2_major:0 "National Growth II"
+ gedfrey_buff_growth_2_major_tooltip:0 "Expanding communities strengthen the national population base.\n\nRequires [gedfrey_national_growth_1] and 20 settlement actions."
+ gedfrey_buff_growth_3_minor:0 "National Growth III"
+ gedfrey_buff_growth_3_minor_tooltip:0 "A generation of settlers entrenches the demographic shift.\n\nRequires [gedfrey_national_growth_2] and 30 settlement actions."
+ gedfrey_buff_growth_3_medium:0 "National Growth III"
+ gedfrey_buff_growth_3_medium_tooltip:0 "A generation of settlers entrenches the demographic shift.\n\nRequires [gedfrey_national_growth_2] and 30 settlement actions."
+ gedfrey_buff_growth_3_major:0 "National Growth III"
+ gedfrey_buff_growth_3_major_tooltip:0 "A generation of settlers entrenches the demographic shift.\n\nRequires [gedfrey_national_growth_2] and 30 settlement actions."
+ gedfrey_buff_growth_4_minor:0 "National Growth IV"
+ gedfrey_buff_growth_4_minor_tooltip:0 "Demographics have shifted nationally. Manpower reserves are vast.\n\nRequires [gedfrey_national_growth_3] and 40 settlement actions."
+ gedfrey_buff_growth_4_medium:0 "National Growth IV"
+ gedfrey_buff_growth_4_medium_tooltip:0 "Demographics have shifted nationally.\n\nRequires [gedfrey_national_growth_3] and 40 settlement actions."
+ gedfrey_buff_growth_4_major:0 "National Growth IV"
+ gedfrey_buff_growth_4_major_tooltip:0 "Demographics have shifted nationally.\n\nRequires [gedfrey_national_growth_3] and 40 settlement actions."
+ gedfrey_buff_growth_5_minor:0 "National Growth V"
+ gedfrey_buff_growth_5_minor_tooltip:0 "The nation has become a demographic powerhouse.\n\nRequires [gedfrey_national_growth_4] and 50 settlement actions."
+ gedfrey_buff_growth_5_medium:0 "National Growth V"
+ gedfrey_buff_growth_5_medium_tooltip:0 "The nation has become a demographic powerhouse.\n\nRequires [gedfrey_national_growth_4] and 50 settlement actions."
+ gedfrey_buff_growth_5_major:0 "National Growth V"
+ gedfrey_buff_growth_5_major_tooltip:0 "The nation has become a demographic powerhouse.\n\nRequires [gedfrey_national_growth_4] and 50 settlement actions."
+
+ # ============================================================
+ # PHASE 2 — EVENTS
+ # ============================================================
+
+ gedfrey_economic.1.t:0 "Investment Failure"
+ gedfrey_economic.1.d:0 "Our foreign investment has yielded nothing. The funds were mismanaged, lost to political instability in the target region, or simply failed to attract viable partners. The capital is gone."
+ gedfrey_economic.1.a:0 "A costly lesson."
+
+ # ============================================================
+ # PHASE 3 — Leader Event Decisions (A, B, C)
+ # ============================================================
+
+ gedfrey_leader_event_a_minor:0 "National Focus Initiative"
+ gedfrey_leader_event_a_minor_tooltip:0 "The leader's growing expertise unlocks a nationwide initiative to accelerate our national goals. Requires Industry II, Politics II, and Warfare II."
+ gedfrey_leader_event_a_medium:0 "National Focus Initiative"
+ gedfrey_leader_event_a_medium_tooltip:0 "The leader's growing expertise unlocks a nationwide initiative to accelerate our national goals. Requires Industry II, Politics II, and Warfare II."
+ gedfrey_leader_event_a_major:0 "National Focus Initiative"
+ gedfrey_leader_event_a_major_tooltip:0 "The leader's growing expertise unlocks a nationwide initiative to accelerate our national goals. Requires Industry II, Politics II, and Warfare II."
+
+ gedfrey_leader_event_b_minor:0 "Scientific Patronage"
+ gedfrey_leader_event_b_minor_tooltip:0 "The leader's authority opens a new avenue of state-sponsored research. Requires Industry II, Politics II, and Warfare II."
+ gedfrey_leader_event_b_medium:0 "Scientific Patronage"
+ gedfrey_leader_event_b_medium_tooltip:0 "The leader's authority opens a new avenue of state-sponsored research. Requires Industry II, Politics II, and Warfare II."
+ gedfrey_leader_event_b_major:0 "Scientific Patronage"
+ gedfrey_leader_event_b_major_tooltip:0 "The leader's authority opens a new avenue of state-sponsored research. Requires Industry II, Politics II, and Warfare II."
+
+ gedfrey_leader_event_c_minor:0 "Technological Mastery"
+ gedfrey_leader_event_c_minor_tooltip:0 "The leader's mastery across all domains enables a national leap in research capability. Requires Industry III, Politics III, and Warfare III."
+ gedfrey_leader_event_c_medium:0 "Technological Mastery"
+ gedfrey_leader_event_c_medium_tooltip:0 "The leader's mastery across all domains enables a national leap in research capability. Requires Industry III, Politics III, and Warfare III."
+ gedfrey_leader_event_c_major:0 "Technological Mastery"
+ gedfrey_leader_event_c_major_tooltip:0 "The leader's mastery across all domains enables a national leap in research capability. Requires Industry III, Politics III, and Warfare III."
+
+# ============================================================
+ # PHASE 3 — Factory Conversion Decisions (9-11)
+ # ============================================================
+
+ gedfrey_civil_conversion_minor:0 "Civilianize Production (PP Drive)"
+ gedfrey_civil_conversion_minor_tooltip:0 "Convert one civilian factory into political capital for 90 days. An offsite industrial complex is returned at the end."
+ gedfrey_civil_conversion_medium:0 "Civilianize Production (PP Drive)"
+ gedfrey_civil_conversion_medium_tooltip:0 "Convert one civilian factory into political capital for 90 days. An offsite industrial complex is returned at the end."
+ gedfrey_civil_conversion_major:0 "Civilianize Production (PP Drive)"
+ gedfrey_civil_conversion_major_tooltip:0 "Convert one civilian factory into political capital for 90 days. An offsite industrial complex is returned at the end."
+
+ gedfrey_military_conversion_minor:0 "Demilitarize Production (PP Drive)"
+ gedfrey_military_conversion_minor_tooltip:0 "Convert one arms factory into political capital for 90 days. An offsite arms factory is returned at the end."
+ gedfrey_military_conversion_medium:0 "Demilitarize Production (PP Drive)"
+ gedfrey_military_conversion_medium_tooltip:0 "Convert one arms factory into political capital for 90 days. An offsite arms factory is returned at the end."
+ gedfrey_military_conversion_major:0 "Demilitarize Production (PP Drive)"
+ gedfrey_military_conversion_major_tooltip:0 "Convert one arms factory into political capital for 90 days. An offsite arms factory is returned at the end."
+
+ gedfrey_dockyard_conversion_minor:0 "Repurpose Naval Yards (PP Drive)"
+ gedfrey_dockyard_conversion_minor_tooltip:0 "Convert one dockyard into political capital for 90 days. An offsite dockyard is returned at the end."
+ gedfrey_dockyard_conversion_medium:0 "Repurpose Naval Yards (PP Drive)"
+ gedfrey_dockyard_conversion_medium_tooltip:0 "Convert one dockyard into political capital for 90 days. An offsite dockyard is returned at the end."
+ gedfrey_dockyard_conversion_major:0 "Repurpose Naval Yards (PP Drive)"
+ gedfrey_dockyard_conversion_major_tooltip:0 "Convert one dockyard into political capital for 90 days. An offsite dockyard is returned at the end."
+
+ # ============================================================
+ # PHASE 3 — Bonus Naciones Subdesarrolladas
+ # ============================================================
+
+ gedfrey_underdeveloped_bonus_minor:0 "Development Surge"
+ gedfrey_underdeveloped_bonus_minor_tooltip:0 "A unique opportunity for underdeveloped nations to accelerate growth across all sectors for two years. Available until 1939."
+ gedfrey_underdeveloped_bonus_medium:0 "Development Acceleration"
+ gedfrey_underdeveloped_bonus_medium_tooltip:0 "A one-year boost to accelerate national development across all sectors. Available until 1939."
+
+ # ============================================================
+ # PHASE 3 — Ideas (permanent)
+ # ============================================================
+
+ gedfrey_focus_speed:0 "National Focus Initiative"
+ gedfrey_focus_speed_desc:0 "State resources are aligned behind national objectives, allowing the country to pursue its goals with greater urgency."
+
+ gedfrey_research_slot:0 "Scientific Patronage"
+ gedfrey_research_slot_desc:0 "Royal patronage has permanently opened a new research institute (+1 slot) and accelerates ongoing research efforts."
+
+ gedfrey_research_speed:0 "Technological Mastery"
+ gedfrey_research_speed_desc:0 "Years of investment in science and industry have unlocked a systemic advantage in research across all fields."
+
+ gedfrey_civil_conversion:0 "Industrial Reorientation (Civilian)"
+ gedfrey_civil_conversion_desc:0 "Civilian factories are temporarily redirected toward political and administrative tasks, generating political capital at the cost of industrial output."
+
+ gedfrey_military_conversion:0 "Industrial Reorientation (Military)"
+ gedfrey_military_conversion_desc:0 "Arms factories are temporarily redirected toward political work, generating political capital at the cost of military production."
+
+ gedfrey_dockyard_conversion:0 "Industrial Reorientation (Naval)"
+ gedfrey_dockyard_conversion_desc:0 "Naval yards are temporarily repurposed for administrative tasks, generating political capital at the cost of naval production."
+
+ gedfrey_underdeveloped_nation:0 "Development Surge"
+ gedfrey_underdeveloped_nation_desc:0 "A nationwide programme of accelerated modernization drives rapid gains across political, scientific, and industrial sectors."
+
+ gedfrey_developing_nation:0 "Development Acceleration"
+ gedfrey_developing_nation_desc:0 "A concerted push to modernize brings measurable gains across politics, research, industry, and public administration."
+
+ # ============================================================
+ # PHASE 4 — Exploración de Recursos / Resource Exploration
+ # ============================================================
+
+ # Decisions
+ gedfrey_exploration_decisions:0 "Resource Exploration"
+
+ gedfrey_start_exploration_minor:0 "Begin Resource Survey"
+ gedfrey_start_exploration_minor_tooltip:0 "Dispatch geological survey teams across the territory. Results arrive every 60 days at an ongoing cost of political capital."
+ gedfrey_start_exploration_medium:0 "Begin Resource Survey"
+ gedfrey_start_exploration_medium_tooltip:0 "Dispatch geological survey teams across the territory. Results arrive every 60 days at an ongoing cost of political capital."
+ gedfrey_start_exploration_major:0 "Begin Resource Survey"
+ gedfrey_start_exploration_major_tooltip:0 "Dispatch geological survey teams across the territory. Results arrive every 60 days at an ongoing cost of political capital."
+
+ gedfrey_stop_exploration:0 "Halt Resource Survey"
+ gedfrey_stop_exploration_tooltip:0 "Recall the survey teams. No further resources will be found and no further political capital will be spent."
+
+ # Events
+ gedfrey_exploration.0.a:0 "Noted."
+
+ gedfrey_exploration.1.t:0 "Aluminium Deposits Located"
+ gedfrey_exploration.1.d:0 "Our survey teams have identified significant aluminium deposits within our territory. Extraction operations can begin immediately."
+ gedfrey_exploration.1.a:0 "Excellent news."
+
+ gedfrey_exploration.2.t:0 "Steel Ore Seams Discovered"
+ gedfrey_exploration.2.d:0 "Geological surveys have uncovered new iron-bearing seams suitable for steel production. Our industrial capacity can now be expanded."
+ gedfrey_exploration.2.a:0 "Put it to use."
+
+ gedfrey_exploration.3.t:0 "Tungsten Deposits Found"
+ gedfrey_exploration.3.d:0 "Survey teams have located tungsten deposits in our territory. This rare and strategically vital metal will strengthen our war industries."
+ gedfrey_exploration.3.a:0 "A valuable find."
+
+ gedfrey_exploration.4.t:0 "Chromium Seam Identified"
+ gedfrey_exploration.4.d:0 "Geological surveys have revealed chromium deposits in our territory. This will significantly enhance our armour and tool steel production."
+ gedfrey_exploration.4.a:0 "Begin extraction."
+
+ gedfrey_exploration.cancel.t:0 "Survey Operations Suspended"
+ gedfrey_exploration.cancel.d:0 "Our geological survey programme has been suspended. The ongoing political costs have strained the government's resources beyond what can be sustained. A significant penalty has been applied."
+ gedfrey_exploration.cancel.a:0 "A costly miscalculation."
+
+ # ============================================================
+ # PHASE 5 — NATIONAL IDEAS (Naval Combat Supremacy, Air Supremacy, War Veterancy)
+ # ============================================================
+
+ # --- Naval Combat Supremacy ---
+ gedfrey_naval_supremacy_1:0 "Naval Combat Supremacy I"
+ gedfrey_naval_supremacy_1_desc:0 "Hard-won naval experience has sharpened the fleet's combat doctrine, improving both offensive punch and defensive resilience."
+ gedfrey_naval_supremacy_2:0 "Naval Combat Supremacy II"
+ gedfrey_naval_supremacy_2_desc:0 "Sustained naval campaigns have forged a fleet of hardened veterans. The navy strikes harder and holds firm under fire."
+ gedfrey_naval_supremacy_3:0 "Naval Combat Supremacy III"
+ gedfrey_naval_supremacy_3_desc:0 "The nation's navy stands supreme. Years of victory at sea have elevated its doctrine, endurance, and reach far beyond any rival."
+
+ # --- Air Supremacy ---
+ gedfrey_air_supremacy_1:0 "Air Supremacy I"
+ gedfrey_air_supremacy_1_desc:0 "Our pilots have proven themselves in battle, honing combat instincts that give the air force a tactical edge."
+ gedfrey_air_supremacy_2:0 "Air Supremacy II"
+ gedfrey_air_supremacy_2_desc:0 "Accumulated aerial victories have built a corps of elite pilots whose skill dominates the skies."
+ gedfrey_air_supremacy_3:0 "Air Supremacy III"
+ gedfrey_air_supremacy_3_desc:0 "Total aerial mastery. Our air force controls the sky with unmatched precision, reach, and lethality."
+
+ # --- War Veterancy ---
+ gedfrey_war_veterancy_1:0 "War Veterancy I"
+ gedfrey_war_veterancy_1_desc:0 "Seasons of combat have forged a more resilient and aggressive fighting force."
+ gedfrey_war_veterancy_2:0 "War Veterancy II"
+ gedfrey_war_veterancy_2_desc:0 "Battle-tested soldiers fight with greater endurance and hit harder than green troops ever could."
+ gedfrey_war_veterancy_3:0 "War Veterancy III"
+ gedfrey_war_veterancy_3_desc:0 "The army has been transformed by total war. Veterans of countless engagements fight with fearsome efficiency."
+
+ # ============================================================
+ # PHASE 5 — DECISIONS: Naval Combat Supremacy
+ # ============================================================
+
+ gedfrey_naval_supremacy_1_minor:0 "Naval Combat Supremacy I"
+ gedfrey_naval_supremacy_1_minor_tooltip:0 "Formalise the combat lessons learned at sea into revised naval doctrine.\n\nRequires 10 naval victories."
+ gedfrey_naval_supremacy_1_medium:0 "Naval Combat Supremacy I"
+ gedfrey_naval_supremacy_1_medium_tooltip:0 "Formalise the combat lessons learned at sea into revised naval doctrine.\n\nRequires 20 naval victories."
+ gedfrey_naval_supremacy_1_major:0 "Naval Combat Supremacy I"
+ gedfrey_naval_supremacy_1_major_tooltip:0 "Formalise the combat lessons learned at sea into revised naval doctrine.\n\nRequires 35 naval victories."
+ gedfrey_naval_supremacy_1_naval:0 "Naval Combat Supremacy I"
+ gedfrey_naval_supremacy_1_naval_tooltip:0 "As a leading naval power, demonstrating combat supremacy requires a larger body of proven victories.\n\nRequires 70 naval victories."
+
+ gedfrey_naval_supremacy_2_minor:0 "Naval Combat Supremacy II"
+ gedfrey_naval_supremacy_2_minor_tooltip:0 "Deepen naval doctrine reforms based on continued fleet combat experience.\n\nRequires [gedfrey_naval_supremacy_1] and 25 naval victories."
+ gedfrey_naval_supremacy_2_medium:0 "Naval Combat Supremacy II"
+ gedfrey_naval_supremacy_2_medium_tooltip:0 "Deepen naval doctrine reforms based on continued fleet combat experience.\n\nRequires [gedfrey_naval_supremacy_1] and 40 naval victories."
+ gedfrey_naval_supremacy_2_major:0 "Naval Combat Supremacy II"
+ gedfrey_naval_supremacy_2_major_tooltip:0 "Deepen naval doctrine reforms based on continued fleet combat experience.\n\nRequires [gedfrey_naval_supremacy_1] and 60 naval victories."
+ gedfrey_naval_supremacy_2_naval:0 "Naval Combat Supremacy II"
+ gedfrey_naval_supremacy_2_naval_tooltip:0 "Deepen naval doctrine reforms.\n\nRequires [gedfrey_naval_supremacy_1] and 120 naval victories."
+
+ gedfrey_naval_supremacy_3_minor:0 "Naval Combat Supremacy III"
+ gedfrey_naval_supremacy_3_minor_tooltip:0 "Achieve total naval doctrinal mastery.\n\nRequires [gedfrey_naval_supremacy_2] and 50 naval victories."
+ gedfrey_naval_supremacy_3_medium:0 "Naval Combat Supremacy III"
+ gedfrey_naval_supremacy_3_medium_tooltip:0 "Achieve total naval doctrinal mastery.\n\nRequires [gedfrey_naval_supremacy_2] and 75 naval victories."
+ gedfrey_naval_supremacy_3_major:0 "Naval Combat Supremacy III"
+ gedfrey_naval_supremacy_3_major_tooltip:0 "Achieve total naval doctrinal mastery.\n\nRequires [gedfrey_naval_supremacy_2] and 110 naval victories."
+ gedfrey_naval_supremacy_3_naval:0 "Naval Combat Supremacy III"
+ gedfrey_naval_supremacy_3_naval_tooltip:0 "Achieve total naval doctrinal mastery.\n\nRequires [gedfrey_naval_supremacy_2] and 220 naval victories."
+
+ # ============================================================
+ # PHASE 5 — DECISIONS: Air Supremacy
+ # ============================================================
+
+ gedfrey_air_supremacy_1_minor:0 "Air Supremacy I"
+ gedfrey_air_supremacy_1_minor_tooltip:0 "Codify the aerial combat lessons of our pilots into formal doctrine.\n\nRequires 500 enemy aircraft destroyed."
+ gedfrey_air_supremacy_1_medium:0 "Air Supremacy I"
+ gedfrey_air_supremacy_1_medium_tooltip:0 "Codify the aerial combat lessons of our pilots into formal doctrine.\n\nRequires 1,000 enemy aircraft destroyed."
+ gedfrey_air_supremacy_1_major:0 "Air Supremacy I"
+ gedfrey_air_supremacy_1_major_tooltip:0 "Codify the aerial combat lessons of our pilots into formal doctrine.\n\nRequires 750 enemy aircraft destroyed."
+
+ gedfrey_air_supremacy_2_minor:0 "Air Supremacy II"
+ gedfrey_air_supremacy_2_minor_tooltip:0 "Advance aerial doctrine based on accumulated air combat victory.\n\nRequires [gedfrey_air_supremacy_1] and 1,500 enemy aircraft destroyed."
+ gedfrey_air_supremacy_2_medium:0 "Air Supremacy II"
+ gedfrey_air_supremacy_2_medium_tooltip:0 "Advance aerial doctrine based on accumulated air combat victory.\n\nRequires [gedfrey_air_supremacy_1] and 2,500 enemy aircraft destroyed."
+ gedfrey_air_supremacy_2_major:0 "Air Supremacy II"
+ gedfrey_air_supremacy_2_major_tooltip:0 "Advance aerial doctrine based on accumulated air combat victory.\n\nRequires [gedfrey_air_supremacy_1] and 1,875 enemy aircraft destroyed."
+
+ gedfrey_air_supremacy_3_minor:0 "Air Supremacy III"
+ gedfrey_air_supremacy_3_minor_tooltip:0 "Achieve complete air supremacy doctrine.\n\nRequires [gedfrey_air_supremacy_2] and 3,000 enemy aircraft destroyed."
+ gedfrey_air_supremacy_3_medium:0 "Air Supremacy III"
+ gedfrey_air_supremacy_3_medium_tooltip:0 "Achieve complete air supremacy doctrine.\n\nRequires [gedfrey_air_supremacy_2] and 5,000 enemy aircraft destroyed."
+ gedfrey_air_supremacy_3_major:0 "Air Supremacy III"
+ gedfrey_air_supremacy_3_major_tooltip:0 "Achieve complete air supremacy doctrine.\n\nRequires [gedfrey_air_supremacy_2] and 3,750 enemy aircraft destroyed."
+
+ # ============================================================
+ # PHASE 5 — DECISIONS: War Veterancy
+ # ============================================================
+
+ gedfrey_war_veterancy_1_minor:0 "War Veterancy I"
+ gedfrey_war_veterancy_1_minor_tooltip:0 "The army's combat experience is now deep enough to codify into improved battlefield doctrine.\n\nRequires 100,000 casualties sustained."
+ gedfrey_war_veterancy_1_medium:0 "War Veterancy I"
+ gedfrey_war_veterancy_1_medium_tooltip:0 "The army's combat experience is now deep enough to codify into improved battlefield doctrine.\n\nRequires 250,000 casualties sustained."
+ gedfrey_war_veterancy_1_major:0 "War Veterancy I"
+ gedfrey_war_veterancy_1_major_tooltip:0 "The army's combat experience is now deep enough to codify into improved battlefield doctrine.\n\nRequires 187,000 casualties sustained."
+
+ gedfrey_war_veterancy_2_minor:0 "War Veterancy II"
+ gedfrey_war_veterancy_2_minor_tooltip:0 "Continued hard fighting has forged an even more seasoned force.\n\nRequires [gedfrey_war_veterancy_1] and 300,000 casualties sustained."
+ gedfrey_war_veterancy_2_medium:0 "War Veterancy II"
+ gedfrey_war_veterancy_2_medium_tooltip:0 "Continued hard fighting has forged an even more seasoned force.\n\nRequires [gedfrey_war_veterancy_1] and 600,000 casualties sustained."
+ gedfrey_war_veterancy_2_major:0 "War Veterancy II"
+ gedfrey_war_veterancy_2_major_tooltip:0 "Continued hard fighting has forged an even more seasoned force.\n\nRequires [gedfrey_war_veterancy_1] and 450,000 casualties sustained."
+
+ gedfrey_war_veterancy_3_minor:0 "War Veterancy III"
+ gedfrey_war_veterancy_3_minor_tooltip:0 "Total war has produced a force of unmatched battlefield experience.\n\nRequires [gedfrey_war_veterancy_2] and 700,000 casualties sustained."
+ gedfrey_war_veterancy_3_medium:0 "War Veterancy III"
+ gedfrey_war_veterancy_3_medium_tooltip:0 "Total war has produced a force of unmatched battlefield experience.\n\nRequires [gedfrey_war_veterancy_2] and 1,500,000 casualties sustained."
+ gedfrey_war_veterancy_3_major:0 "War Veterancy III"
+ gedfrey_war_veterancy_3_major_tooltip:0 "Total war has produced a force of unmatched battlefield experience.\n\nRequires [gedfrey_war_veterancy_2] and 1,100,000 casualties sustained."
+
+ # ============================================================
+ # BUFF D — National Growth (ideas N1–N10)
+ # ============================================================
+
+ gedfrey_national_growth_1:0 "National Growth I"
+ gedfrey_national_growth_1_desc:0 "Demographic investment is beginning to bear fruit. Population growth accelerates across all regions."
+ gedfrey_national_growth_2:0 "National Growth II"
+ gedfrey_national_growth_2_desc:0 "Sustained settlement programmes are producing visible demographic dividends."
+ gedfrey_national_growth_3:0 "National Growth III"
+ gedfrey_national_growth_3_desc:0 "The nation's population base is growing rapidly, providing a reliable stream of available manpower."
+ gedfrey_national_growth_4:0 "National Growth IV"
+ gedfrey_national_growth_4_desc:0 "Deep-rooted settlement networks sustain strong regional population growth."
+ gedfrey_national_growth_5:0 "National Growth V"
+ gedfrey_national_growth_5_desc:0 "Half a century of expansion policy has reshaped the national demographic landscape."
+ gedfrey_national_growth_6:0 "National Growth VI"
+ gedfrey_national_growth_6_desc:0 "Population growth in the regions is now self-sustaining, no longer dependent on active settlement drives."
+ gedfrey_national_growth_7:0 "National Growth VII"
+ gedfrey_national_growth_7_desc:0 "The nation's demographic momentum is extraordinary. Regions teem with productive citizens."
+ gedfrey_national_growth_8:0 "National Growth VIII"
+ gedfrey_national_growth_8_desc:0 "A true population powerhouse. Regional growth far exceeds any comparable nation."
+ gedfrey_national_growth_9:0 "National Growth IX"
+ gedfrey_national_growth_9_desc:0 "The nation's population expands at a pace that strains even the most optimistic projections."
+ gedfrey_national_growth_10:0 "National Growth X"
+ gedfrey_national_growth_10_desc:0 "Maximum demographic potential achieved. The nation's population growth is unmatched in the modern world."
+
+ # ============================================================
+ # BUFF D — National Growth decisions N6–N10
+ # ============================================================
+
+ gedfrey_buff_growth_6_minor:0 "National Growth VI"
+ gedfrey_buff_growth_6_minor_tooltip:0 "Deepen regional settlement programmes.\n\nRequires [gedfrey_national_growth_5] and 60 completed settlements."
+ gedfrey_buff_growth_6_medium:0 "National Growth VI"
+ gedfrey_buff_growth_6_medium_tooltip:0 "Deepen regional settlement programmes.\n\nRequires [gedfrey_national_growth_5] and 60 completed settlements."
+ gedfrey_buff_growth_6_major:0 "National Growth VI"
+ gedfrey_buff_growth_6_major_tooltip:0 "Deepen regional settlement programmes.\n\nRequires [gedfrey_national_growth_5] and 60 completed settlements."
+
+ gedfrey_buff_growth_7_minor:0 "National Growth VII"
+ gedfrey_buff_growth_7_minor_tooltip:0 "Expand and deepen population programmes nationwide.\n\nRequires [gedfrey_national_growth_6] and 70 completed settlements."
+ gedfrey_buff_growth_7_medium:0 "National Growth VII"
+ gedfrey_buff_growth_7_medium_tooltip:0 "Expand and deepen population programmes nationwide.\n\nRequires [gedfrey_national_growth_6] and 70 completed settlements."
+ gedfrey_buff_growth_7_major:0 "National Growth VII"
+ gedfrey_buff_growth_7_major_tooltip:0 "Expand and deepen population programmes nationwide.\n\nRequires [gedfrey_national_growth_6] and 70 completed settlements."
+
+ gedfrey_buff_growth_8_minor:0 "National Growth VIII"
+ gedfrey_buff_growth_8_minor_tooltip:0 "Establish the nation as a demographic powerhouse.\n\nRequires [gedfrey_national_growth_7] and 80 completed settlements."
+ gedfrey_buff_growth_8_medium:0 "National Growth VIII"
+ gedfrey_buff_growth_8_medium_tooltip:0 "Establish the nation as a demographic powerhouse.\n\nRequires [gedfrey_national_growth_7] and 80 completed settlements."
+ gedfrey_buff_growth_8_major:0 "National Growth VIII"
+ gedfrey_buff_growth_8_major_tooltip:0 "Establish the nation as a demographic powerhouse.\n\nRequires [gedfrey_national_growth_7] and 80 completed settlements."
+
+ gedfrey_buff_growth_9_minor:0 "National Growth IX"
+ gedfrey_buff_growth_9_minor_tooltip:0 "Push demographic growth to its limits.\n\nRequires [gedfrey_national_growth_8] and 90 completed settlements."
+ gedfrey_buff_growth_9_medium:0 "National Growth IX"
+ gedfrey_buff_growth_9_medium_tooltip:0 "Push demographic growth to its limits.\n\nRequires [gedfrey_national_growth_8] and 90 completed settlements."
+ gedfrey_buff_growth_9_major:0 "National Growth IX"
+ gedfrey_buff_growth_9_major_tooltip:0 "Push demographic growth to its limits.\n\nRequires [gedfrey_national_growth_8] and 90 completed settlements."
+
+ gedfrey_buff_growth_10_minor:0 "National Growth X"
+ gedfrey_buff_growth_10_minor_tooltip:0 "The pinnacle of national demographic achievement.\n\nRequires [gedfrey_national_growth_9] and 100 completed settlements."
+ gedfrey_buff_growth_10_medium:0 "National Growth X"
+ gedfrey_buff_growth_10_medium_tooltip:0 "The pinnacle of national demographic achievement.\n\nRequires [gedfrey_national_growth_9] and 100 completed settlements."
+ gedfrey_buff_growth_10_major:0 "National Growth X"
+ gedfrey_buff_growth_10_major_tooltip:0 "The pinnacle of national demographic achievement.\n\nRequires [gedfrey_national_growth_9] and 100 completed settlements."
+
+ # Settlement Improved (now scales with National Growth)
+ gedfrey_settlement_improved_minor:0 "Advanced Regional Settlement"
+ gedfrey_settlement_improved_minor_tooltip:0 "Mobilise advanced settlement infrastructure to rapidly boost regional populations.\n\nManpower granted scales with National Growth level (50,000 per level, up to 500,000). Requires [gedfrey_national_growth_1]."
+ gedfrey_settlement_improved_medium:0 "Advanced Regional Settlement"
+ gedfrey_settlement_improved_medium_tooltip:0 "Mobilise advanced settlement infrastructure to rapidly boost regional populations.\n\nManpower granted scales with National Growth level (50,000 per level, up to 500,000). Requires [gedfrey_national_growth_1]."
+ gedfrey_settlement_improved_major:0 "Advanced Regional Settlement"
+ gedfrey_settlement_improved_major_tooltip:0 "Mobilise advanced settlement infrastructure to rapidly boost regional populations.\n\nManpower granted scales with National Growth level (50,000 per level, up to 500,000). Requires [gedfrey_national_growth_1]."
+
+ # Urban Expansion (Decision 12)
+ gedfrey_expand_building_slots:0 "Urban Expansion"
+ gedfrey_expand_building_slots_tooltip:0 "Invest in large-scale urban planning and infrastructure projects in the capital, creating space for additional industrial or civil construction.\n\nAdds 2 building slots to the capital state. Maximum 20 extra slots per nation."
+
+ # ============================================================
+ # POLITICAL CONSOLIDATION — Traits IV-X (missing entries)
+ # ============================================================
+
+ gedfrey_politics_4:0 "Political Consolidation IV"
+ gedfrey_politics_4_desc:0 "The leader's political networks span every institution in the state, generating substantial political power daily."
+ gedfrey_politics_5:0 "Political Consolidation V"
+ gedfrey_politics_5_desc:0 "Near-complete political dominance allows the leader to direct the state's resources with remarkable efficiency."
+ gedfrey_politics_6:0 "Political Consolidation VI"
+ gedfrey_politics_6_desc:0 "The leader's authority is unchallenged. Political opposition has been neutralised or co-opted."
+ gedfrey_politics_7:0 "Political Consolidation VII"
+ gedfrey_politics_7_desc:0 "An extraordinary political coalition sustains the leader's grip on power, generating exceptional influence each day."
+ gedfrey_politics_8:0 "Political Consolidation VIII"
+ gedfrey_politics_8_desc:0 "The leader commands the loyalty of every major faction. Political power flows almost effortlessly."
+ gedfrey_politics_9:0 "Political Consolidation IX"
+ gedfrey_politics_9_desc:0 "Political supremacy — the leader's authority is total, and the machinery of state works entirely in their service."
+ gedfrey_politics_10:0 "Political Consolidation X"
+ gedfrey_politics_10_desc:0 "The pinnacle of political mastery. The leader commands absolute power, generating unmatched political influence daily."
+
+ # ============================================================
+ # POLITICAL CONSOLIDATION — Decisions IV-X (missing entries)
+ # ============================================================
+
+ gedfrey_politics_decision_4_minor:0 "Political Consolidation IV"
+ gedfrey_politics_decision_4_minor_tooltip:0 "Deepen political control across all state institutions.\n\nRequires [gedfrey_politics_3] and extensive use of political decrees."
+ gedfrey_politics_decision_4_medium:0 "Political Consolidation IV"
+ gedfrey_politics_decision_4_medium_tooltip:0 "Deepen political control across all state institutions.\n\nRequires [gedfrey_politics_3] and extensive use of political decrees."
+ gedfrey_politics_decision_4_major:0 "Political Consolidation IV"
+ gedfrey_politics_decision_4_major_tooltip:0 "Deepen political control across all state institutions.\n\nRequires [gedfrey_politics_3] and extensive use of political decrees."
+
+ gedfrey_politics_decision_5_minor:0 "Political Consolidation V"
+ gedfrey_politics_decision_5_minor_tooltip:0 "Consolidate near-complete political dominance.\n\nRequires [gedfrey_politics_4] and continued use of political decrees."
+ gedfrey_politics_decision_5_medium:0 "Political Consolidation V"
+ gedfrey_politics_decision_5_medium_tooltip:0 "Consolidate near-complete political dominance.\n\nRequires [gedfrey_politics_4] and continued use of political decrees."
+ gedfrey_politics_decision_5_major:0 "Political Consolidation V"
+ gedfrey_politics_decision_5_major_tooltip:0 "Consolidate near-complete political dominance.\n\nRequires [gedfrey_politics_4] and continued use of political decrees."
+
+ gedfrey_politics_decision_6_minor:0 "Political Consolidation VI"
+ gedfrey_politics_decision_6_minor_tooltip:0 "Eliminate the last organised political opposition.\n\nRequires [gedfrey_politics_5] and continued use of political decrees."
+ gedfrey_politics_decision_6_medium:0 "Political Consolidation VI"
+ gedfrey_politics_decision_6_medium_tooltip:0 "Eliminate the last organised political opposition.\n\nRequires [gedfrey_politics_5] and continued use of political decrees."
+ gedfrey_politics_decision_6_major:0 "Political Consolidation VI"
+ gedfrey_politics_decision_6_major_tooltip:0 "Eliminate the last organised political opposition.\n\nRequires [gedfrey_politics_5] and continued use of political decrees."
+
+ gedfrey_politics_decision_7_minor:0 "Political Consolidation VII"
+ gedfrey_politics_decision_7_minor_tooltip:0 "Build an extraordinary cross-faction political coalition.\n\nRequires [gedfrey_politics_6] and continued use of political decrees."
+ gedfrey_politics_decision_7_medium:0 "Political Consolidation VII"
+ gedfrey_politics_decision_7_medium_tooltip:0 "Build an extraordinary cross-faction political coalition.\n\nRequires [gedfrey_politics_6] and continued use of political decrees."
+ gedfrey_politics_decision_7_major:0 "Political Consolidation VII"
+ gedfrey_politics_decision_7_major_tooltip:0 "Build an extraordinary cross-faction political coalition.\n\nRequires [gedfrey_politics_6] and continued use of political decrees."
+
+ gedfrey_politics_decision_8_minor:0 "Political Consolidation VIII"
+ gedfrey_politics_decision_8_minor_tooltip:0 "Secure the loyalty of every major political faction.\n\nRequires [gedfrey_politics_7] and continued use of political decrees."
+ gedfrey_politics_decision_8_medium:0 "Political Consolidation VIII"
+ gedfrey_politics_decision_8_medium_tooltip:0 "Secure the loyalty of every major political faction.\n\nRequires [gedfrey_politics_7] and continued use of political decrees."
+ gedfrey_politics_decision_8_major:0 "Political Consolidation VIII"
+ gedfrey_politics_decision_8_major_tooltip:0 "Secure the loyalty of every major political faction.\n\nRequires [gedfrey_politics_7] and continued use of political decrees."
+
+ gedfrey_politics_decision_9_minor:0 "Political Consolidation IX"
+ gedfrey_politics_decision_9_minor_tooltip:0 "Achieve total political supremacy — every institution serves the leader.\n\nRequires [gedfrey_politics_8] and continued use of political decrees."
+ gedfrey_politics_decision_9_medium:0 "Political Consolidation IX"
+ gedfrey_politics_decision_9_medium_tooltip:0 "Achieve total political supremacy — every institution serves the leader.\n\nRequires [gedfrey_politics_8] and continued use of political decrees."
+ gedfrey_politics_decision_9_major:0 "Political Consolidation IX"
+ gedfrey_politics_decision_9_major_tooltip:0 "Achieve total political supremacy — every institution serves the leader.\n\nRequires [gedfrey_politics_8] and continued use of political decrees."
+
+ gedfrey_politics_decision_10_minor:0 "Political Consolidation X"
+ gedfrey_politics_decision_10_minor_tooltip:0 "Formalise absolute political mastery. The pinnacle of political consolidation.\n\nRequires [gedfrey_politics_9] and extensive political decree activity."
+ gedfrey_politics_decision_10_medium:0 "Political Consolidation X"
+ gedfrey_politics_decision_10_medium_tooltip:0 "Formalise absolute political mastery. The pinnacle of political consolidation.\n\nRequires [gedfrey_politics_9] and extensive political decree activity."
+ gedfrey_politics_decision_10_major:0 "Political Consolidation X"
+ gedfrey_politics_decision_10_major_tooltip:0 "Formalise absolute political mastery. The pinnacle of political consolidation.\n\nRequires [gedfrey_politics_9] and extensive political decree activity."
+
+ # ============================================================
+ # LEADER DIRECTIVES — Political Decree decision
+ # ============================================================
+
+ gedfrey_decree_politics_minor:0 "Political Decree"
+ gedfrey_decree_politics_minor_tooltip:0 "Issue a political decree channelling state resources toward the leader's agenda. Generates extra Political Power for 60 days at a cost to research speed and consumer goods.\n\nScales with Political Consolidation level. Each use counts toward the next consolidation tier."
+ gedfrey_decree_politics_medium:0 "Political Decree"
+ gedfrey_decree_politics_medium_tooltip:0 "Issue a political decree channelling state resources toward the leader's agenda. Generates extra Political Power for 60 days at a cost to research speed and consumer goods.\n\nScales with Political Consolidation level. Each use counts toward the next consolidation tier."
+ gedfrey_decree_politics_major:0 "Political Decree"
+ gedfrey_decree_politics_major_tooltip:0 "Issue a political decree channelling state resources toward the leader's agenda. Generates extra Political Power for 60 days at a cost to research speed and consumer goods.\n\nScales with Political Consolidation level. Each use counts toward the next consolidation tier."
+
+ # ============================================================
+ # LEADER DIRECTIVES — Military Training Programme decision
+ # ============================================================
+
+ gedfrey_military_training_minor:0 "Military Training Programme"
+ gedfrey_military_training_minor_tooltip:0 "Intensify training across all military branches. Grants accelerated army, navy, and air experience for 60 days. At Political Consolidation X, also grants a random skill point to a random army commander.\n\nRequires Political Consolidation. Each use counts toward the next consolidation tier."
+ gedfrey_military_training_medium:0 "Military Training Programme"
+ gedfrey_military_training_medium_tooltip:0 "Intensify training across all military branches. Grants accelerated army, navy, and air experience for 60 days. At Political Consolidation X, also grants a random skill point to a random army commander.\n\nRequires Political Consolidation. Each use counts toward the next consolidation tier."
+ gedfrey_military_training_major:0 "Military Training Programme"
+ gedfrey_military_training_major_tooltip:0 "Intensify training across all military branches. Grants accelerated army, navy, and air experience for 60 days. At Political Consolidation X, also grants a random skill point to a random army commander.\n\nRequires Political Consolidation. Each use counts toward the next consolidation tier."
+
+ # ============================================================
+ # LEADER DIRECTIVES — National Programme decision
+ # ============================================================
+
+ gedfrey_national_program_minor:0 "National Programme"
+ gedfrey_national_program_minor_tooltip:0 "Direct state resources toward a broad national programme. Boosts population growth and construction speed for 120 days. Consumer goods penalty applies at lower consolidation levels.\n\nRequires Political Consolidation. Each use counts toward the next consolidation tier."
+ gedfrey_national_program_medium:0 "National Programme"
+ gedfrey_national_program_medium_tooltip:0 "Direct state resources toward a broad national programme. Boosts population growth and construction speed for 120 days. Consumer goods penalty applies at lower consolidation levels.\n\nRequires Political Consolidation. Each use counts toward the next consolidation tier."
+ gedfrey_national_program_major:0 "National Programme"
+ gedfrey_national_program_major_tooltip:0 "Direct state resources toward a broad national programme. Boosts population growth and construction speed for 120 days. Consumer goods penalty applies at lower consolidation levels.\n\nRequires Political Consolidation. Each use counts toward the next consolidation tier."
+
+ # ============================================================
+ # NATIONAL SPIRITS — Political Decree (Levels I-X)
+ # ============================================================
+
+ gedfrey_political_decree_1:0 "Political Decree I"
+ gedfrey_political_decree_1_desc:0 "A political decree has been issued. Bureaucratic resources are redirected toward generating political influence at a modest cost to research and civilian efficiency."
+ gedfrey_political_decree_2:0 "Political Decree II"
+ gedfrey_political_decree_2_desc:0 "A stronger decree channels greater state authority toward political consolidation."
+ gedfrey_political_decree_3:0 "Political Decree III"
+ gedfrey_political_decree_3_desc:0 "A potent political decree reinforces the leader's authority, generating significant political power."
+ gedfrey_political_decree_4:0 "Political Decree IV"
+ gedfrey_political_decree_4_desc:0 "An authoritative decree consolidates the leader's position across all institutions."
+ gedfrey_political_decree_5:0 "Political Decree V"
+ gedfrey_political_decree_5_desc:0 "A sweeping decree mobilises the full weight of state apparatus behind the leader's agenda."
+ gedfrey_political_decree_6:0 "Political Decree VI"
+ gedfrey_political_decree_6_desc:0 "A high-authority decree commands extensive state resources toward political consolidation."
+ gedfrey_political_decree_7:0 "Political Decree VII"
+ gedfrey_political_decree_7_desc:0 "An exceptional decree from a leader at the peak of political influence."
+ gedfrey_political_decree_8:0 "Political Decree VIII"
+ gedfrey_political_decree_8_desc:0 "A near-supreme political decree places the full bureaucracy at the leader's disposal."
+ gedfrey_political_decree_9:0 "Political Decree IX"
+ gedfrey_political_decree_9_desc:0 "A decree of extraordinary authority — the state apparatus works without friction."
+ gedfrey_political_decree_10:0 "Political Decree X"
+ gedfrey_political_decree_10_desc:0 "The supreme political decree. Every resource of the state is bent to the leader's political supremacy."
+
+ # ============================================================
+ # NATIONAL SPIRITS — Military Training Programme (Levels I-X)
+ # ============================================================
+
+ gedfrey_military_training_1:0 "Military Training Programme I"
+ gedfrey_military_training_1_desc:0 "Intensified training schedules are underway. All branches gain experience at a modestly accelerated rate."
+ gedfrey_military_training_2:0 "Military Training Programme II"
+ gedfrey_military_training_2_desc:0 "Enhanced training regimes push all branches to greater proficiency."
+ gedfrey_military_training_3:0 "Military Training Programme III"
+ gedfrey_military_training_3_desc:0 "A rigorous training programme is transforming the armed forces."
+ gedfrey_military_training_4:0 "Military Training Programme IV"
+ gedfrey_military_training_4_desc:0 "An intensive training schedule drives advanced exercises across all branches."
+ gedfrey_military_training_5:0 "Military Training Programme V"
+ gedfrey_military_training_5_desc:0 "An elite training programme pushes all branches to near-peak performance."
+ gedfrey_military_training_6:0 "Military Training Programme VI"
+ gedfrey_military_training_6_desc:0 "Advanced training protocols are in place across all armed forces."
+ gedfrey_military_training_7:0 "Military Training Programme VII"
+ gedfrey_military_training_7_desc:0 "A comprehensive elite programme covers all military branches."
+ gedfrey_military_training_8:0 "Military Training Programme VIII"
+ gedfrey_military_training_8_desc:0 "Near-peak military training drives exceptional experience gains across all branches."
+ gedfrey_military_training_9:0 "Military Training Programme IX"
+ gedfrey_military_training_9_desc:0 "The armed forces operate under the most demanding training regime in the nation's history."
+ gedfrey_military_training_10:0 "Military Training Programme X"
+ gedfrey_military_training_10_desc:0 "The pinnacle of military training. All branches gain experience at the maximum possible rate."
+
+ # ============================================================
+ # NATIONAL SPIRITS — National Programme (Levels I-X)
+ # ============================================================
+
+ gedfrey_national_program_1:0 "National Programme I"
+ gedfrey_national_program_1_desc:0 "A modest state programme directs resources toward population growth and construction, at some cost to consumer goods."
+ gedfrey_national_program_2:0 "National Programme II"
+ gedfrey_national_program_2_desc:0 "An expanded national programme accelerates both demographic growth and industrial construction."
+ gedfrey_national_program_3:0 "National Programme III"
+ gedfrey_national_program_3_desc:0 "A substantial national programme drives visible gains in construction speed and population."
+ gedfrey_national_program_4:0 "National Programme IV"
+ gedfrey_national_program_4_desc:0 "A broad national programme mobilises resources for construction and demographic expansion."
+ gedfrey_national_program_5:0 "National Programme V"
+ gedfrey_national_program_5_desc:0 "A major national programme drives rapid construction and population growth with reduced consumer cost."
+ gedfrey_national_program_6:0 "National Programme VI"
+ gedfrey_national_program_6_desc:0 "A large-scale national programme unlocks significant construction bonuses at a modest consumer goods cost."
+ gedfrey_national_program_7:0 "National Programme VII"
+ gedfrey_national_program_7_desc:0 "An extensive programme accelerates construction across the nation."
+ gedfrey_national_program_8:0 "National Programme VIII"
+ gedfrey_national_program_8_desc:0 "A near-maximum national programme drives exceptional construction speed and population growth."
+ gedfrey_national_program_9:0 "National Programme IX"
+ gedfrey_national_program_9_desc:0 "The most ambitious national programme yet enacted — construction and population growth at exceptional rates."
+ gedfrey_national_program_10:0 "National Programme X"
+ gedfrey_national_program_10_desc:0 "The pinnacle of national ambition. Construction speed is maximised and population grows at an extraordinary rate."
+
+ # ============================================================
+ # LEADER DIRECTIVES — Civic Investment (decisions + ideas)
+ # ============================================================
+
+ gedfrey_civic_investment_1_minor:0 "Civic Investment I"
+ gedfrey_civic_investment_1_minor_tooltip:0 "Redirect civilian industrial capacity toward political infrastructure. Permanently generates additional political power at the cost of 3 civilian factories.\n\nRequires at least 3 civilian factories."
+ gedfrey_civic_investment_1_medium:0 "Civic Investment I"
+ gedfrey_civic_investment_1_medium_tooltip:0 "Redirect civilian industrial capacity toward political infrastructure. Permanently generates additional political power at the cost of 3 civilian factories.\n\nRequires at least 3 civilian factories."
+ gedfrey_civic_investment_1_major:0 "Civic Investment I"
+ gedfrey_civic_investment_1_major_tooltip:0 "Redirect civilian industrial capacity toward political infrastructure. Permanently generates additional political power at the cost of 3 civilian factories.\n\nRequires at least 3 civilian factories."
+
+ gedfrey_civic_investment_2_minor:0 "Civic Investment II"
+ gedfrey_civic_investment_2_minor_tooltip:0 "Deepen the political infrastructure programme. Requires [gedfrey_civic_investment_1] and 3 additional civilian factories."
+ gedfrey_civic_investment_2_medium:0 "Civic Investment II"
+ gedfrey_civic_investment_2_medium_tooltip:0 "Deepen the political infrastructure programme. Requires [gedfrey_civic_investment_1] and 3 additional civilian factories."
+ gedfrey_civic_investment_2_major:0 "Civic Investment II"
+ gedfrey_civic_investment_2_major_tooltip:0 "Deepen the political infrastructure programme. Requires [gedfrey_civic_investment_1] and 3 additional civilian factories."
+
+ gedfrey_civic_investment_3_minor:0 "Civic Investment III"
+ gedfrey_civic_investment_3_minor_tooltip:0 "Complete the political infrastructure programme. Requires [gedfrey_civic_investment_2] and 3 additional civilian factories. Maximum political power bonus reached."
+ gedfrey_civic_investment_3_medium:0 "Civic Investment III"
+ gedfrey_civic_investment_3_medium_tooltip:0 "Complete the political infrastructure programme. Requires [gedfrey_civic_investment_2] and 3 additional civilian factories. Maximum political power bonus reached."
+ gedfrey_civic_investment_3_major:0 "Civic Investment III"
+ gedfrey_civic_investment_3_major_tooltip:0 "Complete the political infrastructure programme. Requires [gedfrey_civic_investment_2] and 3 additional civilian factories. Maximum political power bonus reached."
+
+ gedfrey_civic_investment_1:0 "Civic Investment I"
+ gedfrey_civic_investment_1_desc:0 "Three civilian factories have been permanently redirected toward political administration, generating a steady flow of additional political influence."
+ gedfrey_civic_investment_2:0 "Civic Investment II"
+ gedfrey_civic_investment_2_desc:0 "Six civilian factories have been absorbed into the political apparatus. Political power generation is significantly enhanced."
+ gedfrey_civic_investment_3:0 "Civic Investment III"
+ gedfrey_civic_investment_3_desc:0 "Nine civilian factories serve the state's political machine. Political power generation is at its maximum from this programme."
